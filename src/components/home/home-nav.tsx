@@ -6,7 +6,6 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
 
 const navLinks = [
   { label: "Work", href: "/projects" },
@@ -14,32 +13,21 @@ const navLinks = [
   { label: "Experience", href: "/experience" }
 ];
 
-type HomeNavProps = {
-  visible?: boolean;
-};
-
-export function HomeNav({ visible = true }: HomeNavProps) {
+export function HomeNav() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <motion.header
-      aria-hidden={!visible}
-      inert={!visible ? true : undefined}
       className="pointer-events-none fixed left-0 right-0 top-5 z-50 flex w-full items-center justify-center px-4 sm:top-6"
-      initial={false}
-      animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: -16 }}
+      initial={shouldReduceMotion ? false : { opacity: 0, y: -12 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={
         shouldReduceMotion
           ? { duration: 0 }
           : { duration: 0.34, ease: [0.22, 1, 0.36, 1] }
       }
     >
-      <div
-        className={cn(
-          "flex h-14 w-full max-w-[700px] items-center justify-between rounded-full border border-white/10 bg-black px-2 py-2 text-[#fbfaf7] shadow-[0_20px_70px_rgba(0,0,0,0.22)]",
-          visible ? "pointer-events-auto" : "pointer-events-none"
-        )}
-      >
+      <div className="pointer-events-auto flex h-14 w-full max-w-[700px] items-center justify-between rounded-full border border-white/10 bg-black/95 px-2 py-2 text-[#fbfaf7] shadow-[0_20px_70px_rgba(0,0,0,0.22)] backdrop-blur-xl">
         <div className="flex min-w-0 items-center gap-4 pl-1 sm:gap-8">
           <Link
             href="/"

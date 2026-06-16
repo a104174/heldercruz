@@ -19,7 +19,7 @@ import { motion } from "motion/react";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { HomeFooter } from "@/components/home/home-footer";
-import { HomeNavigationSwitcher } from "@/components/home/home-navigation-switcher";
+import { HomeNav } from "@/components/home/home-nav";
 import Text3DFlip from "@/components/ui/text-3d-flip";
 import { cn } from "@/lib/utils";
 import { projects, type Project, type ProjectSlug } from "@/data/projects";
@@ -785,7 +785,7 @@ function CtaSection() {
 export function HomePage() {
   return (
     <>
-      <HomeNavigationSwitcher />
+      <HomeNav />
       <main className="min-h-screen overflow-hidden bg-[#fbfaf7] text-black">
         <HeroSection />
         <TechStrip />
