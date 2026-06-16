@@ -68,3 +68,13 @@ select {
     transition-duration: 0.01ms !important;
   }
 }
+
+@keyframes home-marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}

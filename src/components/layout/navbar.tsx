@@ -1,6 +1,7 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -18,6 +19,10 @@ export function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  if (pathname === "/") {
+    return null;
+  }
+
   const linkClassName = (href: string) =>
     cn(
       "rounded-full px-3 py-2 text-sm font-medium text-muted transition hover:bg-soft hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink",
@@ -29,11 +34,19 @@ export function Navbar() {
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
         <Link
           href="/"
+          aria-label="Go to homepage"
           className="flex items-center gap-3 rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
           onClick={() => setMenuOpen(false)}
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-xs font-bold text-white">
-            HC
+          <span className="flex h-8 w-8 items-center justify-center rounded-full">
+            <Image
+              src="/hc.png"
+              alt="Hélder Cruz logo"
+              width={30}
+              height={30}
+              className="h-[30px] w-[30px] object-contain"
+              priority
+            />
           </span>
           <span className="text-sm font-semibold tracking-normal text-ink">Hélder Cruz</span>
         </Link>

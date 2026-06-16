@@ -13,6 +13,11 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`
   },
   description: siteConfig.description,
+  icons: {
+    icon: "/hc.png",
+    shortcut: "/hc.png",
+    apple: "/hc.png"
+  },
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
@@ -36,7 +41,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body>
         <Providers>
           <Navbar />
