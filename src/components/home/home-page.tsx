@@ -2,13 +2,11 @@
 
 import type { CSSProperties, ReactNode } from "react";
 import {
-  ArrowRight,
   ArrowUpRight,
   Database,
   FileText,
   Folder,
   GitBranch,
-  Mail,
   MonitorSmartphone,
   ShieldCheck,
   Sparkles
@@ -19,6 +17,10 @@ import { AnimatedReveal } from "@/components/animations/animated-reveal";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { HomeFooter } from "@/components/home/home-footer";
 import { HomeServicesBento } from "@/components/home/home-services-bento";
+import {
+  PortfolioInteractiveButton,
+  PortfolioInteractiveLink
+} from "@/components/ui/portfolio-interactive-button";
 import Text3DFlip from "@/components/ui/text-3d-flip";
 import { cn } from "@/lib/utils";
 import { projects, type Project, type ProjectSlug } from "@/data/projects";
@@ -94,47 +96,11 @@ function imageStyle(url: string, overlay = "linear-gradient(180deg, rgba(0,0,0,0
   } satisfies CSSProperties;
 }
 
-function HomeButtonLink({
-  href,
-  children,
-  dark = false
-}: {
-  href: string;
-  children: ReactNode;
-  dark?: boolean;
-}) {
+function HomeContactButton() {
   return (
     <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-      <Link
-        href={href}
-        className={cn(
-          "inline-flex h-11 items-center justify-center gap-2 rounded-full px-6 text-sm font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4",
-          dark
-            ? "bg-white text-black hover:bg-white/90 focus-visible:outline-white"
-            : "bg-black text-white hover:bg-black/85 focus-visible:outline-black"
-        )}
-      >
-        {children}
-      </Link>
-    </motion.div>
-  );
-}
-
-function HomeContactButton({ dark = false }: { dark?: boolean }) {
-  return (
-    <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-      <ContactTrigger
-        variant="ghost"
-        size="lg"
-        className={cn(
-          "!h-11 !rounded-full !px-6 !text-sm !font-bold transition",
-          dark
-            ? "!border !border-white/20 !bg-transparent !text-white hover:!bg-white hover:!text-black"
-            : "!border !border-black/15 !bg-white !text-black hover:!border-black hover:!bg-white"
-        )}
-      >
-        <Mail aria-hidden="true" className="h-4 w-4" />
-        Contact Me
+      <ContactTrigger asChild>
+        <PortfolioInteractiveButton>Contacto</PortfolioInteractiveButton>
       </ContactTrigger>
     </motion.div>
   );
@@ -166,15 +132,7 @@ function HeroSection() {
           engineering, backend systems and polished user experiences.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <HomeButtonLink href="/work">
-            View Projects
-            <motion.div
-              animate={{ x: [0, 4, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-            >
-              <ArrowRight aria-hidden="true" className="h-4 w-4" />
-            </motion.div>
-          </HomeButtonLink>
+          <PortfolioInteractiveLink href="/projects">Ver projetos</PortfolioInteractiveLink>
           <HomeContactButton />
         </div>
       </AnimatedReveal>
@@ -695,15 +653,7 @@ function CtaSection() {
         </p>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row">
           <HomeContactButton />
-          <HomeButtonLink href="/work">
-            View Projects
-            <motion.div
-              animate={{ x: [0, 4, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-            >
-              <ArrowRight aria-hidden="true" className="h-4 w-4" />
-            </motion.div>
-          </HomeButtonLink>
+          <PortfolioInteractiveLink href="/projects">Ver projetos</PortfolioInteractiveLink>
         </div>
       </AnimatedReveal>
     </section>

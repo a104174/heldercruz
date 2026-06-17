@@ -3,6 +3,7 @@ import { Code, Database, Maximize2, MessageSquare, Rocket, Server } from "lucide
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { PageShell } from "@/components/layout/page-shell";
+import { PortfolioInteractiveButton } from "@/components/ui/portfolio-interactive-button";
 import { experienceItems } from "@/data/experience";
 import { cn } from "@/lib/utils";
 
@@ -166,12 +167,10 @@ export default function ExperiencePage() {
               <br />
               digital products?
             </h2>
-            <ContactTrigger
-              variant="ghost"
-              size="sm"
-              className="mt-10 !h-11 !rounded-full !bg-black !px-7 !text-[10px] !font-bold !uppercase !text-white hover:!bg-black/82"
-            >
-              Let&apos;s Talk
+            <ContactTrigger asChild>
+              <PortfolioInteractiveButton className="mt-10">
+                Contacto
+              </PortfolioInteractiveButton>
             </ContactTrigger>
           </div>
         </AnimatedReveal>

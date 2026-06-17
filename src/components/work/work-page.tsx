@@ -2,6 +2,7 @@ import Link from "next/link";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { PageShell } from "@/components/layout/page-shell";
+import { PortfolioInteractiveButton } from "@/components/ui/portfolio-interactive-button";
 import { projects, type Project, type ProjectSlug } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
@@ -174,12 +175,10 @@ export function WorkPage() {
             <p className="mt-6 max-w-[520px] text-[13px] leading-6 text-black/48">
               Let&apos;s discuss how we can work together to build something beautiful and functional.
             </p>
-            <ContactTrigger
-              variant="ghost"
-              size="sm"
-              className="mt-8 !h-11 !rounded-full !bg-black !px-7 !text-[10px] !font-bold !uppercase !text-white hover:!bg-black/82"
-            >
-              Contact Me
+            <ContactTrigger asChild>
+              <PortfolioInteractiveButton className="mt-8">
+                Contacto
+              </PortfolioInteractiveButton>
             </ContactTrigger>
           </div>
         </AnimatedReveal>

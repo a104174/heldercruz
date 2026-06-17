@@ -2,13 +2,14 @@
 
 import type { CSSProperties, PointerEvent } from "react";
 import { useEffect, useState } from "react";
-import { ArrowRight, FileText, Menu, X } from "lucide-react";
+import { FileText, Menu, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { Button } from "@/components/ui/button";
+import { NavbarInteractiveHoverButton } from "@/components/ui/portfolio-interactive-button";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -174,15 +175,13 @@ export function LiquidGlassNavbar() {
                 <FileText aria-hidden="true" className="relative z-10 h-3.5 w-3.5 stroke-[1.8]" />
                 <span className="relative z-10">Resume</span>
               </Link>
-              <ContactTrigger
-                variant="ghost"
-                size="sm"
-                aria-label="Open contact modal"
-                className="liquid-glass-contact !h-10 !rounded-full !border !border-black/80 !bg-black !px-3 !text-[10px] !font-bold !uppercase !text-white transition duration-300 hover:!-translate-y-0.5 hover:!bg-black/86 focus-visible:!outline-black sm:!px-4"
-                onClick={() => setMenuOpen(false)}
-              >
-                <span className="relative z-10">Contacto</span>
-                <ArrowRight aria-hidden="true" className="relative z-10 h-3 w-3" />
+              <ContactTrigger asChild onClick={() => setMenuOpen(false)}>
+                <NavbarInteractiveHoverButton
+                  aria-label="Abrir modal de contacto"
+                  className="shadow-none"
+                >
+                  Contacto
+                </NavbarInteractiveHoverButton>
               </ContactTrigger>
               <Button
                 type="button"

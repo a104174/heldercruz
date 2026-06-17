@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Database, GitBranch, Layers, Rocket } from "lucide-react";
+import { Database, GitBranch, Layers, Rocket } from "lucide-react";
 import { notFound } from "next/navigation";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
@@ -9,7 +8,10 @@ import { PageShell } from "@/components/layout/page-shell";
 import { Section } from "@/components/layout/section";
 import { ProjectHero } from "@/components/projects/project-hero";
 import { ProjectVisual } from "@/components/projects/project-visual";
-import { ButtonLink } from "@/components/ui/button";
+import {
+  PortfolioInteractiveButton,
+  PortfolioInteractiveLink
+} from "@/components/ui/portfolio-interactive-button";
 import { getNextProject, getProjectBySlug, projects, type Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
@@ -261,18 +263,11 @@ function CasaBenficaProjectPage({ project }: { project: Project }) {
             with internal operational tools.
           </p>
           <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              href="/work"
-              className="inline-flex h-10 items-center justify-center rounded-full border border-black/14 bg-white px-6 text-[10px] font-bold uppercase text-black/62 transition hover:border-black hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
-            >
-              Back to Projects
-            </Link>
-            <ContactTrigger
-              variant="ghost"
-              size="sm"
-              className="!h-10 !rounded-full !bg-black !px-6 !text-[10px] !font-bold !uppercase !text-white hover:!bg-black/82"
-            >
-              Contact Me
+            <PortfolioInteractiveLink href="/projects">
+              Voltar aos projetos
+            </PortfolioInteractiveLink>
+            <ContactTrigger asChild>
+              <PortfolioInteractiveButton>Contacto</PortfolioInteractiveButton>
             </ContactTrigger>
           </div>
         </AnimatedReveal>
@@ -391,10 +386,9 @@ function GenericProjectDetailPage({ project }: { project: Project }) {
                 {nextProject.shortDescription}
               </p>
             </div>
-            <ButtonLink href={nextProject.href} variant="secondary">
-              View Project
-              <ArrowRight aria-hidden="true" className="h-4 w-4" />
-            </ButtonLink>
+            <PortfolioInteractiveLink href={nextProject.href}>
+              Ver projeto
+            </PortfolioInteractiveLink>
           </div>
         </AnimatedReveal>
       </section>
