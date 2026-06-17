@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Clock, Layers, Search, Server, TrendingUp } from "lucide-react";
+import Image from "next/image";
+import { Layers, Search, Server, TrendingUp } from "lucide-react";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { PageShell } from "@/components/layout/page-shell";
@@ -86,8 +87,15 @@ export default function AboutPage() {
           </AnimatedReveal>
 
           <AnimatedReveal delay={0.08}>
-            <div className="flex aspect-[1.35] min-h-[300px] items-center justify-center rounded-[34px] border border-black/10 bg-[#efede9]">
-              <Clock aria-hidden="true" className="h-28 w-28 stroke-[1.6] text-black" />
+            <div className="relative aspect-[1.35] min-h-[300px] overflow-hidden rounded-[34px] border border-black/10 bg-[#efede9]">
+              <Image
+                src="/pages/about/helder.JPG"
+                alt="Portrait of Hélder Cruz"
+                fill
+                className="object-cover object-[58%_42%]"
+                sizes="(min-width: 768px) 580px, calc(100vw - 40px)"
+                priority
+              />
             </div>
           </AnimatedReveal>
         </div>

@@ -5,6 +5,10 @@ import { Navbar } from "@/components/layout/navbar";
 import { Providers } from "@/components/providers/providers";
 import { getSiteUrl, siteConfig } from "@/config/site";
 import "./globals.css";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
@@ -41,7 +45,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en" data-scroll-behavior="smooth" className={cn("font-sans", geist.variable)}>
       <body>
         <Providers>
           <Navbar />

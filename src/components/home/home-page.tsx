@@ -11,14 +11,14 @@ import {
   Mail,
   MonitorSmartphone,
   ShieldCheck,
-  Sparkles,
-  Zap
+  Sparkles
 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { HomeFooter } from "@/components/home/home-footer";
+import { HomeServicesBento } from "@/components/home/home-services-bento";
 import Text3DFlip from "@/components/ui/text-3d-flip";
 import { cn } from "@/lib/utils";
 import { projects, type Project, type ProjectSlug } from "@/data/projects";
@@ -492,77 +492,6 @@ function SystemsSection() {
   );
 }
 
-function StudioSection() {
-  return (
-    <SectionShell className="py-20 md:py-28">
-      <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
-        <AnimatedReveal className="order-2 flex items-center lg:order-1">
-          <FeatureRail
-            title={
-              <>
-                From polished websites
-                <br />
-                to practical tools.
-              </>
-            }
-            activeSize="h-1/4"
-            items={[
-              {
-                title: "Reliable Databases",
-                text: "Schemas and queries shaped around the business workflow, not just the screen."
-              },
-              {
-                title: "Responsive Interfaces",
-                text: "Layouts tuned for desktop, tablet and mobile use."
-              },
-              {
-                title: "Performance & Usability",
-                text: "Small details that make products fast, readable and pleasant to use."
-              },
-              {
-                title: "Production Delivery",
-                text: "Deployment-ready applications with clean structure and maintainable code."
-              }
-            ]}
-          />
-        </AnimatedReveal>
-
-        <AnimatedReveal
-          delay={0.08}
-          className="order-1 flex min-h-[520px] items-center justify-center overflow-hidden rounded-[36px] border border-[#d9d7d0]/70 bg-gradient-to-tr from-[#e0eafc] to-[#cfdef3] p-6 shadow-inner lg:order-2 lg:min-h-[650px]"
-        >
-          <motion.div 
-            whileHover={{ scale: 1.02 }}
-            className="w-full max-w-lg rounded-[24px] border border-white/60 bg-white/80 p-7 shadow-[0_24px_70px_rgba(0,0,0,0.16)] backdrop-blur-xl"
-          >
-            <div className="mb-6 flex items-center gap-3">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-black text-[10px] font-bold">
-                HC
-              </span>
-              <span className="text-xs font-bold uppercase text-[#706c64]">Product build</span>
-            </div>
-            <div className="rounded-[14px] border border-white/70 bg-white/65 p-5 shadow-sm">
-              <p className="text-sm leading-7 text-black">
-                Build a step-based contact flow, persist requests, notify by email and keep the UI
-                calm on every device.
-              </p>
-            </div>
-            <div className="mt-6 flex justify-end">
-              <motion.span 
-                animate={{ scale: [1, 1.15, 1], rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-[#ff416c] to-[#ff4b2b] text-white shadow-md"
-              >
-                <Zap aria-hidden="true" className="h-4 w-4" />
-              </motion.span>
-            </div>
-          </motion.div>
-        </AnimatedReveal>
-      </div>
-    </SectionShell>
-  );
-}
-
 function FocusSection() {
   return (
     <SectionShell className="flex flex-col items-center py-24 md:py-36">
@@ -790,7 +719,7 @@ export function HomePage() {
         <CollageSection />
         <ManifestoSection />
         <SystemsSection />
-        <StudioSection />
+        <HomeServicesBento />
         <FocusSection />
         <ProjectsSection />
         <QuoteSection />
