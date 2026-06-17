@@ -78,3 +78,209 @@ select {
     transform: translateX(-50%);
   }
 }
+
+/* ========================================= */
+/* PREMIUM LIQUID GLASS NAVBAR               */
+/* ========================================= */
+
+.liquid-glass-surface {
+  isolation: isolate;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(255, 255, 255, 0.02) 60%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 24px 48px -12px rgba(0, 0, 0, 0.12),
+    0 8px 16px -8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95), /* Brilho especular no topo */
+    inset 0 -1px 2px rgba(255, 255, 255, 0.35), /* Reflexo no fundo */
+    inset 0 20px 30px -20px rgba(255, 255, 255, 0.6), /* Volume interno */
+    inset 0 -20px 30px -20px rgba(0, 0, 0, 0.03); /* Sombra interna para profundidade */
+  
+  /* O url() no backdrop-filter é o que aplica a refração real ao fundo */
+  backdrop-filter: url("#liquid-glass-distortion") blur(16px) saturate(200%) contrast(1.08) brightness(1.05);
+  -webkit-backdrop-filter: url("#liquid-glass-distortion") blur(16px) saturate(200%) contrast(1.08) brightness(1.05);
+  
+  transition: box-shadow 0.5s ease-out, background 0.5s ease-out, border-color 0.5s ease-out;
+}
+
+/* Hover: simula o vidro a "dilatar" e a refletir mais luz */
+.liquid-glass-surface:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.15) 35%,
+    rgba(255, 255, 255, 0.05) 65%,
+    rgba(255, 255, 255, 0.35) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 32px 60px -15px rgba(0, 0, 0, 0.15),
+    0 12px 24px -10px rgba(0, 0, 0, 0.1),
+    inset 0 2px 4px rgba(255, 255, 255, 1),
+    inset 0 -2px 6px rgba(255, 255, 255, 0.45),
+    inset 0 30px 40px -20px rgba(255, 255, 255, 0.8),
+    inset 0 -30px 40px -20px rgba(0, 0, 0, 0.05);
+}
+
+.liquid-glass-surface::before,
+.liquid-glass-surface::after,
+.liquid-glass-active::before,
+.liquid-glass-active::after,
+.liquid-glass-button::before,
+.liquid-glass-contact::before,
+.liquid-glass-contact::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+}
+
+/* Brilho Fixo do Contorno Superior (Sheen) */
+.liquid-glass-surface::before {
+  inset: 1px;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.1) 15%,
+    transparent 40%,
+    transparent 85%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  opacity: 0.9;
+  transition: opacity 0.5s ease-out;
+}
+
+.liquid-glass-surface:hover::before {
+  opacity: 1;
+}
+
+/* Tracking Dinâmico do Cursor - Luz Refratada */
+.liquid-glass-surface::after {
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: radial-gradient(
+    180px circle at var(--x, 50%) var(--y, 50%),
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.15) 35%,
+    transparent 70%
+  );
+  mix-blend-mode: color-dodge;
+  opacity: 0;
+  transform: translateZ(0);
+  transition: opacity 0.4s ease-out;
+}
+
+.liquid-glass-surface:hover::after {
+  opacity: 0.75;
+}
+
+.liquid-glass-content {
+  position: relative;
+  z-index: 3;
+}
+
+/* Links Ativos - Aparência de Vidro Saliente (Embossed) */
+.liquid-glass-active {
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.75),
+    rgba(255, 255, 255, 0.25)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.08),
+    inset 0 2px 4px rgba(255, 255, 255, 1),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+}
+
+.liquid-glass-active::after {
+  inset: -10px -50%;
+  height: 20px;
+  background: radial-gradient(ellipse at top, rgba(255,255,255,0.8), transparent 70%);
+  opacity: 0.6;
+}
+
+/* Botões Secundários */
+.liquid-glass-button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+    0 6px 16px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(16px) saturate(170%);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+}
+
+.liquid-glass-button::before {
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.7) 45%, transparent 70%);
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 300ms ease, transform 400ms ease-out;
+}
+
+.liquid-glass-button:hover::before {
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+/* Botão Contacto - Efeito de Vidro Fumado Negro (Dark Smoked Glass) */
+.liquid-glass-contact {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(40, 40, 40, 0.85), rgba(10, 10, 10, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.liquid-glass-contact::after {
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(105deg, transparent 15%, rgba(255, 255, 255, 0.15) 45%, transparent 75%);
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 300ms ease, transform 400ms ease-out;
+}
+
+.liquid-glass-contact:hover::after {
+  opacity: 1;
+  transform: translateX(100%);
+}
+
+/* Menu Mobile Items */
+.liquid-glass-menu-item {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.liquid-glass-menu-item:hover,
+.liquid-glass-menu-item-active {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.15));
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.9),
+    0 6px 16px rgba(0, 0, 0, 0.06);
+}
