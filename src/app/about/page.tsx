@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { ArrowRight, Mail } from "lucide-react";
+import { Clock, Layers, Search, Server, TrendingUp } from "lucide-react";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { PageShell } from "@/components/layout/page-shell";
-import { Section } from "@/components/layout/section";
-import { ButtonLink } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "About",
@@ -12,88 +10,161 @@ export const metadata: Metadata = {
     "About Hélder Cruz, Software Engineer graduated in Computer Engineering from Universidade do Minho."
 };
 
+const workValues = [
+  {
+    title: "Clean interfaces",
+    icon: Layers
+  },
+  {
+    title: "Reliable systems",
+    icon: Server
+  },
+  {
+    title: "Practical business value",
+    icon: TrendingUp
+  },
+  {
+    title: "Attention to detail",
+    icon: Search
+  }
+];
+
 const skills = [
-  "Frontend engineering",
-  "Backend logic",
-  "Database design",
-  "Backoffice systems",
-  "Responsive interfaces",
-  "Deployment"
+  "React",
+  "Next.js",
+  "TypeScript",
+  "JavaScript",
+  "Node.js",
+  "Supabase",
+  "PostgreSQL",
+  "Tailwind CSS",
+  "Git",
+  "GitHub",
+  "Vercel",
+  "Docker",
+  "Python",
+  "Resend",
+  "Figma"
 ];
 
 export default function AboutPage() {
   return (
-    <PageShell>
-      <Section className="pt-20 md:pt-28" eyebrow="About" title="Engineer first. Product-minded always.">
-        <AnimatedReveal className="max-w-4xl space-y-6 text-base leading-8 text-muted md:text-lg">
-          <p>
-            I&apos;m Hélder Cruz, a Software Engineer graduated in Computer Engineering from
-            Universidade do Minho. I focus on building clean, scalable and user-focused web
-            applications, combining frontend development, backend logic, databases and deployment.
-            I&apos;ve worked on real client projects, including business websites, reservation
-            systems and backoffice platforms.
+    <PageShell className="bg-[#f8f6f1]">
+      <section className="mx-auto w-full max-w-[1120px] px-5 pb-28 pt-32 sm:px-8 md:pb-36 md:pt-44 lg:px-10">
+        <AnimatedReveal className="mx-auto flex max-w-[860px] flex-col items-center text-center">
+          <span className="rounded-full border border-black/10 bg-[#fbfaf7] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-black/42">
+            About
+          </span>
+          <h1 className="mt-8 text-[56px] font-semibold leading-[0.86] tracking-normal text-black sm:text-[82px] md:text-[102px]">
+            Building
+            <br />
+            software that
+            <br />
+            feels simple,
+            <br />
+            useful and
+            <br />
+            polished.
+          </h1>
+          <p className="mt-8 max-w-[560px] text-[13px] leading-6 text-black/52">
+            I am Hélder Cruz, a Software Engineer graduated in Computer Engineering from
+            Universidade do Minho.
           </p>
         </AnimatedReveal>
-      </Section>
 
-      <Section className="border-y border-line bg-soft" title="Academic Background">
-        <AnimatedReveal className="rounded-lg border border-line bg-white p-6 md:p-8">
-          <h2 className="text-2xl font-semibold text-ink">Computer Engineering · Universidade do Minho</h2>
-          <p className="mt-5 max-w-4xl text-base leading-8 text-muted md:text-lg">
-            A foundation across software engineering, databases, distributed systems, computer
-            networks, security, human-computer interaction and artificial intelligence.
-          </p>
+        <div id="vision" className="mt-36 grid gap-10 md:grid-cols-[1fr_1.08fr] md:items-center">
+          <AnimatedReveal className="max-w-[460px]">
+            <h2 className="text-2xl font-medium leading-none tracking-normal text-black">
+              Personal Intro
+            </h2>
+            <p className="mt-8 text-[14px] leading-7 text-black/56">
+              I focus on building clean, scalable and user-focused web applications, combining
+              frontend development, backend logic, databases and deployment. I have worked on real
+              client projects, including business websites, reservation systems and backoffice
+              platforms.
+            </p>
+          </AnimatedReveal>
+
+          <AnimatedReveal delay={0.08}>
+            <div className="flex aspect-[1.35] min-h-[300px] items-center justify-center rounded-[34px] border border-black/10 bg-[#efede9]">
+              <Clock aria-hidden="true" className="h-28 w-28 stroke-[1.6] text-black" />
+            </div>
+          </AnimatedReveal>
+        </div>
+
+        <AnimatedReveal className="mx-auto mt-36 max-w-[820px]">
+          <div className="rounded-[34px] border border-black/10 bg-[#efede9] px-8 py-14 text-center md:px-16">
+            <h2 className="text-2xl font-medium leading-none tracking-normal text-black">
+              Computer Engineering
+            </h2>
+            <p className="mx-auto mt-8 max-w-[620px] text-[13px] leading-6 text-black/52">
+              Graduated in Computer Engineering from Universidade do Minho, with foundations in
+              software engineering, databases, distributed systems, computer networks, security,
+              human-computer interaction and artificial intelligence.
+            </p>
+          </div>
         </AnimatedReveal>
-      </Section>
 
-      <Section title="How I Work">
-        <AnimatedReveal className="grid gap-5 md:grid-cols-3">
-          {[
-            "I like simple systems that are easy to reason about and evolve.",
-            "I care about interfaces that feel polished without getting in the way.",
-            "I build with deployment, maintainability and real user flows in mind."
-          ].map((item) => (
-            <article key={item} className="rounded-lg border border-line bg-white p-6">
-              <p className="text-base leading-7 text-muted">{item}</p>
-            </article>
-          ))}
-        </AnimatedReveal>
-      </Section>
+        <section className="mt-36">
+          <AnimatedReveal>
+            <h2 className="text-center text-2xl font-medium leading-none tracking-normal text-black">
+              How I Work
+            </h2>
+          </AnimatedReveal>
+          <AnimatedReveal delay={0.08} className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {workValues.map((item) => {
+              const Icon = item.icon;
 
-      <Section className="border-t border-line" title="Skills">
-        <AnimatedReveal className="flex flex-wrap gap-2">
-          {skills.map((skill) => (
-            <span
-              key={skill}
-              className="rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-neutral-700"
+              return (
+                <article
+                  key={item.title}
+                  className="flex min-h-[168px] flex-col justify-between rounded-[24px] border border-black/10 bg-[#efede9] p-7"
+                >
+                  <Icon aria-hidden="true" className="h-5 w-5 stroke-[1.8] text-black" />
+                  <h3 className="text-[13px] font-semibold leading-5 tracking-normal text-black">
+                    {item.title}
+                  </h3>
+                </article>
+              );
+            })}
+          </AnimatedReveal>
+        </section>
+
+        <section className="mt-36">
+          <AnimatedReveal>
+            <h2 className="text-center text-2xl font-medium leading-none tracking-normal text-black">
+              Skills
+            </h2>
+          </AnimatedReveal>
+          <AnimatedReveal
+            delay={0.08}
+            className="mx-auto mt-10 flex max-w-[760px] flex-wrap justify-center gap-3"
+          >
+            {skills.map((skill) => (
+              <span
+                key={skill}
+                className="rounded-full border border-black/10 bg-[#efede9] px-4 py-1.5 text-[9px] font-bold uppercase tracking-[0.12em] text-black/42"
+              >
+                {skill}
+              </span>
+            ))}
+          </AnimatedReveal>
+        </section>
+
+        <AnimatedReveal className="mt-36">
+          <div className="flex min-h-[430px] flex-col items-center justify-center rounded-[34px] border border-black/10 bg-[#efede9] px-6 py-16 text-center">
+            <h2 className="max-w-[660px] text-[44px] font-semibold leading-[0.9] tracking-normal text-black sm:text-[64px] md:text-[76px]">
+              Want to build
+              <br />
+              something together?
+            </h2>
+            <ContactTrigger
+              variant="ghost"
+              size="sm"
+              className="mt-10 !h-11 !rounded-full !bg-black !px-7 !text-[10px] !font-bold !uppercase !text-white hover:!bg-black/82"
             >
-              {skill}
-            </span>
-          ))}
-        </AnimatedReveal>
-      </Section>
-
-      <section className="px-5 py-16 sm:px-6 md:py-24 lg:px-8">
-        <AnimatedReveal className="mx-auto max-w-7xl rounded-lg bg-ink p-6 text-white md:p-10">
-          <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/55">
-                Contact
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold leading-tight md:text-5xl">
-                Have something useful to build?
-              </h2>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <ContactTrigger variant="dark">
-                <Mail aria-hidden="true" className="h-4 w-4" />
-                Contact Me
-              </ContactTrigger>
-              <ButtonLink href="/projects" variant="dark">
-                View Work
-                <ArrowRight aria-hidden="true" className="h-4 w-4" />
-              </ButtonLink>
-            </div>
+              Contact Me
+            </ContactTrigger>
           </div>
         </AnimatedReveal>
       </section>

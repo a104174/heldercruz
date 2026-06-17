@@ -8,7 +8,7 @@ import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { siteConfig } from "@/config/site";
 
 const navLinks = [
-  { label: "Work", href: "/projects" },
+  { label: "Work", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Experience", href: "/experience" }
 ];

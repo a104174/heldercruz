@@ -7,7 +7,7 @@ const footerGroups = [
   {
     title: "Navigate",
     links: [
-      { label: "Work", href: "/projects" },
+      { label: "Work", href: "/work" },
       { label: "About", href: "/about" },
       { label: "Experience", href: "/experience" },
       { label: "Contact", href: "/contact" }
@@ -103,7 +103,7 @@ export function HomeFooter() {
         <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-[11px] font-medium text-white/40 md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Hélder Cruz. All rights reserved.</p>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            <Link href="/projects" className="transition hover:text-white">
+            <Link href="/work" className="transition hover:text-white">
               Work
             </Link>
             <Link href="/contact" className="transition hover:text-white">

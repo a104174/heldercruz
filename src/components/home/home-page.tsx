@@ -167,7 +167,7 @@ function HeroSection() {
           engineering, backend systems and polished user experiences.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <HomeButtonLink href="/projects">
+          <HomeButtonLink href="/work">
             View Projects
             <motion.div
               animate={{ x: [0, 4, 0] }}
@@ -713,7 +713,7 @@ function InsightSection() {
           <h2 className="text-3xl font-bold text-black md:text-4xl">Development focus</h2>
         </AnimatedReveal>
         <Link
-          href="/projects"
+          href="/work"
           className="hidden border-b border-black pb-1 text-sm font-bold text-black transition hover:text-[#ff4b2b] sm:inline-flex"
         >
           View Work
@@ -723,7 +723,7 @@ function InsightSection() {
         {insightCards.map((card, index) => (
           <AnimatedReveal key={card.title} delay={index * 0.04}>
             <motion.div whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
-              <Link href="/projects" className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black">
+              <Link href="/work" className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black">
                 <div
                   className="mb-5 h-[360px] rounded-[28px] border border-black/10 shadow-xl transition-all duration-500 group-hover:shadow-2xl md:h-[430px]"
                   style={imageStyle(card.image)}
@@ -767,7 +767,7 @@ function CtaSection() {
         </p>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row">
           <HomeContactButton />
-          <HomeButtonLink href="/projects">
+          <HomeButtonLink href="/work">
             View Projects
             <motion.div
               animate={{ x: [0, 4, 0] }}

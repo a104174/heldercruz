@@ -1,19 +1,75 @@
 import type { Metadata } from "next";
-import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Database, GitBranch, Layers, Rocket } from "lucide-react";
 import { notFound } from "next/navigation";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
+import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { PageShell } from "@/components/layout/page-shell";
 import { Section } from "@/components/layout/section";
 import { ProjectHero } from "@/components/projects/project-hero";
 import { ProjectVisual } from "@/components/projects/project-visual";
 import { ButtonLink } from "@/components/ui/button";
-import { getNextProject, getProjectBySlug, projects } from "@/data/projects";
+import { getNextProject, getProjectBySlug, projects, type Project } from "@/data/projects";
+import { cn } from "@/lib/utils";
 
 type ProjectPageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
+
+const casaMeta = [
+  { label: "Role", value: "Full-stack Developer" },
+  { label: "Type", value: "Client Project" },
+  { label: "Stack", value: "Next.js / Supabase" },
+  { label: "Focus", value: "Website + Backoffice" }
+];
+
+const casaFeatures = [
+  {
+    title: "Public Website",
+    description:
+      "A highly performant, SEO-optimized landing site designed to showcase the venue, menu, and upcoming events with an editorial flair."
+  },
+  {
+    title: "Reservation Backoffice",
+    description:
+      "A secure internal portal for staff to manage table bookings, track customer preferences, and handle real-time availability updates."
+  },
+  {
+    title: "Restaurant Billing System",
+    description:
+      "An integrated solution for tracking orders, generating invoices, and reporting daily revenue metrics securely."
+  }
+];
+
+const casaChallenges = [
+  {
+    title: "Managing real business data",
+    description:
+      "Ensuring absolute data integrity and security for live reservations and billing records within Supabase.",
+    icon: Database
+  },
+  {
+    title: "Creating admin workflows",
+    description:
+      "Designing intuitive role-based access control and approval flows for staff with varying technical proficiencies.",
+    icon: GitBranch
+  },
+  {
+    title: "Interface simplicity",
+    description:
+      "Distilling complex operational data into clean, accessible UI components that reduce cognitive load for users.",
+    icon: Layers
+  },
+  {
+    title: "Production readiness",
+    description:
+      "Optimizing Next.js server components and API routes to handle real-world traffic spikes and ensure high availability.",
+    icon: Rocket
+  }
+];
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -42,14 +98,190 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   };
 }
 
-export default async function ProjectDetailPage({ params }: ProjectPageProps) {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+function BrowserPreview() {
+  return (
+    <div className="relative mx-auto flex aspect-[2.22] w-[82%] max-w-[840px] overflow-hidden rounded-[24px] border border-black/18 bg-[#eceae5] shadow-[0_28px_70px_rgba(0,0,0,0.28)]">
+      <div className="absolute left-5 top-4 flex gap-2">
+        <span className="h-2 w-2 rounded-full bg-[#ef767a]" />
+        <span className="h-2 w-2 rounded-full bg-black/18" />
+        <span className="h-2 w-2 rounded-full bg-black/18" />
+      </div>
+      <div className="mt-14 grid w-full grid-cols-[0.36fr_1fr] gap-6 px-8 pb-8">
+        <div className="rounded-sm bg-[#fbfaf7] p-6">
+          <span className="block h-3 w-28 rounded-full bg-black/12" />
+          <span className="mt-4 block h-3 w-20 rounded-full bg-black/12" />
+          <span className="mt-4 block h-3 w-44 max-w-full rounded-full bg-black/12" />
+        </div>
+        <div className="space-y-6 rounded-sm bg-[#fbfaf7] p-7">
+          <span className="block h-28 rounded-sm border border-black/8 bg-[#efede9]" />
+          <div className="grid grid-cols-2 gap-5">
+            <span className="block h-24 rounded-sm border border-black/8 bg-[#efede9]" />
+            <span className="block h-24 rounded-sm border border-black/8 bg-[#efede9]" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-  if (!project) {
-    notFound();
-  }
+function HeroVisual() {
+  return (
+    <AnimatedReveal delay={0.08}>
+      <div className="relative mt-28 overflow-hidden rounded-[34px] border border-black/12 bg-black p-10 shadow-[0_24px_80px_rgba(0,0,0,0.12)] md:p-16">
+        <Image
+          src="/benfica/telemovel1.webp"
+          alt=""
+          fill
+          priority
+          className="scale-125 object-cover opacity-45 blur-sm"
+          sizes="(min-width: 1024px) 1120px, 100vw"
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(95,185,190,0.42),transparent_45%),linear-gradient(135deg,rgba(2,13,15,0.78),rgba(1,9,10,0.98))]" />
+        <div className="relative z-10 flex min-h-[420px] items-center justify-center">
+          <BrowserPreview />
+        </div>
+      </div>
+    </AnimatedReveal>
+  );
+}
 
+function FeatureCard({
+  feature,
+  index
+}: {
+  feature: (typeof casaFeatures)[number];
+  index: number;
+}) {
+  return (
+    <article className="overflow-hidden rounded-[20px] border border-black/10 bg-[#efede9]">
+      <div className="relative h-44 overflow-hidden bg-black">
+        <Image
+          src="/benfica/telemovel1.webp"
+          alt=""
+          fill
+          className={cn(
+            "object-cover opacity-70",
+            index === 0 && "rotate-[-8deg] scale-125",
+            index === 1 && "scale-150 blur-[1px]",
+            index === 2 && "scale-125 blur-sm"
+          )}
+          sizes="(min-width: 768px) 33vw, 100vw"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(239,237,233,0.42))]" />
+      </div>
+      <div className="p-6">
+        <h3 className="text-xl font-medium leading-none tracking-normal text-black">{feature.title}</h3>
+        <p className="mt-4 text-[13px] leading-6 text-black/54">{feature.description}</p>
+      </div>
+    </article>
+  );
+}
+
+function ChallengeCard({ challenge }: { challenge: (typeof casaChallenges)[number] }) {
+  const Icon = challenge.icon;
+
+  return (
+    <article className="rounded-[20px] border border-black/10 bg-white px-7 py-6">
+      <Icon aria-hidden="true" className="h-5 w-5 stroke-[1.7] text-black/70" />
+      <h3 className="mt-8 text-lg font-medium leading-none tracking-normal text-black">
+        {challenge.title}
+      </h3>
+      <p className="mt-4 text-[12px] leading-6 text-black/52">{challenge.description}</p>
+    </article>
+  );
+}
+
+function CasaBenficaProjectPage({ project }: { project: Project }) {
+  return (
+    <PageShell className="bg-[#fbfaf7]">
+      <section className="mx-auto w-full max-w-[1120px] px-5 pb-28 pt-28 sm:px-8 md:pb-36 md:pt-36 lg:px-10">
+        <AnimatedReveal className="mx-auto max-w-[980px] text-center">
+          <span className="inline-flex rounded-full border border-black/10 bg-[#f2f0ec] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-black/38">
+            Case Study
+          </span>
+          <h1 className="mt-6 text-[48px] font-semibold leading-[0.96] tracking-normal text-black sm:text-[72px] md:text-[86px]">
+            {project.title}
+          </h1>
+          <p className="mt-5 text-[15px] leading-6 text-black/54">
+            A public website and internal backoffice system built for a real business.
+          </p>
+        </AnimatedReveal>
+
+        <AnimatedReveal
+          delay={0.05}
+          className="mx-auto mt-14 grid max-w-[840px] gap-4 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {casaMeta.map((item) => (
+            <div key={item.label} className="border border-black/8 bg-[#efede9] px-5 py-4">
+              <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-black/32">
+                {item.label}
+              </p>
+              <p className="mt-2 text-[12px] font-medium leading-5 text-black">{item.value}</p>
+            </div>
+          ))}
+        </AnimatedReveal>
+
+        <HeroVisual />
+
+        <AnimatedReveal className="mx-auto mt-36 max-w-[760px] text-center">
+          <h2 className="text-3xl font-medium leading-none tracking-normal text-black">
+            From public presence to internal operations
+          </h2>
+          <p className="mt-8 text-[14px] leading-7 text-black/54">
+            Casa Benfica Lenzburg required a comprehensive digital overhaul. The challenge was
+            twofold: creating a compelling public-facing website to attract patrons and establish a
+            strong local brand presence, while simultaneously developing a robust internal backoffice
+            system to streamline their reservation and billing operations. This dual-natured project
+            demanded a seamless integration between front-end aesthetics and back-end utility.
+          </p>
+        </AnimatedReveal>
+
+        <AnimatedReveal delay={0.08} className="mt-28 grid gap-6 md:grid-cols-3">
+          {casaFeatures.map((feature, index) => (
+            <FeatureCard key={feature.title} feature={feature} index={index} />
+          ))}
+        </AnimatedReveal>
+
+        <section className="mt-36">
+          <AnimatedReveal>
+            <h2 className="text-center text-3xl font-medium leading-none tracking-normal text-black">
+              Core Challenges
+            </h2>
+          </AnimatedReveal>
+          <AnimatedReveal delay={0.08} className="mt-14 grid gap-6 md:grid-cols-2">
+            {casaChallenges.map((challenge) => (
+              <ChallengeCard key={challenge.title} challenge={challenge} />
+            ))}
+          </AnimatedReveal>
+        </section>
+
+        <AnimatedReveal className="mt-36 border-t border-black/10 pt-32 text-center">
+          <p className="mx-auto max-w-[760px] text-3xl font-medium leading-[1.08] tracking-normal text-black md:text-[34px]">
+            Built as a practical digital system for a real client, combining public-facing design
+            with internal operational tools.
+          </p>
+          <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="/work"
+              className="inline-flex h-10 items-center justify-center rounded-full border border-black/14 bg-white px-6 text-[10px] font-bold uppercase text-black/62 transition hover:border-black hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+            >
+              Back to Projects
+            </Link>
+            <ContactTrigger
+              variant="ghost"
+              size="sm"
+              className="!h-10 !rounded-full !bg-black !px-6 !text-[10px] !font-bold !uppercase !text-white hover:!bg-black/82"
+            >
+              Contact Me
+            </ContactTrigger>
+          </div>
+        </AnimatedReveal>
+      </section>
+    </PageShell>
+  );
+}
+
+function GenericProjectDetailPage({ project }: { project: Project }) {
   const nextProject = getNextProject(project.slug);
 
   return (
@@ -168,4 +400,19 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       </section>
     </PageShell>
   );
+}
+
+export default async function ProjectDetailPage({ params }: ProjectPageProps) {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
+
+  if (!project) {
+    notFound();
+  }
+
+  if (project.slug === "casa-benfica-lenzburg") {
+    return <CasaBenficaProjectPage project={project} />;
+  }
+
+  return <GenericProjectDetailPage project={project} />;
 }

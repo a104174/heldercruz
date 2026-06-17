@@ -4,7 +4,7 @@ import { projects } from "@/data/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = getSiteUrl();
-  const staticRoutes = ["", "/projects", "/about", "/experience", "/contact"];
+  const staticRoutes = ["", "/work", "/projects", "/about", "/experience", "/contact"];
   const projectRoutes = projects.map((project) => project.href);
 
   return [...staticRoutes, ...projectRoutes].map((route) => ({

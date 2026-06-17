@@ -7,6 +7,6 @@ export const metadata: Metadata = {
     "Three real-world projects built for clients, combining clean interfaces, responsive design and practical business-focused features."
 };
 
-export default function ProjectsPage() {
+export default function Page() {
   return <WorkPage />;
 }
