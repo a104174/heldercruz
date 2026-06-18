@@ -46,10 +46,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={cn("font-sans", geist.variable)}>
-      <body>
+      <body className="bg-black">
         <Providers>
           <Navbar />
-          {children}
+          <div className="relative z-10 overflow-hidden rounded-b-[32px] bg-[#fbfaf7] shadow-[0_34px_90px_rgba(0,0,0,0.28)] md:rounded-b-[48px]">
+            {children}
+          </div>
           <Footer />
         </Providers>
       </body>

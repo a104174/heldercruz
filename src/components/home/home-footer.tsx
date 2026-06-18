@@ -14,7 +14,7 @@ const footerGroups = [
       { label: "Work", href: "/work" },
       { label: "About", href: "/about" },
       { label: "Experience", href: "/experience" },
-      { label: "Contact", href: "/contact" }
+      { label: "Contacto", href: "/contact" }
     ]
   },
   {
@@ -37,7 +37,7 @@ const footerGroups = [
 
 export function HomeFooter() {
   return (
-    <footer className="relative z-20 overflow-hidden rounded-t-[48px] bg-black px-5 pb-10 pt-20 text-white sm:px-8 lg:px-10">
+    <footer className="sticky bottom-0 z-0 min-h-[360px] overflow-hidden bg-black px-5 pb-10 pt-16 text-white sm:min-h-[400px] sm:px-8 sm:pt-20 lg:min-h-[440px] lg:px-10">
       {/* Brilho de fundo subtil no topo do footer */}
       <div className="pointer-events-none absolute left-1/2 top-0 h-[400px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.04] blur-[80px]" />
 
@@ -114,7 +114,7 @@ export function HomeFooter() {
               Work
             </Link>
             <Link href="/contact" className="transition-colors duration-300 hover:text-white">
-              Contact
+              Contacto
             </Link>
             <Link
               href={siteConfig.links.resume}
