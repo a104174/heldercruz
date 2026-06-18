@@ -8,7 +8,7 @@ export const siteConfig = {
     github: "#",
     linkedin: "#",
     email: "mailto:hello@heldercruz.dev",
-    resume: "#"
+    resume: "/curriculum/heldercruz.pdf"
   }
 };
 

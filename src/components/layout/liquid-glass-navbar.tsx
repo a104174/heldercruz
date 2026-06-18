@@ -167,8 +167,10 @@ export function LiquidGlassNavbar() {
             <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
               <Link
                 href={siteConfig.links.resume}
-                title="Resume PDF coming soon"
-                aria-label="Resume PDF coming soon"
+                title="Open Hélder Cruz resume"
+                aria-label="Open Hélder Cruz resume"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="liquid-glass-button hidden h-10 items-center gap-2 rounded-full px-4 text-[10px] font-bold uppercase text-black/66 transition duration-300 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:inline-flex"
                 onClick={() => setMenuOpen(false)}
               >
@@ -246,8 +248,10 @@ export function LiquidGlassNavbar() {
                 })}
                 <Link
                   href={siteConfig.links.resume}
-                  title="Resume PDF coming soon"
-                  aria-label="Resume PDF coming soon"
+                  title="Open Hélder Cruz resume"
+                  aria-label="Open Hélder Cruz resume"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={mobileItemClassName}
                   onClick={() => setMenuOpen(false)}
                 >

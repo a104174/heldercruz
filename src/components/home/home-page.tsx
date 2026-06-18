@@ -15,7 +15,6 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
-import { HomeFooter } from "@/components/home/home-footer";
 import { HomeServicesBento } from "@/components/home/home-services-bento";
 import {
   PortfolioInteractiveButton,
@@ -662,21 +661,18 @@ function CtaSection() {
 
 export function HomePage() {
   return (
-    <>
-      <main className="min-h-screen overflow-hidden bg-[#fbfaf7] text-black">
-        <HeroSection />
-        <TechStrip />
-        <CollageSection />
-        <ManifestoSection />
-        <SystemsSection />
-        <HomeServicesBento />
-        <FocusSection />
-        <ProjectsSection />
-        <QuoteSection />
-        <InsightSection />
-        <CtaSection />
-      </main>
-      <HomeFooter />
-    </>
+    <main className="min-h-screen overflow-hidden bg-[#fbfaf7] text-black">
+      <HeroSection />
+      <TechStrip />
+      <CollageSection />
+      <ManifestoSection />
+      <SystemsSection />
+      <HomeServicesBento />
+      <FocusSection />
+      <ProjectsSection />
+      <QuoteSection />
+      <InsightSection />
+      <CtaSection />
+    </main>
   );
 }
