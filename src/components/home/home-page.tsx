@@ -12,7 +12,7 @@ import {
   Sparkles
 } from "lucide-react";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { HomeServicesBento } from "@/components/home/home-services-bento";
@@ -20,6 +20,7 @@ import {
   PortfolioInteractiveButton,
   PortfolioInteractiveLink
 } from "@/components/ui/portfolio-interactive-button";
+import { TextAnimate } from "@/components/ui/text-animate";
 import Text3DFlip from "@/components/ui/text-3d-flip";
 import { cn } from "@/lib/utils";
 import { projects, type Project, type ProjectSlug } from "@/data/projects";
@@ -38,6 +39,8 @@ const technologies = [
 ];
 
 const heroImage = "/hausb/mac2.webp";
+const heroTitle = "Software Engineer crafting digital products.";
+const heroTitleWords = heroTitle.split(" ");
 
 const projectDescriptions: Record<ProjectSlug, string> = {
   "casa-benfica-lenzburg":
@@ -120,34 +123,90 @@ function SectionShell({
 }
 
 function HeroSection() {
+  const shouldReduceMotion = useReducedMotion();
+  const heroEntrance = {
+    hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
+    visible: { opacity: 1, y: 0, filter: "blur(0px)" }
+  };
+
   return (
     <SectionShell className="flex flex-col items-center pb-28 pt-40 text-center sm:pt-44 md:pb-40 md:pt-56">
-      <AnimatedReveal className="flex max-w-5xl flex-col items-center">
-        <h1 className="max-w-4xl text-balance text-5xl font-bold leading-[1.02] text-black sm:text-6xl md:text-7xl lg:text-[82px]">
-          Software Engineer crafting digital products.
+      <div className="flex max-w-5xl flex-col items-center">
+        <h1
+          aria-label={heroTitle}
+          className="max-w-4xl text-balance text-5xl font-bold leading-[1.02] text-black sm:text-6xl md:text-7xl lg:text-[82px]"
+        >
+          {shouldReduceMotion ? (
+            <span aria-hidden="true">{heroTitle}</span>
+          ) : (
+            <span aria-hidden="true">
+              {heroTitleWords.map((word, index) => (
+                <span key={word} className="inline-block whitespace-nowrap">
+                  <TextAnimate
+                    as="span"
+                    animation="blurInUp"
+                    by="character"
+                    once
+                    accessible={false}
+                    delay={index * 0.08}
+                    duration={0.5}
+                  >
+                    {word}
+                  </TextAnimate>
+                  {index < heroTitleWords.length - 1 ? " " : null}
+                </span>
+              ))}
+            </span>
+          )}
         </h1>
-        <p className="mt-7 max-w-3xl text-base leading-7 text-[#6e6a63] sm:text-lg sm:leading-8">
+        <motion.p
+          initial={shouldReduceMotion ? false : "hidden"}
+          animate="visible"
+          variants={heroEntrance}
+          transition={{
+            duration: shouldReduceMotion ? 0 : 0.55,
+            delay: shouldReduceMotion ? 0 : 0.45,
+            ease: [0.22, 1, 0.36, 1]
+          }}
+          className="mt-7 max-w-3xl text-base leading-7 text-[#6e6a63] sm:text-lg sm:leading-8"
+        >
           I build clean, scalable and user-focused web applications, combining frontend
           engineering, backend systems and polished user experiences.
-        </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        </motion.p>
+        <motion.div
+          initial={shouldReduceMotion ? false : "hidden"}
+          animate="visible"
+          variants={heroEntrance}
+          transition={{
+            duration: shouldReduceMotion ? 0 : 0.5,
+            delay: shouldReduceMotion ? 0 : 0.65,
+            ease: [0.22, 1, 0.36, 1]
+          }}
+          className="mt-8 flex flex-col gap-3 sm:flex-row"
+        >
           <PortfolioInteractiveLink href="/projects">Ver projetos</PortfolioInteractiveLink>
           <HomeContactButton />
-        </div>
-      </AnimatedReveal>
+        </motion.div>
+      </div>
 
-      <AnimatedReveal
-        delay={0.08}
+      <motion.div
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 20, scale: 0.985, filter: "blur(8px)" }}
+        animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        transition={{
+          duration: shouldReduceMotion ? 0 : 0.7,
+          delay: shouldReduceMotion ? 0 : 0.9,
+          ease: [0.22, 1, 0.36, 1]
+        }}
         className="relative z-10 mt-12 h-[360px] w-full max-w-[1450px] overflow-hidden rounded-[28px] border border-black/10 bg-[#151515] shadow-[0_30px_90px_rgba(0,0,0,0.24)] sm:h-[520px] md:rounded-[40px] lg:h-[760px]"
       >
         <motion.div
           className="absolute inset-0"
-          initial={{ scale: 1.05 }}
+          initial={shouldReduceMotion ? false : { scale: 1.05 }}
           animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          transition={{ duration: shouldReduceMotion ? 0 : 1.5, ease: "easeOut" }}
           style={imageStyle(heroImage, "linear-gradient(transparent, transparent)")}
         />
-      </AnimatedReveal>
+      </motion.div>
     </SectionShell>
   );
 }
@@ -637,7 +696,7 @@ function CtaSection() {
         </motion.span>
         <Text3DFlip
           as="h2"
-          className="max-w-4xl text-balance text-4xl font-bold leading-tight text-black md:text-6xl lg:text-7xl"
+          className="justify-center bg-[#fbfaf7] font-sans text-4xl font-semibold leading-none tracking-[-0.05em] text-black sm:text-6xl md:text-7xl lg:text-8xl"
           textClassName="bg-[#fbfaf7] text-black"
           flipTextClassName="bg-[#fbfaf7] text-black"
           rotateDirection="top"
@@ -663,16 +722,36 @@ export function HomePage() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#fbfaf7] text-black">
       <HeroSection />
-      <TechStrip />
-      <CollageSection />
-      <ManifestoSection />
-      <SystemsSection />
-      <HomeServicesBento />
-      <FocusSection />
-      <ProjectsSection />
-      <QuoteSection />
-      <InsightSection />
-      <CtaSection />
+      <AnimatedReveal>
+        <TechStrip />
+      </AnimatedReveal>
+      <AnimatedReveal>
+        <CollageSection />
+      </AnimatedReveal>
+      <AnimatedReveal>
+        <ManifestoSection />
+      </AnimatedReveal>
+      <AnimatedReveal>
+        <SystemsSection />
+      </AnimatedReveal>
+      <AnimatedReveal>
+        <HomeServicesBento />
+      </AnimatedReveal>
+      <AnimatedReveal>
+        <FocusSection />
+      </AnimatedReveal>
+      <AnimatedReveal>
+        <ProjectsSection />
+      </AnimatedReveal>
+      <AnimatedReveal>
+        <QuoteSection />
+      </AnimatedReveal>
+      <AnimatedReveal>
+        <InsightSection />
+      </AnimatedReveal>
+      <AnimatedReveal>
+        <CtaSection />
+      </AnimatedReveal>
     </main>
   );
 }
