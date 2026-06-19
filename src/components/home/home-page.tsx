@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties, ReactNode } from "react";
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import {
   ArrowUpRight,
   Database,
@@ -412,34 +412,70 @@ function ManifestoSection() {
 
 function FeatureRail({
   title,
-  items,
-  activeSize = "h-1/3"
+  items
 }: {
   title: ReactNode;
   items: Array<{ title: string; text: string }>;
-  activeSize?: string;
 }) {
+  const shouldReduceMotion = useReducedMotion();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeItemSize = `${100 / items.length}%`;
+
+  useEffect(() => {
+    if (shouldReduceMotion || items.length <= 1) {
+      return;
+    }
+
+    const interval = window.setInterval(() => {
+      setActiveIndex((currentIndex) => (currentIndex + 1) % items.length);
+    }, 2600);
+
+    return () => window.clearInterval(interval);
+  }, [items.length, shouldReduceMotion]);
+
   return (
     <div className="flex h-full max-w-xl flex-col justify-center">
       <h2 className="mb-10 text-3xl font-bold leading-tight text-black md:text-4xl">{title}</h2>
-      <div className="relative space-y-9 border-l-[3px] border-[#d9d7d0] pl-7">
+      <div className="relative border-l-[3px] border-[#d9d7d0] pl-7">
         <motion.span
-          initial={{ height: 0 }}
-          whileInView={{ height: activeSize === "h-1/3" ? "33%" : "25%" }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="absolute -left-[3px] top-0 w-[3px] bg-gradient-to-b from-[#ff416c] to-[#ff4b2b]"
+          aria-hidden="true"
+          animate={{
+            top: `${activeIndex * (100 / items.length)}%`,
+            height: activeItemSize
+          }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute -left-[3px] w-[3px] bg-gradient-to-b from-[#ff416c] to-[#ff4b2b]"
         />
-        {items.map((item, index) => (
-          <motion.div 
-            key={item.title}
-            whileHover={{ x: 4 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className={cn(index > 0 && "opacity-60 transition hover:opacity-100")}
-          >
-            <h3 className="text-xl font-bold text-black">{item.title}</h3>
-            <p className="mt-2 text-sm leading-7 text-[#706c64]">{item.text}</p>
-          </motion.div>
-        ))}
+        {items.map((item, index) => {
+          const isActive = index === activeIndex;
+
+          return (
+            <motion.div
+              key={item.title}
+              animate={{
+                opacity: isActive ? 1 : 0.58
+              }}
+              whileHover={{ x: 4, opacity: 1 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.45, ease: "easeOut" }}
+              className="py-[18px] first:pt-0 last:pb-0"
+            >
+              <motion.h3
+                animate={{ color: isActive ? "#000000" : "#6a6a6a" }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.45, ease: "easeOut" }}
+                className="text-xl font-bold"
+              >
+                {item.title}
+              </motion.h3>
+              <motion.p
+                animate={{ color: isActive ? "#706c64" : "#9f9b94" }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.45, ease: "easeOut" }}
+                className="mt-2 text-sm leading-7"
+              >
+                {item.text}
+              </motion.p>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
