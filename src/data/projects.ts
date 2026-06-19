@@ -99,8 +99,8 @@ export const projects: Project[] = [
     ],
     href: "/projects/hausb",
     image: {
-      alt: "Visual placeholder for HAUSB",
-      label: "Business website and brand presence"
+      alt: "Screenshots from the HAUSB business website",
+      label: "HAUSB website screens and responsive brand presence"
     },
     accent: "#525252",
     technicalNotes: [

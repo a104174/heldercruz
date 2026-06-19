@@ -53,7 +53,7 @@ const focusCards = [
   {
     title: "Frontend Development",
     text: "Clean responsive interfaces with polished interaction details.",
-    image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1400&auto=format&fit=crop"
+    image: "/hausb/hausb-home.webp"
   },
   {
     title: "Backoffice Systems",
@@ -68,7 +68,7 @@ const focusCards = [
   {
     title: "Product Delivery",
     text: "Built with attention to detail, performance and usability.",
-    image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1400&auto=format&fit=crop"
+    image: "/hausb/hausb-portfolio.webp"
   }
 ];
 
@@ -76,7 +76,7 @@ const insightCards = [
   {
     title: "Engineering clean interfaces",
     eyebrow: "Frontend",
-    image: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=1000&auto=format&fit=crop"
+    image: "/hausb/hausb-arquitetura.webp"
   },
   {
     title: "From polished websites to business tools",
@@ -86,7 +86,7 @@ const insightCards = [
   {
     title: "Useful products for real client workflows",
     eyebrow: "Delivery",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop"
+    image: "/hausb/hausb-about.webp"
   }
 ];
 
@@ -283,7 +283,7 @@ function CollageSection() {
 
       <div className="relative z-10 mt-12 grid gap-5 md:absolute md:inset-0 md:mt-0 md:block">
         <FloatingVisual
-          image="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000&auto=format&fit=crop"
+          image="/hausb/hausb-home.webp"
           className="min-h-[235px] md:left-[8%] md:top-[8%] md:h-[250px] md:w-[340px]"
           floatDuration={6}
         >
@@ -304,7 +304,7 @@ function CollageSection() {
         </FloatingVisual>
 
         <FloatingVisual
-          image="https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=900&auto=format&fit=crop"
+          image="/hausb/hausb-mobile-menu.webp"
           className="min-h-[290px] md:right-[10%] md:top-[12%] md:h-[310px] md:w-[280px]"
           floatDelay={1}
           floatDuration={5}
@@ -360,7 +360,7 @@ function CollageSection() {
         </FloatingVisual>
 
         <FloatingVisual
-          image="https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1000&auto=format&fit=crop"
+          image="/hausb/hausb-mobile-construcao.webp"
           className="min-h-[245px] md:left-[14%] md:top-[70%] md:h-[250px] md:w-[380px]"
           floatDelay={0.5}
         >
@@ -371,7 +371,7 @@ function CollageSection() {
         </FloatingVisual>
 
         <FloatingVisual
-          image="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1000&auto=format&fit=crop"
+          image="/hausb/hausb-portfolio.webp"
           className="min-h-[230px] md:right-[15%] md:top-[76%] md:h-[230px] md:w-[360px]"
           floatDelay={1.5}
           floatDuration={5.5}

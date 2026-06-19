@@ -73,6 +73,39 @@ const casaChallenges = [
   }
 ];
 
+const hausbScreenshots = [
+  {
+    src: "/hausb/hausb-home.webp",
+    title: "Homepage",
+    description: "Landing page focused on a clean first impression and direct service positioning."
+  },
+  {
+    src: "/hausb/hausb-arquitetura.webp",
+    title: "Architecture page",
+    description: "A service page with structured content, strong image rhythm and clear hierarchy."
+  },
+  {
+    src: "/hausb/hausb-contrucao.webp",
+    title: "Construction page",
+    description: "A focused page for construction services with consistent visual language."
+  },
+  {
+    src: "/hausb/hausb-about.webp",
+    title: "About section",
+    description: "Brand presentation with company context and a quieter editorial layout."
+  },
+  {
+    src: "/hausb/hausb-portfolio.webp",
+    title: "Portfolio page",
+    description: "Project showcase page designed to support visual browsing and trust."
+  },
+  {
+    src: "/hausb/hausb-mobile-menu.webp",
+    title: "Mobile navigation",
+    description: "Responsive menu state prepared for compact screens and touch navigation."
+  }
+];
+
 export function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug
@@ -190,6 +223,139 @@ function ChallengeCard({ challenge }: { challenge: (typeof casaChallenges)[numbe
       </h3>
       <p className="mt-4 text-[12px] leading-6 text-black/52">{challenge.description}</p>
     </article>
+  );
+}
+
+function HausbScreenshotCard({
+  screenshot,
+  priority = false,
+  className
+}: {
+  screenshot: (typeof hausbScreenshots)[number];
+  priority?: boolean;
+  className?: string;
+}) {
+  return (
+    <article className={cn("group overflow-hidden rounded-[26px] border border-black/10 bg-white shadow-sm", className)}>
+      <div className="relative aspect-[5/4] overflow-hidden bg-[#111111]">
+        <Image
+          src={screenshot.src}
+          alt={`${screenshot.title} screenshot from HAUSB website`}
+          fill
+          priority={priority}
+          className="object-cover object-top transition duration-700 group-hover:scale-[1.035]"
+          sizes="(min-width: 1024px) 50vw, 100vw"
+        />
+      </div>
+      <div className="p-6">
+        <h3 className="text-xl font-semibold leading-none text-black">{screenshot.title}</h3>
+        <p className="mt-3 text-sm leading-6 text-black/55">{screenshot.description}</p>
+      </div>
+    </article>
+  );
+}
+
+function HausbProjectPage({ project }: { project: Project }) {
+  const nextProject = getNextProject(project.slug);
+
+  return (
+    <PageShell className="bg-[#fbfaf7]">
+      <section className="mx-auto w-full max-w-[1200px] px-5 pb-28 pt-28 sm:px-8 md:pb-36 md:pt-36 lg:px-10">
+        <AnimatedReveal className="mx-auto max-w-[920px] text-center">
+          <span className="inline-flex rounded-full border border-black/10 bg-[#f2f0ec] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-black/38">
+            Case Study
+          </span>
+          <h1 className="mt-6 text-[56px] font-semibold leading-[0.92] tracking-normal text-black sm:text-[82px] md:text-[104px]">
+            {project.title}
+          </h1>
+          <p className="mx-auto mt-6 max-w-[680px] text-[15px] leading-7 text-black/56">
+            {project.longDescription}
+          </p>
+        </AnimatedReveal>
+
+        <AnimatedReveal delay={0.08} className="mt-16 overflow-hidden rounded-[34px] border border-black/10 bg-black shadow-[0_24px_80px_rgba(0,0,0,0.12)]">
+          <div className="relative aspect-[4/3] md:aspect-[16/10]">
+            <Image
+              src="/hausb/mac2.webp"
+              alt="HAUSB website displayed on a desktop mockup"
+              fill
+              priority
+              className="object-cover object-top"
+              sizes="(min-width: 1024px) 1120px, 100vw"
+            />
+          </div>
+        </AnimatedReveal>
+
+        <AnimatedReveal className="mx-auto mt-32 grid max-w-[980px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <h2 className="text-3xl font-semibold leading-tight text-black md:text-5xl">
+            A clean business website with real responsive screens.
+          </h2>
+          <p className="text-[15px] leading-8 text-black/56">
+            The HAUSB website was built around clear service communication, calm visual hierarchy
+            and responsive pages that feel consistent across desktop and mobile. These screenshots
+            show the production-facing layouts rather than abstract placeholders.
+          </p>
+        </AnimatedReveal>
+
+        <AnimatedReveal delay={0.08} className="mt-20 grid gap-6 md:grid-cols-2">
+          {hausbScreenshots.slice(0, 4).map((screenshot, index) => (
+            <HausbScreenshotCard
+              key={screenshot.src}
+              screenshot={screenshot}
+              priority={index < 2}
+              className={index === 0 ? "md:col-span-2" : undefined}
+            />
+          ))}
+        </AnimatedReveal>
+
+        <AnimatedReveal className="mt-28 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-black/38">
+              Responsive UI
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight text-black md:text-4xl">
+              Mobile states included from the start.
+            </h2>
+            <p className="mt-5 text-[14px] leading-7 text-black/56">
+              The visual system carries through smaller screens, including service pages and
+              navigation states that keep the experience direct and usable.
+            </p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            {hausbScreenshots.slice(4).map((screenshot) => (
+              <HausbScreenshotCard key={screenshot.src} screenshot={screenshot} />
+            ))}
+          </div>
+        </AnimatedReveal>
+
+        <Section className="mt-28 border-y border-line bg-transparent px-0" title="Technical Notes">
+          <AnimatedReveal className="grid gap-4 md:grid-cols-3">
+            {project.technicalNotes.map((note) => (
+              <article key={note} className="rounded-lg border border-line bg-white p-6">
+                <p className="text-sm leading-7 text-muted">{note}</p>
+              </article>
+            ))}
+          </AnimatedReveal>
+        </Section>
+
+        <AnimatedReveal className="mt-28 rounded-[28px] border border-black/10 bg-white p-6 md:p-10">
+          <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted">
+                Next Project
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold text-ink">{nextProject.title}</h2>
+              <p className="mt-3 max-w-2xl text-base leading-7 text-muted">
+                {nextProject.shortDescription}
+              </p>
+            </div>
+            <PortfolioInteractiveLink href={nextProject.href}>
+              Ver projeto
+            </PortfolioInteractiveLink>
+          </div>
+        </AnimatedReveal>
+      </section>
+    </PageShell>
   );
 }
 
@@ -406,6 +572,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
   if (project.slug === "casa-benfica-lenzburg") {
     return <CasaBenficaProjectPage project={project} />;
+  }
+
+  if (project.slug === "hausb") {
+    return <HausbProjectPage project={project} />;
   }
 
   return <GenericProjectDetailPage project={project} />;

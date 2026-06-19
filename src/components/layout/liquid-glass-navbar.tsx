@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties, PointerEvent } from "react";
+import type { CSSProperties, PointerEvent, ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { FileText, Menu, X } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -55,6 +55,25 @@ function LiquidGlassFilter() {
   );
 }
 
+function NavHoverText({
+  children,
+  className
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <span className={cn("relative z-10 block h-[1em] overflow-hidden leading-none", className)}>
+      <span className="block transition-transform duration-300 ease-out group-hover/nav-item:-translate-y-full">
+        {children}
+      </span>
+      <span className="absolute left-0 top-full block transition-transform duration-300 ease-out group-hover/nav-item:-translate-y-full">
+        {children}
+      </span>
+    </span>
+  );
+}
+
 export function LiquidGlassNavbar() {
   const pathname = usePathname();
   const shouldReduceMotion = useReducedMotion();
@@ -92,7 +111,7 @@ export function LiquidGlassNavbar() {
   };
 
   const navItemClassName =
-    "relative isolate inline-flex h-10 items-center justify-center rounded-full px-3.5 text-[13px] font-semibold text-black/64 transition duration-300 ease-out hover:bg-white/20 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black";
+    "group/nav-item relative isolate inline-flex h-10 items-center justify-center overflow-hidden rounded-full px-3.5 text-[13px] font-semibold text-black/64 transition duration-300 ease-out hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black";
 
   const mobileItemClassName =
     "liquid-glass-menu-item relative flex h-11 w-full items-center justify-between rounded-full px-4 text-sm font-semibold text-black/70 transition duration-300 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black";
@@ -147,6 +166,10 @@ export function LiquidGlassNavbar() {
                     aria-current={active ? "page" : undefined}
                     className={cn(navItemClassName, active && "text-black")}
                   >
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-0 rounded-full bg-white/28 opacity-0 transition duration-300 ease-out group-hover/nav-item:opacity-100"
+                    />
                     {active && (
                       <motion.span
                         layoutId="liquid-nav-active"
@@ -158,7 +181,7 @@ export function LiquidGlassNavbar() {
                         }
                       />
                     )}
-                    <span className="relative z-10">{link.label}</span>
+                    <NavHoverText>{link.label}</NavHoverText>
                   </Link>
                 );
               })}
@@ -171,11 +194,14 @@ export function LiquidGlassNavbar() {
                 aria-label="Open Hélder Cruz resume"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="liquid-glass-button hidden h-10 items-center gap-2 rounded-full px-4 text-[10px] font-bold uppercase text-black/66 transition duration-300 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:inline-flex"
+                className="liquid-glass-button group/nav-item hidden h-10 items-center gap-2 overflow-hidden rounded-full px-4 text-[10px] font-bold uppercase text-black/66 transition duration-300 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:inline-flex"
                 onClick={() => setMenuOpen(false)}
               >
-                <FileText aria-hidden="true" className="relative z-10 h-3.5 w-3.5 stroke-[1.8]" />
-                <span className="relative z-10">Resume</span>
+                <FileText
+                  aria-hidden="true"
+                  className="relative z-10 h-3.5 w-3.5 stroke-[1.8] transition duration-300 ease-out group-hover/nav-item:-translate-y-0.5 group-hover/nav-item:scale-105"
+                />
+                <NavHoverText>Resume</NavHoverText>
               </Link>
               <ContactTrigger asChild onClick={() => setMenuOpen(false)}>
                 <NavbarInteractiveHoverButton
