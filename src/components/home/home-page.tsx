@@ -58,12 +58,12 @@ const focusCards = [
   {
     title: "Backoffice Systems",
     text: "Practical internal tools for reservations, billing and operations.",
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1400&auto=format&fit=crop"
+    image: "/xvstudio/xvstudio-backoffice.webp"
   },
   {
     title: "API Integrations",
     text: "Reliable connections between forms, emails, databases and deployments.",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1400&auto=format&fit=crop"
+    image: "/xvstudio/xvstudio-contact-project.webp"
   },
   {
     title: "Product Delivery",
@@ -81,7 +81,7 @@ const insightCards = [
   {
     title: "From polished websites to business tools",
     eyebrow: "Systems",
-    image: "https://images.unsplash.com/photo-1646388286080-62887d1b34ab?q=80&w=1000&auto=format&fit=crop"
+    image: "/xvstudio/xvstudio-sites.webp"
   },
   {
     title: "Useful products for real client workflows",
@@ -344,7 +344,7 @@ function CollageSection() {
         </AnimatedReveal>
 
         <FloatingVisual
-          image="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1000&auto=format&fit=crop"
+          image="/xvstudio/xvstudio-contact.webp"
           className="min-h-[220px] md:right-[5%] md:top-[48%] md:h-[220px] md:w-[330px]"
           floatDelay={2}
           floatDuration={7}

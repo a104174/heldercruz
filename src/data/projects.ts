@@ -70,8 +70,8 @@ export const projects: Project[] = [
     ],
     href: "/projects/xv-studio",
     image: {
-      alt: "Visual placeholder for XV Studio",
-      label: "Service website and guided contact flow"
+      alt: "Screenshots from the XV Studio website and contact flow",
+      label: "XV Studio website screens and guided contact flow"
     },
     accent: "#3f3f46",
     technicalNotes: [

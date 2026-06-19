@@ -106,6 +106,49 @@ const hausbScreenshots = [
   }
 ];
 
+const xvStudioScreenshots = [
+  {
+    src: "/xvstudio/xvstudio-home.webp",
+    title: "Homepage",
+    description: "A polished service landing page with strong visual rhythm and clear positioning."
+  },
+  {
+    src: "/xvstudio/xvstudio-sites.webp",
+    title: "Website services",
+    description: "Service presentation built around concise copy, hierarchy and direct conversion paths."
+  },
+  {
+    src: "/xvstudio/xvstudio-contact.webp",
+    title: "Contact flow",
+    description: "A focused contact experience designed to guide visitors into the right project request."
+  },
+  {
+    src: "/xvstudio/xvstudio-contact-project.webp",
+    title: "Project details",
+    description: "Step-based project input state for collecting useful context without overwhelming users."
+  },
+  {
+    src: "/xvstudio/xvstudio-backoffice.webp",
+    title: "Backoffice",
+    description: "Internal management surface for keeping content and business operations organized."
+  },
+  {
+    src: "/xvstudio/xvstudio-edicao.webp",
+    title: "Editing state",
+    description: "Admin editing flow prepared for practical updates and content maintenance."
+  },
+  {
+    src: "/xvstudio/xvstudio-home-mobile.webp",
+    title: "Mobile homepage",
+    description: "Responsive landing state tuned for narrow screens."
+  },
+  {
+    src: "/xvstudio/xvstudio-services-mobile.webp",
+    title: "Mobile services",
+    description: "Compact service browsing with the same visual language as desktop."
+  }
+];
+
 export function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug
@@ -252,6 +295,139 @@ function HausbScreenshotCard({
         <p className="mt-3 text-sm leading-6 text-black/55">{screenshot.description}</p>
       </div>
     </article>
+  );
+}
+
+function XvStudioScreenshotCard({
+  screenshot,
+  priority = false,
+  className
+}: {
+  screenshot: (typeof xvStudioScreenshots)[number];
+  priority?: boolean;
+  className?: string;
+}) {
+  return (
+    <article className={cn("group overflow-hidden rounded-[26px] border border-black/10 bg-white shadow-sm", className)}>
+      <div className="relative aspect-[4/3] overflow-hidden bg-[#111111]">
+        <Image
+          src={screenshot.src}
+          alt={`${screenshot.title} screenshot from XV Studio website`}
+          fill
+          priority={priority}
+          className="object-cover object-top transition duration-700 group-hover:scale-[1.035]"
+          sizes="(min-width: 1024px) 50vw, 100vw"
+        />
+      </div>
+      <div className="p-6">
+        <h3 className="text-xl font-semibold leading-none text-black">{screenshot.title}</h3>
+        <p className="mt-3 text-sm leading-6 text-black/55">{screenshot.description}</p>
+      </div>
+    </article>
+  );
+}
+
+function XvStudioProjectPage({ project }: { project: Project }) {
+  const nextProject = getNextProject(project.slug);
+
+  return (
+    <PageShell className="bg-[#fbfaf7]">
+      <section className="mx-auto w-full max-w-[1200px] px-5 pb-28 pt-28 sm:px-8 md:pb-36 md:pt-36 lg:px-10">
+        <AnimatedReveal className="mx-auto max-w-[920px] text-center">
+          <span className="inline-flex rounded-full border border-black/10 bg-[#f2f0ec] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-black/38">
+            Case Study
+          </span>
+          <h1 className="mt-6 text-[52px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[78px] md:text-[96px]">
+            {project.title}
+          </h1>
+          <p className="mx-auto mt-6 max-w-[680px] text-[15px] leading-7 text-black/56">
+            {project.longDescription}
+          </p>
+        </AnimatedReveal>
+
+        <AnimatedReveal delay={0.08} className="mt-16 overflow-hidden rounded-[34px] border border-black/10 bg-black shadow-[0_24px_80px_rgba(0,0,0,0.12)]">
+          <div className="relative aspect-[4/3] md:aspect-[16/10]">
+            <Image
+              src="/xvstudio/xvstudio-home.webp"
+              alt="XV Studio homepage screenshot"
+              fill
+              priority
+              className="object-cover object-top"
+              sizes="(min-width: 1024px) 1120px, 100vw"
+            />
+          </div>
+        </AnimatedReveal>
+
+        <AnimatedReveal className="mx-auto mt-32 grid max-w-[980px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <h2 className="text-3xl font-semibold leading-tight text-black md:text-5xl">
+            A service website with guided contact and admin screens.
+          </h2>
+          <p className="text-[15px] leading-8 text-black/56">
+            XV Studio combines a polished public website with a practical contact flow and
+            backoffice surfaces. The screenshots show the production UI across service pages,
+            project intake and editing states.
+          </p>
+        </AnimatedReveal>
+
+        <AnimatedReveal delay={0.08} className="mt-20 grid gap-6 md:grid-cols-2">
+          {xvStudioScreenshots.slice(0, 6).map((screenshot, index) => (
+            <XvStudioScreenshotCard
+              key={screenshot.src}
+              screenshot={screenshot}
+              priority={index < 2}
+              className={index === 0 ? "md:col-span-2" : undefined}
+            />
+          ))}
+        </AnimatedReveal>
+
+        <AnimatedReveal className="mt-28 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-black/38">
+              Responsive UI
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight text-black md:text-4xl">
+              Mobile layouts kept consistent with desktop.
+            </h2>
+            <p className="mt-5 text-[14px] leading-7 text-black/56">
+              The mobile screens preserve the same hierarchy and interaction patterns, keeping the
+              service browsing experience sharp on smaller devices.
+            </p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            {xvStudioScreenshots.slice(6).map((screenshot) => (
+              <XvStudioScreenshotCard key={screenshot.src} screenshot={screenshot} />
+            ))}
+          </div>
+        </AnimatedReveal>
+
+        <Section className="mt-28 border-y border-line bg-transparent px-0" title="Technical Notes">
+          <AnimatedReveal className="grid gap-4 md:grid-cols-3">
+            {project.technicalNotes.map((note) => (
+              <article key={note} className="rounded-lg border border-line bg-white p-6">
+                <p className="text-sm leading-7 text-muted">{note}</p>
+              </article>
+            ))}
+          </AnimatedReveal>
+        </Section>
+
+        <AnimatedReveal className="mt-28 rounded-[28px] border border-black/10 bg-white p-6 md:p-10">
+          <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted">
+                Next Project
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold text-ink">{nextProject.title}</h2>
+              <p className="mt-3 max-w-2xl text-base leading-7 text-muted">
+                {nextProject.shortDescription}
+              </p>
+            </div>
+            <PortfolioInteractiveLink href={nextProject.href}>
+              Ver projeto
+            </PortfolioInteractiveLink>
+          </div>
+        </AnimatedReveal>
+      </section>
+    </PageShell>
   );
 }
 
@@ -572,6 +748,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
   if (project.slug === "casa-benfica-lenzburg") {
     return <CasaBenficaProjectPage project={project} />;
+  }
+
+  if (project.slug === "xv-studio") {
+    return <XvStudioProjectPage project={project} />;
   }
 
   if (project.slug === "hausb") {

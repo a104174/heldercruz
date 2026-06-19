@@ -37,6 +37,29 @@ export function ProjectVisual({ project, className, compact }: ProjectVisualProp
     );
   }
 
+  if (project.slug === "xv-studio") {
+    return (
+      <div
+        className={cn(
+          "group/visual relative overflow-hidden rounded-lg border border-line bg-[#111111]",
+          compact ? "aspect-[4/3]" : "aspect-[16/10]",
+          className
+        )}
+        aria-label={project.image.alt}
+      >
+        <Image
+          src={compact ? "/xvstudio/xvstudio-home-mobile.webp" : "/xvstudio/xvstudio-home.webp"}
+          alt=""
+          fill
+          className="object-cover object-top transition duration-700 group-hover/visual:scale-[1.03]"
+          sizes={compact ? "(min-width: 768px) 33vw, 100vw" : "(min-width: 1024px) 900px, 100vw"}
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_58%,rgba(0,0,0,0.32))]" />
+        <p className="sr-only">{project.image.label}</p>
+      </div>
+    );
+  }
+
   return (
     <div
       className={cn(
