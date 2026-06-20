@@ -1,6 +1,7 @@
 "use client";
 
 import { Code, Database, Maximize2, MessageSquare, Rocket, Server } from "lucide-react";
+import { motion } from "motion/react";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { PageShell } from "@/components/layout/page-shell";
@@ -69,25 +70,25 @@ export default function ExperiencePage() {
     <PageShell className="bg-[#fbfaf7]">
       <section className="mx-auto w-full max-w-[1180px] px-5 pb-28 pt-32 sm:px-8 md:pb-36 md:pt-40 lg:px-10">
         <AnimatedReveal className="max-w-[900px]">
-          {/* Badge a respirar suavemente para indicar que a página está viva */}
-          <span className="inline-flex animate-pulse items-center gap-2 rounded-full border border-black/10 bg-[#f2f0ec] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] text-black/48 shadow-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-black" />
-            Experience
-          </span>
-          
-          {/* Efeito Blur In (Magic UI) no Título principal */}
-          <TextAnimate 
-            animation="blurIn" 
-            as="h1" 
+          <motion.p
+            animate={{ opacity: [0.4, 1, 0.4] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="mb-8 text-[10px] font-bold uppercase tracking-[0.18em] text-black/38"
+          >
+            Portfolio / Experience
+          </motion.p>
+
+          <TextAnimate
+            animation="blurIn"
+            as="h1"
             duration={0.8}
-            className="mt-10 max-w-[860px] text-[48px] font-semibold leading-[1.02] tracking-normal text-black sm:text-[68px] md:text-[82px]"
+            className="max-w-[900px] text-[48px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[72px] md:text-[80px]"
           >
             Experience shaped by real projects, teamwork and engineering foundations.
           </TextAnimate>
-          
-          {/* Efeito Typewriter do Magic UI */}
-          <div className="mt-10 min-h-[56px] max-w-[560px]">
-            <TypingAnimation 
+
+          <div className="mt-7 min-h-[84px] max-w-[600px] md:min-h-[56px]">
+            <TypingAnimation
               duration={30}
               className="text-left text-[15px] font-normal leading-7 tracking-normal text-black/56"
             >

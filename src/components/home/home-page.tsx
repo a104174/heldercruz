@@ -245,28 +245,28 @@ function FloatingVisual({
   floatDelay?: number;
   floatDuration?: number;
 }) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <AnimatedReveal
+    <motion.div
+      animate={shouldReduceMotion ? undefined : { y: [0, -12, 0] }}
+      transition={{
+        duration: shouldReduceMotion ? 0 : floatDuration,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: shouldReduceMotion ? 0 : floatDelay
+      }}
       className={cn(
-        "relative overflow-hidden rounded-[28px] border border-white/45 bg-white/20 shadow-[0_18px_55px_rgba(0,0,0,0.12)] backdrop-blur-2xl md:absolute",
+        "md:absolute",
         className
       )}
     >
-      <motion.div
-        animate={{ y: [0, -12, 0] }}
-        transition={{ 
-          duration: floatDuration, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: floatDelay
-        }}
-        className="h-full w-full"
-      >
+      <AnimatedReveal className="relative h-full min-h-[inherit] w-full overflow-hidden rounded-[28px] border border-white/45 bg-white/20 shadow-[0_18px_55px_rgba(0,0,0,0.12)] backdrop-blur-2xl">
         {image ? <div className="absolute inset-0" style={imageStyle(image)} /> : null}
         <div className="absolute inset-0 bg-white/5" />
         <div className="relative z-10 h-full">{children}</div>
-      </motion.div>
-    </AnimatedReveal>
+      </AnimatedReveal>
+    </motion.div>
   );
 }
 
@@ -316,32 +316,35 @@ function CollageSection() {
           </div>
         </FloatingVisual>
 
-        <AnimatedReveal className="relative rounded-[24px] border border-white/50 bg-white/35 p-5 shadow-[0_16px_45px_rgba(0,0,0,0.1)] backdrop-blur-2xl md:absolute md:left-[4%] md:top-[46%] md:w-[280px]">
-          <motion.div 
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          >
-            <div className="mb-4 flex items-center justify-between">
-              <span className="text-sm font-bold text-black">API Sync</span>
-              <span className="relative h-6 w-11 rounded-full bg-black">
-                <motion.span 
-                  animate={{ scale: [1, 1.2, 1] }} 
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="absolute right-1 top-1 h-4 w-4 rounded-full bg-white" 
-                />
-              </span>
+        <motion.div
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          className="relative md:absolute md:left-[4%] md:top-[46%] md:w-[280px]"
+        >
+          <AnimatedReveal className="rounded-[24px] border border-white/50 bg-white/35 p-5 shadow-[0_16px_45px_rgba(0,0,0,0.1)] backdrop-blur-2xl">
+            <div>
+              <div className="mb-4 flex items-center justify-between">
+                <span className="text-sm font-bold text-black">API Sync</span>
+                <span className="relative h-6 w-11 rounded-full bg-black">
+                  <motion.span
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="absolute right-1 top-1 h-4 w-4 rounded-full bg-white"
+                  />
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-tr from-[#ff416c] to-[#ff4b2b] text-white shadow-md">
+                  <GitBranch aria-hidden="true" className="h-4 w-4" />
+                </span>
+                <span>
+                  <span className="block text-xs font-bold text-black">Contact Flow</span>
+                  <span className="text-xs text-[#6e6a63]">Connected</span>
+                </span>
+              </div>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-tr from-[#ff416c] to-[#ff4b2b] text-white shadow-md">
-                <GitBranch aria-hidden="true" className="h-4 w-4" />
-              </span>
-              <span>
-                <span className="block text-xs font-bold text-black">Contact Flow</span>
-                <span className="text-xs text-[#6e6a63]">Connected</span>
-              </span>
-            </div>
-          </motion.div>
-        </AnimatedReveal>
+          </AnimatedReveal>
+        </motion.div>
 
         <FloatingVisual
           image="/xvstudio/xvstudio-contact.webp"

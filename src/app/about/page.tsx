@@ -7,6 +7,7 @@ import { AnimatedReveal } from "@/components/animations/animated-reveal";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { PageShell } from "@/components/layout/page-shell";
 import { PortfolioInteractiveButton } from "@/components/ui/portfolio-interactive-button";
+import { TextAnimate } from "@/components/ui/text-animate";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 
 const workValues = [
@@ -50,33 +51,28 @@ export default function AboutPage() {
   return (
     <PageShell className="bg-[#f8f6f1]">
       <section className="mx-auto w-full max-w-[1120px] px-5 pb-28 pt-32 sm:px-8 md:pb-36 md:pt-44 lg:px-10">
-        <AnimatedReveal className="mx-auto flex max-w-[860px] flex-col items-center text-center">
-          {/* Efeito "Alive": Pulse suave contínuo para mostrar que a página está ativa */}
-          <motion.span 
+        <AnimatedReveal className="max-w-[860px]">
+          <motion.p
             animate={{ opacity: [0.6, 1, 0.6], y: [0, -2, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="rounded-full border border-black/10 bg-[#fbfaf7] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-black/42 shadow-sm"
+            className="mb-8 text-[10px] font-bold uppercase tracking-[0.18em] text-black/38"
           >
-            About
-          </motion.span>
-          
-          <h1 className="mt-8 text-[56px] font-semibold leading-[0.86] tracking-normal text-black sm:text-[82px] md:text-[102px]">
-            Building
-            <br />
-            software that
-            <br />
-            feels simple,
-            <br />
-            useful and
-            <br />
-            polished.
-          </h1>
-          
-          {/* Efeito Typewriter do Magic UI */}
-          <div className="mt-8 flex min-h-[48px] max-w-[560px] items-center justify-center text-[13px] leading-6 text-black/60">
-            <TypingAnimation 
+            Portfolio / About
+          </motion.p>
+
+          <TextAnimate
+            animation="blurIn"
+            as="h1"
+            duration={0.8}
+            className="text-[48px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[72px] md:text-[80px]"
+          >
+            {"Building\nsoftware that\nfeels simple,\nuseful and\npolished."}
+          </TextAnimate>
+
+          <div className="mt-7 min-h-[84px] max-w-[600px] md:min-h-[56px]">
+            <TypingAnimation
               duration={30}
-              className="font-normal text-[13px] leading-6 tracking-normal"
+              className="text-left text-[15px] font-normal leading-7 text-black/56 tracking-normal"
             >
               I am Hélder Cruz, a Software Engineer graduated in Computer Engineering from Universidade do Minho.
             </TypingAnimation>
@@ -84,7 +80,7 @@ export default function AboutPage() {
         </AnimatedReveal>
 
         <div id="vision" className="mt-36 grid gap-10 md:grid-cols-[1fr_1.08fr] md:items-center">
-          <AnimatedReveal className="max-w-[460px]">
+          <AnimatedReveal delay={0.85} className="max-w-[460px]">
             <h2 className="text-2xl font-medium leading-none tracking-normal text-black">
               Personal Intro
             </h2>
@@ -96,7 +92,7 @@ export default function AboutPage() {
             </p>
           </AnimatedReveal>
 
-          <AnimatedReveal delay={0.08}>
+          <AnimatedReveal delay={0.95}>
             <div className="group relative aspect-[1.35] min-h-[300px] overflow-hidden rounded-[34px] border border-black/10 bg-[#efede9] shadow-xl transition-all duration-700 hover:shadow-2xl hover:-translate-y-1">
               <Image
                 src="/pages/about/helder.JPG"
