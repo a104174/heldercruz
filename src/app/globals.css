@@ -14,10 +14,10 @@
 
 :root {
   color-scheme: light;
-  background: #ffffff;
+  background: #fbfaf7;
   color: #080808;
   text-rendering: geometricPrecision;
-  --background: oklch(1 0 0);
+  --background: #fbfaf7;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -57,12 +57,14 @@
 
 html {
   min-height: 100%;
+  background: #fbfaf7;
   scroll-padding-top: 96px;
 }
 
 body {
   min-height: 100%;
   margin: 0;
+  background: #fbfaf7;
   color: #080808;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
