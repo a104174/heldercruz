@@ -304,9 +304,9 @@ function CollageSection() {
       <div className="relative z-10 mx-auto w-full max-w-[1728px] overflow-visible px-5 py-20 sm:px-8 md:py-24 lg:px-10 2xl:min-h-[1120px] 2xl:py-32">
         <AnimatedReveal className="pointer-events-none relative z-10 flex items-center justify-center 2xl:absolute 2xl:inset-0">
           <h2 className="text-center text-[clamp(3rem,8vw,6.5rem)] font-bold leading-[0.94] text-black 2xl:text-[118px]">
-            Engineering
+            Design-Led
             <br />
-            Intelligence
+            Engineering
           </h2>
         </AnimatedReveal>
 
