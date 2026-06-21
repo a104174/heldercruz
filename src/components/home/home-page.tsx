@@ -763,7 +763,7 @@ function InsightSection() {
 
 function CtaSection() {
   return (
-    <section className="px-5 py-24 sm:px-8 md:py-36 lg:px-10">
+    <section className="px-5 py-24 sm:px-8 md:pt-28 md:pb-24 lg:px-10">
       <AnimatedReveal className="mx-auto flex max-w-5xl flex-col items-center text-center">
         <motion.span 
           animate={{ scale: [1, 1.05, 1] }}
@@ -798,7 +798,7 @@ function CtaSection() {
 
 export function HomePage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#fbfaf7] text-black">
+    <main className="min-h-screen bg-transparent text-black">
       <HeroSection />
       <AnimatedReveal>
         <TechStrip />

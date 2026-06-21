@@ -23,12 +23,12 @@ export function FooterRevealShell({
     : undefined;
 
   return (
-    <div className="bg-[#fbfaf7]" style={revealStyle}>
+    <div className={cn("relative bg-[#fbfaf7]", revealEnabled && "lg:bg-neutral-950")} style={revealStyle}>
       <div
         className={cn(
           "bg-[#fbfaf7]",
           revealEnabled &&
-            "lg:relative lg:z-10 lg:mb-[var(--footer-reveal-height)] lg:overflow-visible lg:rounded-b-[2rem] lg:shadow-[0_24px_70px_rgba(0,0,0,0.18)] xl:rounded-b-[3rem]"
+            "lg:relative lg:z-10 lg:mb-[calc(var(--footer-reveal-height)-1px)] lg:isolate lg:overflow-visible lg:rounded-b-[2rem] lg:shadow-[0_30px_80px_rgba(0,0,0,0.18)] xl:rounded-b-[3rem]"
         )}
       >
         {children}
@@ -36,7 +36,7 @@ export function FooterRevealShell({
 
       <div
         className={cn(
-          "bg-black",
+          "bg-black lg:bg-neutral-950",
           revealEnabled &&
             "lg:fixed lg:inset-x-0 lg:bottom-0 lg:z-0 lg:h-[var(--footer-reveal-height)]"
         )}
