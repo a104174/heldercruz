@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/layout/footer";
+import { FooterRevealShell } from "@/components/layout/footer-reveal-shell";
 import { Navbar } from "@/components/layout/navbar";
 import { Providers } from "@/components/providers/providers";
 import { getSiteUrl, siteConfig } from "@/config/site";
@@ -49,10 +50,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="bg-[#fbfaf7]">
         <Providers>
           <Navbar />
-          <div className="bg-[#fbfaf7]">
-            {children}
-          </div>
-          <Footer />
+          <FooterRevealShell footer={<Footer />}>{children}</FooterRevealShell>
         </Providers>
       </body>
     </html>
