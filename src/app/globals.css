@@ -102,6 +102,11 @@ select {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+
+  .metallic-title {
+    animation: none !important;
+    background-position: 55% 50%;
+  }
 }
 
 @keyframes home-marquee {
@@ -114,9 +119,36 @@ select {
   }
 }
 
-/* ========================================= */
-/* PREMIUM LIQUID GLASS NAVBAR               */
-/* ========================================= */
+@keyframes metallic-title-shift {
+  0% {
+    background-position: 200% center;
+  }
+
+  100% {
+    background-position: 0% center;
+  }
+}
+
+.metallic-title {
+  color: transparent;
+  background: linear-gradient(
+    110deg,
+    #111111 0%,
+    #3a3a38 18%,
+    #5a5a55 34%,
+    #b6b5aa 42%,
+    #454542 50%,
+    #73736c 64%,
+    #2d2d2b 82%,
+    #111111 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: metallic-title-shift 10s linear infinite;
+}
+
+/* LIQUID GLASS NAVBAR  */
 
 .liquid-glass-surface {
   isolation: isolate;

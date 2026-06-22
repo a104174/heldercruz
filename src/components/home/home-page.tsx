@@ -26,20 +26,30 @@ import { cn } from "@/lib/utils";
 import { projects, type Project, type ProjectSlug } from "@/data/projects";
 
 const technologies = [
+  "JavaScript",
+  "TypeScript",
   "React",
   "Next.js",
-  "TypeScript",
   "Node.js",
-  "Supabase",
+  "Python",
+  "Java",
+  "C",
+  "C++",
+  "Elixir",
+  "SQL",
   "PostgreSQL",
+  "Supabase",
   "Tailwind CSS",
-  "Vercel",
+  "Assembly",
+  "Docker",
+  "Git",
   "GitHub",
-  "Resend"
+  "Vercel",
+  "REST APIs"
 ];
 
 const heroImage = "/hausb/mac2.webp";
-const heroTitle = "Software Engineer crafting digital products.";
+const heroTitle = "Building software that works";
 const heroTitleWords = heroTitle.split(" ");
 
 const projectDescriptions: Record<ProjectSlug, string> = {
@@ -155,9 +165,9 @@ function HeroSection() {
           {shouldReduceMotion ? (
             <span aria-hidden="true">{heroTitle}</span>
           ) : (
-            <span aria-hidden="true">
+            <span aria-hidden="true" className="inline-flex flex-wrap justify-center gap-x-[0.22em] gap-y-0">
               {heroTitleWords.map((word, index) => (
-                <span key={word} className="inline-block whitespace-nowrap">
+                <span key={`${word}-${index}`} className="inline-block whitespace-nowrap">
                   <TextAnimate
                     as="span"
                     animation="blurInUp"
@@ -169,7 +179,6 @@ function HeroSection() {
                   >
                     {word}
                   </TextAnimate>
-                  {index < heroTitleWords.length - 1 ? " " : null}
                 </span>
               ))}
             </span>
@@ -186,8 +195,7 @@ function HeroSection() {
           }}
           className="mt-7 max-w-3xl text-base leading-7 text-[#6e6a63] sm:text-lg sm:leading-8"
         >
-          I build clean, scalable and user-focused web applications, combining frontend
-          engineering, backend systems and polished user experiences.
+          I build custom software tools, end-to-end websites and digital solutions tailored to each project, person and purpose.
         </motion.p>
         <motion.div
           initial={shouldReduceMotion ? false : "hidden"}
@@ -303,7 +311,7 @@ function CollageSection() {
       <div aria-hidden="true" className="absolute inset-0 z-0 bg-[#fbfaf7]" />
       <div className="relative z-10 mx-auto w-full max-w-[1728px] overflow-visible px-5 py-20 sm:px-8 md:py-24 lg:px-10 2xl:min-h-[1120px] 2xl:py-32">
         <AnimatedReveal className="pointer-events-none relative z-10 flex items-center justify-center 2xl:absolute 2xl:inset-0">
-          <h2 className="text-center text-[clamp(3rem,8vw,6.5rem)] font-bold leading-[0.94] text-black 2xl:text-[118px]">
+          <h2 className="metallic-title pb-[0.08em] text-center text-[clamp(3rem,8vw,6.5rem)] font-bold leading-[1.02] 2xl:text-[118px]">
             Design-Led
             <br />
             Engineering
@@ -444,8 +452,7 @@ function ManifestoSection() {
       </div>
       <AnimatedReveal>
         <p className="relative z-10 mx-auto max-w-5xl text-balance text-2xl font-light leading-tight text-black sm:text-3xl md:text-5xl">
-          Engineering clean interfaces and reliable systems for digital products that feel simple,
-          useful and effortless.
+          From visual direction to backend logic, I build digital products that feel simple on the surface and reliable behind the scenes.
         </p>
       </AnimatedReveal>
     </SectionShell>
