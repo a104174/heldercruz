@@ -7,7 +7,17 @@ import { cn } from "@/lib/utils";
 export const FOOTER_REVEAL_ENABLED = true;
 
 const FOOTER_REVEAL_HEIGHT = "clamp(440px, 45vh, 560px)";
-const HOME_PATHS = new Set(["/"]);
+
+export function shouldUseFooterReveal(pathname: string) {
+  return (
+    pathname === "/" ||
+    pathname === "/projects" ||
+    pathname === "/about" ||
+    pathname === "/experience" ||
+    pathname === "/contact" ||
+    pathname.startsWith("/projects/")
+  );
+}
 
 export function FooterRevealShell({
   children,
@@ -17,7 +27,7 @@ export function FooterRevealShell({
   footer: ReactNode;
 }) {
   const pathname = usePathname();
-  const revealEnabled = FOOTER_REVEAL_ENABLED && HOME_PATHS.has(pathname);
+  const revealEnabled = FOOTER_REVEAL_ENABLED && shouldUseFooterReveal(pathname);
 
   const revealStyle = revealEnabled
     ? ({ "--footer-reveal-height": FOOTER_REVEAL_HEIGHT } as CSSProperties)

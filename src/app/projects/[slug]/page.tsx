@@ -331,7 +331,7 @@ function XvStudioProjectPage({ project }: { project: Project }) {
   const nextProject = getNextProject(project.slug);
 
   return (
-    <PageShell className="bg-[#fbfaf7]">
+    <PageShell>
       <section className="mx-auto w-full max-w-[1200px] px-5 pb-28 pt-28 sm:px-8 md:pb-36 md:pt-36 lg:px-10">
         <AnimatedReveal className="mx-auto max-w-[920px] text-center">
           <span className="inline-flex rounded-full border border-black/10 bg-[#f2f0ec] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-black/38">
@@ -435,7 +435,7 @@ function HausbProjectPage({ project }: { project: Project }) {
   const nextProject = getNextProject(project.slug);
 
   return (
-    <PageShell className="bg-[#fbfaf7]">
+    <PageShell>
       <section className="mx-auto w-full max-w-[1200px] px-5 pb-28 pt-28 sm:px-8 md:pb-36 md:pt-36 lg:px-10">
         <AnimatedReveal className="mx-auto max-w-[920px] text-center">
           <span className="inline-flex rounded-full border border-black/10 bg-[#f2f0ec] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-black/38">
@@ -537,7 +537,7 @@ function HausbProjectPage({ project }: { project: Project }) {
 
 function CasaBenficaProjectPage({ project }: { project: Project }) {
   return (
-    <PageShell className="bg-[#fbfaf7]">
+    <PageShell>
       <section className="mx-auto w-full max-w-[1120px] px-5 pb-28 pt-28 sm:px-8 md:pb-36 md:pt-36 lg:px-10">
         <AnimatedReveal className="mx-auto max-w-[980px] text-center">
           <span className="inline-flex rounded-full border border-black/10 bg-[#f2f0ec] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-black/38">

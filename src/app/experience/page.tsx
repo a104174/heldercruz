@@ -67,7 +67,7 @@ const skillCards = [
 
 export default function ExperiencePage() {
   return (
-    <PageShell className="bg-[#fbfaf7]">
+    <PageShell>
       <section className="mx-auto w-full max-w-[1180px] px-5 pb-28 pt-32 sm:px-8 md:pb-36 md:pt-40 lg:px-10">
         <AnimatedReveal className="max-w-[900px]">
           <motion.p

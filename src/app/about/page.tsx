@@ -49,7 +49,7 @@ const skills = [
 
 export default function AboutPage() {
   return (
-    <PageShell className="bg-[#f8f6f1]">
+    <PageShell>
       <section className="mx-auto w-full max-w-[1120px] px-5 pb-28 pt-32 sm:px-8 md:pb-36 md:pt-44 lg:px-10">
         <AnimatedReveal className="max-w-[860px]">
           <motion.p

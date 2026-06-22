@@ -195,7 +195,7 @@ export function WorkPage() {
   const [featuredProject, ...secondaryProjects] = projects;
 
   return (
-    <PageShell className="bg-[#f8f6f1]">
+    <PageShell>
       <section className="mx-auto w-full max-w-[1200px] px-5 pb-20 pt-28 sm:px-8 md:pb-28 md:pt-40 lg:px-10">
         <AnimatedReveal className="max-w-[620px]">
           <motion.p 
