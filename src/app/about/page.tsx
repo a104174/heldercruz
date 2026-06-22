@@ -468,15 +468,15 @@ export default function AboutPage() {
 
         {/* CTA FINAL */}
         <AnimatedReveal className="mt-36">
-          <div className="flex min-h-[390px] flex-col items-center justify-center rounded-[34px] border border-black/10 bg-[#efede9] px-6 py-16 text-center shadow-sm">
-            <h2 className="max-w-[760px] text-[42px] font-semibold leading-[0.92] tracking-normal text-black sm:text-[62px] md:text-[76px]">
+          <div className="group flex min-h-[390px] flex-col items-center justify-center rounded-[34px] border border-black/10 bg-[#efede9] px-6 py-16 text-center shadow-sm transition-all duration-700 hover:border-transparent hover:bg-[#111111]">
+            <h2 className="max-w-[760px] text-[42px] font-semibold leading-[0.92] tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[62px] md:text-[76px]">
               Want to build something together?
             </h2>
-            <p className="mt-7 max-w-[520px] text-[14px] leading-7 text-black/54">
+            <p className="mt-7 max-w-[520px] text-[14px] leading-7 text-black/54 transition-colors duration-700 group-hover:text-white/62">
               Let&apos;s build something meaningful, useful and made to last.
             </p>
             <ContactTrigger asChild>
-              <PortfolioInteractiveButton className="mt-10">
+              <PortfolioInteractiveButton className="mt-10 transition-transform duration-500 group-hover:scale-105">
                 Contact
               </PortfolioInteractiveButton>
             </ContactTrigger>
