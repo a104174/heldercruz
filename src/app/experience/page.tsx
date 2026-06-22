@@ -1,6 +1,22 @@
 "use client";
 
-import { Code, Database, Maximize2, MessageSquare, Rocket, Server } from "lucide-react";
+import Link from "next/link";
+import {
+  Brain,
+  Code,
+  Code2,
+  Cpu,
+  Database,
+  LineChart,
+  Maximize2,
+  MessageSquare,
+  Monitor,
+  Plane,
+  Rocket,
+  Server,
+  Shield,
+  Workflow
+} from "lucide-react";
 import { motion } from "motion/react";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
@@ -64,6 +80,52 @@ const skillCards = [
     className: "bg-[#dedbd8] hover:bg-[#efede9]"
   }
 ];
+
+const foundationAreas = [
+  { title: "Databases", icon: Database },
+  { title: "Object-Oriented Programming", icon: Code2 },
+  { title: "Distributed Systems", icon: Workflow },
+  { title: "Cybersecurity", icon: Shield },
+  { title: "Machine Learning", icon: Brain },
+  { title: "Low-level Programming", icon: Cpu },
+  { title: "Computer Graphics", icon: Monitor },
+  { title: "Statistics & Calculus", icon: LineChart }
+];
+
+function SectionHeading({
+  eyebrow,
+  title,
+  intro,
+  align = "left"
+}: {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  align?: "left" | "center";
+}) {
+  return (
+    <AnimatedReveal
+      className={cn(
+        "max-w-3xl",
+        align === "center" && "mx-auto text-center flex flex-col items-center"
+      )}
+    >
+      {eyebrow ? (
+        <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.18em] text-black/38">
+          {eyebrow}
+        </p>
+      ) : null}
+      <h2 className="text-[34px] font-semibold leading-[0.98] tracking-normal text-black sm:text-[46px] md:text-[56px]">
+        {title}
+      </h2>
+      {intro ? (
+        <p className="mt-6 max-w-2xl text-[15px] leading-7 text-black/58 md:text-base">
+          {intro}
+        </p>
+      ) : null}
+    </AnimatedReveal>
+  );
+}
 
 export default function ExperiencePage() {
   return (
@@ -181,6 +243,62 @@ export default function ExperiencePage() {
                 </article>
               );
             })}
+          </AnimatedReveal>
+        </section>
+
+        {/* BASES ACADÉMICAS */}
+        <section className="mt-36">
+          <SectionHeading
+            title="A broad engineering foundation."
+            intro="My background in Computer Engineering gave me a technical foundation that goes beyond web development. During my degree, I worked across areas such as databases, object-oriented programming, distributed systems, cybersecurity, machine learning, computer graphics, statistics, calculus, low-level programming and software engineering."
+          />
+
+          <AnimatedReveal delay={0.08} className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {foundationAreas.map((area, index) => {
+              const Icon = area.icon;
+
+              return (
+                <motion.article
+                  key={area.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05, duration: 0.45 }}
+                  className="group rounded-[22px] border border-black/10 bg-[#efede9] p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-md"
+                >
+                  <div className="w-fit rounded-full bg-black/5 p-2.5 transition-colors duration-300 group-hover:bg-black">
+                    <Icon aria-hidden="true" className="h-5 w-5 stroke-[1.8] text-black/48 transition-colors duration-300 group-hover:text-white" />
+                  </div>
+                  <h3 className="mt-6 text-[13px] font-semibold leading-5 text-black transition-transform duration-300 group-hover:translate-x-1">
+                    {area.title}
+                  </h3>
+                </motion.article>
+              );
+            })}
+          </AnimatedReveal>
+
+          <AnimatedReveal delay={0.12} className="mt-6">
+            <Link
+              href="https://github.com/dium-li3/2526-G42"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Airport terminal system repository on GitHub"
+              className="group grid gap-8 rounded-[28px] border border-black/10 bg-[#efede9] p-7 text-black shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-black/15 hover:bg-white hover:shadow-[0_22px_50px_-22px_rgba(0,0,0,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black md:grid-cols-[0.72fr_1.28fr] md:p-9"
+            >
+              <div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-black/[0.04] transition-colors duration-300 group-hover:border-black/15 group-hover:bg-black/[0.06]">
+                  <Plane aria-hidden="true" className="h-5 w-5 text-black/62 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </div>
+                <h3 className="mt-8 text-3xl font-semibold leading-none transition-transform duration-300 group-hover:translate-x-1">Airport terminal system</h3>
+              </div>
+              <p className="max-w-2xl text-[14px] leading-7 text-black/62 md:text-[15px]">
+                One of the projects that shaped the way I think about software was an airport
+                terminal system, where flights, airports, airplanes, passengers, tickets and
+                operational flows had to be modelled and managed together. It helped me understand
+                that good software is not only about writing code, but about designing systems that
+                represent complex real-world processes clearly.
+              </p>
+            </Link>
           </AnimatedReveal>
         </section>
 
