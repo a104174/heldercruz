@@ -205,10 +205,10 @@ export function LiquidGlassNavbar() {
               </Link>
               <ContactTrigger asChild onClick={() => setMenuOpen(false)}>
                 <NavbarInteractiveHoverButton
-                  aria-label="Abrir modal de contacto"
+                  aria-label="Open contact modal"
                   className="shadow-none"
                 >
-                  Contacto
+                  Contact
                 </NavbarInteractiveHoverButton>
               </ContactTrigger>
               <Button

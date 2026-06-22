@@ -2,7 +2,6 @@
 
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import {
-  ArrowUpRight,
   Database,
   FileText,
   Folder,
@@ -23,7 +22,6 @@ import {
 import { TextAnimate } from "@/components/ui/text-animate";
 import Text3DFlip from "@/components/ui/text-3d-flip";
 import { cn } from "@/lib/utils";
-import { projects, type Project, type ProjectSlug } from "@/data/projects";
 
 const technologies = [
   "JavaScript",
@@ -51,13 +49,6 @@ const technologies = [
 const heroImage = "/hausb/mac2.webp";
 const heroTitle = "Building software that works";
 const heroTitleWords = heroTitle.split(" ");
-
-const projectDescriptions: Record<ProjectSlug, string> = {
-  "casa-benfica-lenzburg":
-    "Public website, reservation backoffice and restaurant billing system.",
-  "xv-studio": "Multi-page service website with custom layouts and step-based contact flow.",
-  hausb: "Modern business website focused on clean presentation and responsive design."
-};
 
 const focusCards = [
   {
@@ -112,7 +103,7 @@ function HomeContactButton() {
   return (
     <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
       <ContactTrigger asChild>
-        <PortfolioInteractiveButton>Contacto</PortfolioInteractiveButton>
+        <PortfolioInteractiveButton>Contact</PortfolioInteractiveButton>
       </ContactTrigger>
     </motion.div>
   );
@@ -208,7 +199,7 @@ function HeroSection() {
           }}
           className="mt-8 flex flex-col gap-3 sm:flex-row"
         >
-          <PortfolioInteractiveLink href="/projects">Ver projetos</PortfolioInteractiveLink>
+          <PortfolioInteractiveLink href="/projects">View projects</PortfolioInteractiveLink>
           <HomeContactButton />
         </motion.div>
       </div>
@@ -638,76 +629,6 @@ function FocusSection() {
   );
 }
 
-function HomeProjectCard({ project, index }: { project: Project; index: number }) {
-  return (
-    <AnimatedReveal delay={index * 0.05}>
-      <motion.div whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
-        <Link
-          href={project.href}
-          className="group relative flex min-h-[420px] overflow-hidden rounded-[28px] border border-black/10 bg-[#151515] p-6 text-white shadow-sm transition-shadow hover:shadow-[0_26px_70px_rgba(0,0,0,0.22)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
-        >
-          <div
-            className="absolute inset-0 opacity-70 transition-opacity duration-500 group-hover:opacity-100"
-            style={{
-              background:
-                `radial-gradient(circle at 24% 18%, ${project.accent} 0, transparent 35%), ` +
-                "linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02) 42%, rgba(0,0,0,0.55))"
-            }}
-          />
-          <div className="absolute left-6 right-6 top-6 h-44 rounded-[18px] border border-white/12 bg-white/8 p-4 backdrop-blur-sm transition-transform duration-500 group-hover:scale-[1.02]">
-            <div className="mb-5 flex items-center justify-between">
-              <div className="flex gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-white/80" />
-                <span className="h-2 w-2 rounded-full bg-white/25" />
-                <span className="h-2 w-2 rounded-full bg-white/25" />
-              </div>
-              <span className="h-2 w-16 rounded-full bg-white/25" />
-            </div>
-            <div className="grid h-[100px] grid-cols-5 gap-3">
-              <span className="col-span-2 rounded-[10px] bg-white/18" />
-              <span className="col-span-3 rounded-[10px] bg-white/10" />
-              <span className="col-span-3 rounded-[10px] bg-white/10" />
-              <span className="col-span-2 rounded-[10px] bg-white/18" />
-            </div>
-          </div>
-          <div className="relative z-10 mt-auto">
-            <div className="mb-4 flex items-center gap-2 text-[10px] font-bold uppercase text-white/55">
-              <span>{project.role}</span>
-              {project.year ? <span>• {project.year}</span> : null}
-            </div>
-            <div className="flex items-start justify-between gap-5">
-              <div>
-                <h3 className="text-2xl font-bold">{project.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-white/72">{projectDescriptions[project.slug]}</p>
-              </div>
-              <ArrowUpRight
-                aria-hidden="true"
-                className="h-5 w-5 shrink-0 text-white/65 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white group-hover:scale-110"
-              />
-            </div>
-          </div>
-        </Link>
-      </motion.div>
-    </AnimatedReveal>
-  );
-}
-
-function ProjectsSection() {
-  return (
-    <SectionShell className="py-20 md:py-28">
-      <AnimatedReveal className="mb-12 text-center">
-        <p className="mb-4 text-[11px] font-bold uppercase text-[#77736b]">Selected Work</p>
-        <h2 className="text-3xl font-bold text-black md:text-4xl">Built and shipped for clients.</h2>
-      </AnimatedReveal>
-      <div className="grid gap-5 md:grid-cols-3">
-        {projects.map((project, index) => (
-          <HomeProjectCard key={project.slug} project={project} index={index} />
-        ))}
-      </div>
-    </SectionShell>
-  );
-}
-
 function QuoteSection() {
   return (
     <SectionShell className="flex flex-col items-center py-24 text-center md:py-36">
@@ -796,7 +717,7 @@ function CtaSection() {
         </p>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row">
           <HomeContactButton />
-          <PortfolioInteractiveLink href="/projects">Ver projetos</PortfolioInteractiveLink>
+          <PortfolioInteractiveLink href="/projects">View projects</PortfolioInteractiveLink>
         </div>
       </AnimatedReveal>
     </section>
@@ -822,9 +743,6 @@ export function HomePage() {
       </AnimatedReveal>
       <AnimatedReveal>
         <FocusSection />
-      </AnimatedReveal>
-      <AnimatedReveal>
-        <ProjectsSection />
       </AnimatedReveal>
       <AnimatedReveal>
         <QuoteSection />

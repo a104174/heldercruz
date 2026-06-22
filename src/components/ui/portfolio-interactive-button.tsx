@@ -71,21 +71,21 @@ export function PortfolioInteractiveLink({
   return (
     <Link
       className={cn(
-        "group relative inline-flex h-11 w-fit min-w-max cursor-pointer items-center justify-center overflow-hidden rounded-full border border-black/15 bg-white px-7 text-center text-sm font-bold text-black shadow-[0_14px_32px_rgba(0,0,0,0.08)] transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black hover:border-black/30 whitespace-nowrap",
+        "group relative inline-flex h-11 w-fit min-w-max cursor-pointer items-center justify-center overflow-hidden rounded-full border border-black/15 bg-white px-7 text-center text-sm font-bold leading-none text-black shadow-[0_14px_32px_rgba(0,0,0,0.08)] transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black hover:border-black/30 whitespace-nowrap",
         className
       )}
       {...props}
     >
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex items-center justify-center gap-2 leading-none">
         <div className="h-2 w-2 rounded-full bg-black transition-all duration-300 group-hover:scale-[100.8]" />
-        <span className="inline-block transition-all duration-300 group-hover:translate-x-4 group-hover:opacity-0">
+        <span className="inline-flex items-center transition-all duration-300 group-hover:translate-x-4 group-hover:opacity-0">
           {children}
         </span>
         <span aria-hidden="true" className="h-2 w-2 shrink-0" />
         {showArrow && <ArrowRight aria-hidden="true" className="absolute h-4 w-4 opacity-0" />}
       </div>
-      <div className="absolute inset-0 z-10 flex translate-x-4 items-center justify-center gap-2 text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
-        <span>{children}</span>
+      <div className="absolute inset-0 z-10 flex translate-x-4 items-center justify-center gap-2 leading-none text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+        <span className="inline-flex items-center">{children}</span>
         {showArrow && <ArrowRight aria-hidden="true" className="h-4 w-4" />}
       </div>
     </Link>
