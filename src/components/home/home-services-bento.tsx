@@ -25,66 +25,66 @@ import { cn } from "@/lib/utils";
 
 const exportFiles = [
   {
-    name: "reservas.xlsx",
-    body: "Reservas organizadas por data e cliente."
+    name: "bookings.xlsx",
+    body: "Bookings organized by date and client."
   },
   {
-    name: "faturacao.pdf",
-    body: "Resumo de faturação pronto para análise."
+    name: "billing.pdf",
+    body: "Billing summary ready for review."
   },
   {
-    name: "clientes.csv",
-    body: "Lista de clientes exportável."
+    name: "clients.csv",
+    body: "Exportable client list."
   },
   {
-    name: "agenda.pdf",
-    body: "Agenda de eventos em formato simples."
+    name: "schedule.pdf",
+    body: "Event schedule in a simple format."
   },
   {
-    name: "relatorio.pdf",
-    body: "Relatório operacional gerado a partir do backoffice."
+    name: "report.pdf",
+    body: "Operations report generated from the backoffice."
   },
   {
-    name: "pagamentos.xlsx",
-    body: "Pagamentos filtrados e prontos para consulta."
+    name: "payments.xlsx",
+    body: "Filtered payments ready to review."
   }
 ];
 
 const notificationItems = [
   {
     icon: Bell,
-    title: "Nova reserva recebida",
-    description: "Pedido registado no backoffice.",
-    time: "Agora"
+    title: "New booking received",
+    description: "Request saved in the backoffice.",
+    time: "Now"
   },
   {
     icon: FileSpreadsheet,
-    title: "Relatório exportado",
-    description: "Ficheiro pronto para partilha.",
+    title: "Report exported",
+    description: "File ready to share.",
     time: "2 min"
   },
   {
     icon: Mail,
-    title: "Email enviado ao cliente",
-    description: "Confirmação entregue com sucesso.",
+    title: "Email sent to client",
+    description: "Confirmation delivered successfully.",
     time: "5 min"
   },
   {
     icon: CheckCircle2,
-    title: "Pagamento registado",
-    description: "Estado atualizado no sistema.",
+    title: "Payment recorded",
+    description: "Status updated in the system.",
     time: "8 min"
   },
   {
     icon: CalendarCheck,
-    title: "Agenda atualizada",
-    description: "Nova marcação adicionada.",
+    title: "Schedule updated",
+    description: "New appointment added.",
     time: "12 min"
   },
   {
     icon: Send,
-    title: "Pedido de contacto submetido",
-    description: "Nova mensagem recebida no website.",
+    title: "Contact request submitted",
+    description: "New message received through the website.",
     time: "15 min"
   }
 ];
@@ -191,7 +191,7 @@ function IntegrationsPreview({ className }: { className?: string }) {
           <Circle ref={websiteRef} label="Website">
             <Globe2 aria-hidden="true" className="h-5 w-5" />
           </Circle>
-          <Circle ref={dataRef} label="Dados">
+          <Circle ref={dataRef} label="Data">
             <Database aria-hidden="true" className="h-5 w-5" />
           </Circle>
         </div>
@@ -248,19 +248,19 @@ function IntegrationsPreview({ className }: { className?: string }) {
 const features = [
   {
     Icon: FileTextIcon,
-    name: "Exportação de dados",
-    description: "Transformo dados do backoffice em relatórios Excel/PDF prontos a usar.",
+    name: "Data exports",
+    description: "I turn backoffice data into Excel/PDF reports ready to use.",
     href: "/projects",
-    cta: "Ver projetos",
+    cta: "View projects",
     className: "col-span-3 lg:col-span-1",
     background: <ExportMarquee />
   },
   {
     Icon: Bell,
-    name: "Notificações",
-    description: "Crio alertas para reservas, pedidos, pagamentos ou alterações importantes.",
+    name: "Notifications",
+    description: "I create alerts for bookings, requests, payments and important changes.",
     href: "/projects",
-    cta: "Ver projetos",
+    cta: "View projects",
     className: "col-span-3 lg:col-span-2",
     background: (
       <NotificationsPreview className="absolute right-2 top-4 h-[300px] w-full scale-75 border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90" />
@@ -268,10 +268,10 @@ const features = [
   },
   {
     Icon: Share2Icon,
-    name: "Integrações",
-    description: "Ligo websites a bases de dados, emails, formulários e serviços externos.",
+    name: "Integrations",
+    description: "I connect websites to databases, emails, forms and external services.",
     href: "/projects",
-    cta: "Ver projetos",
+    cta: "View projects",
     className: "col-span-3 lg:col-span-2",
     background: (
       <IntegrationsPreview className="absolute right-2 top-4 h-[300px] border-none [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-105" />
@@ -279,10 +279,10 @@ const features = [
   },
   {
     Icon: CalendarIcon,
-    name: "Calendários e agendas",
-    description: "Crio calendários para organizar eventos, marcações, tarefas ou operações internas.",
+    name: "Calendars and scheduling",
+    description: "I build calendars to organize events, appointments, tasks and internal operations.",
     href: "/projects",
-    cta: "Ver projetos",
+    cta: "View projects",
     className: "col-span-3 lg:col-span-1",
     background: (
       <Calendar
@@ -300,14 +300,14 @@ export function HomeServicesBento() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 max-w-3xl">
           <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-black/38">
-            Websites e sistemas
+            Websites and systems
           </p>
           <h2 className="text-balance text-4xl font-semibold leading-[0.96] tracking-normal text-black sm:text-5xl md:text-6xl">
-            Funcionalidades que dão valor real ao teu website
+            Features that bring real value to your website
           </h2>
           <p className="mt-6 max-w-2xl text-[15px] leading-7 text-black/56 sm:text-base">
-            Mais do que páginas bonitas, posso criar sistemas que organizam dados, automatizam
-            processos e tornam a gestão do teu negócio mais simples.
+            Beyond polished pages, I build systems that organize data, automate workflows and
+            make running your project or business simpler.
           </p>
         </div>
 

@@ -443,12 +443,12 @@ function ManifestoSection() {
         <motion.span 
           animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute inset-0 rounded-full border border-[#ff4b2b]/45" 
+          className="absolute inset-0 rounded-full border border-[#4f4f4f]/45" 
         />
-        <span className="absolute inset-x-1/4 inset-y-0 rounded-full border border-[#ff4b2b]/35" />
-        <span className="absolute inset-x-0 inset-y-1/4 rounded-full border border-[#ff4b2b]/35" />
-        <span className="absolute left-1/2 top-0 h-full w-px bg-[#ff4b2b]/25" />
-        <span className="absolute left-0 top-1/2 h-px w-full bg-[#ff4b2b]/25" />
+        <span className="absolute inset-x-1/4 inset-y-0 rounded-full border border-[#4f4f4f]/35" />
+        <span className="absolute inset-x-0 inset-y-1/4 rounded-full border border-[#4f4f4f]/35" />
+        <span className="absolute left-1/2 top-0 h-full w-px bg-[#4f4f4f]/25" />
+        <span className="absolute left-0 top-1/2 h-px w-full bg-[#4f4f4f]/25" />
       </div>
       <AnimatedReveal>
         <p className="relative z-10 mx-auto max-w-5xl text-balance text-2xl font-light leading-tight text-black sm:text-3xl md:text-5xl">
@@ -739,7 +739,7 @@ function InsightSection() {
       <div className="mb-10 flex items-end justify-between gap-6">
         <AnimatedReveal>
           <p className="mb-3 text-[11px] font-bold uppercase text-[#77736b]">Latest Focus</p>
-          <h2 className="text-3xl font-bold text-black md:text-4xl">Development focus</h2>
+          <h2 className="text-3xl font-bold text-black md:text-4xl">Built and shipped for clients</h2>
         </AnimatedReveal>
         <Link
           href="/work"
