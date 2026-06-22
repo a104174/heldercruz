@@ -1,196 +1,592 @@
 "use client";
 
+import { useState, type ReactNode } from "react";
 import Image from "next/image";
-import { Layers, Search, Server, TrendingUp } from "lucide-react";
+import Link from "next/link";
+import {
+  Brain,
+  Code2,
+  Cpu,
+  Database,
+  Dumbbell,
+  Gamepad2,
+  GraduationCap,
+  Layers,
+  LineChart,
+  Monitor,
+  Plane,
+  Shield,
+  Sparkles,
+  Trophy,
+  Users,
+  Workflow
+} from "lucide-react";
 import { motion } from "motion/react";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
 import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { PageShell } from "@/components/layout/page-shell";
-import { PortfolioInteractiveButton } from "@/components/ui/portfolio-interactive-button";
+import {
+  PortfolioInteractiveButton,
+  PortfolioInteractiveLink
+} from "@/components/ui/portfolio-interactive-button";
 import { TextAnimate } from "@/components/ui/text-animate";
-import { TypingAnimation } from "@/components/ui/typing-animation";
+import { cn } from "@/lib/utils";
 
-const workValues = [
+const heroStats = [
+  "Computer Engineering Graduate",
+  "Real Client Projects",
+  "Software, Websites & Backoffices"
+];
+
+const storyJourneySteps = [
   {
-    title: "Clean interfaces",
-    icon: Layers
+    step: "01",
+    title: "Gaming",
+    text: "Where the curiosity started."
   },
   {
-    title: "Reliable systems",
-    icon: Server
+    step: "02",
+    title: "Curiosity",
+    text: "Understanding how things worked became the real motivation."
   },
   {
-    title: "Practical business value",
-    icon: TrendingUp
+    step: "03",
+    title: "Systems",
+    text: "That curiosity evolved into thinking about logic, structure and behaviour."
   },
   {
-    title: "Attention to detail",
-    icon: Search
+    step: "04",
+    title: "Software",
+    text: "Today, I use that mindset to build products for real people and real needs."
   }
 ];
 
-const skills = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "JavaScript",
-  "Node.js",
-  "Supabase",
-  "PostgreSQL",
-  "Tailwind CSS",
-  "Git",
-  "GitHub",
-  "Vercel",
-  "Docker",
-  "Python",
-  "Resend",
-  "Figma"
+const foundationAreas = [
+  { title: "Databases", icon: Database },
+  { title: "Object-Oriented Programming", icon: Code2 },
+  { title: "Distributed Systems", icon: Workflow },
+  { title: "Cybersecurity", icon: Shield },
+  { title: "Machine Learning", icon: Brain },
+  { title: "Low-level Programming", icon: Cpu },
+  { title: "Computer Graphics", icon: Monitor },
+  { title: "Statistics & Calculus", icon: LineChart }
 ];
 
+const clientProjects = [
+  {
+    title: "Casa Benfica Lenzburg",
+    text:
+      "The most complete project I have worked on so far. What started as a public website became a broader digital ecosystem with event and album management, membership systems, reservations, email flows, work schedules, event agendas, editable cocktail menus and restaurant billing tools. Several internal operations now rely on software I designed and built from the ground up."
+  },
+  {
+    title: "XV Studio",
+    text:
+      "A website designed around the agency's services, with a specific visual direction for each area and a contact flow built to feel simple, guided and intentional."
+  },
+  {
+    title: "HAUSB",
+    text:
+      "A project where development and brand direction came together. Beyond building the website, I helped shape the digital identity, structure the message and create content for a field I had to study and understand."
+  }
+];
+
+const principles = [
+  {
+    title: "Human-driven functionality",
+    text:
+      "Good software should consider human error, reduce unnecessary repetition and make important actions clear."
+  },
+  {
+    title: "Design before execution",
+    text:
+      "I usually think through the structure, flow and visual direction before moving into backend logic and frontend implementation."
+  },
+  {
+    title: "Reliable systems",
+    text:
+      "For me, software that works is software that handles edge cases, supports real workflows and remains dependable when real people use it."
+  },
+  {
+    title: "Clear communication",
+    text:
+      "Client work taught me how to explain technical decisions in simple terms and translate real needs into practical software."
+  }
+];
+
+const coreValues = [
+  {
+    title: "Responsibility",
+    text: "Owning decisions, respecting the people who depend on the work and keeping the product useful beyond the first delivery."
+  },
+  {
+    title: "Critical thinking",
+    text: "Questioning assumptions, understanding trade-offs and choosing solutions for the real problem, not just the obvious one."
+  },
+  {
+    title: "Attention to detail",
+    text: "Caring about the small interactions, edge cases and visual decisions that make software feel considered."
+  }
+];
+
+const skillGroups = [
+  {
+    title: "Languages",
+    skills: ["TypeScript", "JavaScript", "Python", "Java", "C", "C++", "SQL"]
+  },
+  {
+    title: "Web & Software",
+    skills: ["React", "Next.js", "Node.js", "Vue", "REST APIs"]
+  },
+  {
+    title: "Data & Infrastructure",
+    skills: ["PostgreSQL", "Supabase", "Docker", "Vercel", "Cloudflare"]
+  },
+  {
+    title: "Tools",
+    skills: ["Git", "GitHub", "Figma", "Resend", "AI Tools"]
+  }
+];
+
+function SectionHeading({
+  eyebrow,
+  title,
+  intro,
+  align = "left"
+}: {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  align?: "left" | "center";
+}) {
+  return (
+    <AnimatedReveal
+      className={cn(
+        "max-w-3xl",
+        align === "center" && "mx-auto text-center flex flex-col items-center"
+      )}
+    >
+      {eyebrow ? (
+        <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.18em] text-black/38">
+          {eyebrow}
+        </p>
+      ) : null}
+      <h2 className="text-[34px] font-semibold leading-[0.98] tracking-normal text-black sm:text-[46px] md:text-[56px]">
+        {title}
+      </h2>
+      {intro ? (
+        <p className="mt-6 max-w-2xl text-[15px] leading-7 text-black/58 md:text-base">
+          {intro}
+        </p>
+      ) : null}
+    </AnimatedReveal>
+  );
+}
+
+function SoftCard({
+  children,
+  className
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "group rounded-[28px] border border-black/10 bg-[#efede9] p-6 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0_22px_50px_-22px_rgba(0,0,0,0.18)] md:p-7",
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function AboutPage() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
     <PageShell>
-      <section className="mx-auto w-full max-w-[1120px] px-5 pb-28 pt-32 sm:px-8 md:pb-36 md:pt-44 lg:px-10">
-        <AnimatedReveal className="max-w-[860px]">
-          <motion.p
-            animate={{ opacity: [0.6, 1, 0.6], y: [0, -2, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="mb-8 text-[10px] font-bold uppercase tracking-[0.18em] text-black/38"
-          >
-            Portfolio / About
-          </motion.p>
-
-          <TextAnimate
-            animation="blurIn"
-            as="h1"
-            duration={0.8}
-            className="text-[48px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[72px] md:text-[80px]"
-          >
-            {"Building\nsoftware that\nfeels simple,\nuseful and\npolished."}
-          </TextAnimate>
-
-          <div className="mt-7 min-h-[84px] max-w-[600px] md:min-h-[56px]">
-            <TypingAnimation
-              duration={30}
-              className="text-left text-[15px] font-normal leading-7 text-black/56 tracking-normal"
+      <div className="mx-auto w-full max-w-[1240px] px-5 pb-28 pt-32 sm:px-8 md:pb-36 md:pt-44 lg:px-10">
+        
+        {/* HERO */}
+        <section className="flex flex-col items-start">
+          <AnimatedReveal className="flex w-full max-w-[900px] flex-col items-start text-left">
+            <motion.p 
+              animate={{ opacity: [0.6, 1, 0.6], y: [0, -2, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="mb-8 text-[10px] font-bold uppercase tracking-[0.18em] text-black/38"
             >
-              I am Hélder Cruz, a Software Engineer graduated in Computer Engineering from Universidade do Minho.
-            </TypingAnimation>
-          </div>
-        </AnimatedReveal>
+              Portfolio / About
+            </motion.p>
 
-        <div id="vision" className="mt-36 grid gap-10 md:grid-cols-[1fr_1.08fr] md:items-center">
-          <AnimatedReveal delay={0.85} className="max-w-[460px]">
-            <h2 className="text-2xl font-medium leading-none tracking-normal text-black">
-              Personal Intro
-            </h2>
-            <p className="mt-8 text-[14px] leading-7 text-black/56">
-              I focus on building clean, scalable and user-focused web applications, combining
-              frontend development, backend logic, databases and deployment. I have worked on real
-              client projects, including business websites, reservation systems and backoffice
-              platforms.
-            </p>
+            <TextAnimate
+              animation="blurIn"
+              as="h1"
+              duration={0.65}
+              className="max-w-[900px] text-left text-[48px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[72px] md:text-[86px]"
+            >
+              Useful software starts with understanding people.
+            </TextAnimate>
           </AnimatedReveal>
 
-          <AnimatedReveal delay={0.95}>
-            <div className="group relative aspect-[1.35] min-h-[300px] overflow-hidden rounded-[34px] border border-black/10 bg-[#efede9] shadow-xl transition-all duration-700 hover:shadow-2xl hover:-translate-y-1">
-              <Image
-                src="/pages/about/helder.JPG"
-                alt="Portrait of Hélder Cruz"
-                fill
-                className="object-cover object-[58%_42%] brightness-[0.92] contrast-[1.12] saturate-[1.05] transition-all duration-700 group-hover:scale-105 group-hover:brightness-100 group-hover:contrast-[1.05]"
-                sizes="(min-width: 768px) 580px, calc(100vw - 40px)"
-                priority
-              />
-            </div>
-          </AnimatedReveal>
-        </div>
+          <div className="mt-20 grid gap-12 md:grid-cols-[1fr_1.1fr] md:items-center w-full max-w-[1040px]">
+            
+            <AnimatedReveal delay={0.95}>
+              <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-[34px] border border-black/10 bg-[#111] shadow-[0_28px_90px_-20px_rgba(0,0,0,0.2)] transition-shadow duration-700 hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.3)]">
+                <Image
+                  src="/pages/about/helder.JPG"
+                  alt="Portrait of Hélder Cruz"
+                  fill
+                  className="object-cover object-[58%_38%] brightness-[0.95] contrast-[1.1] saturate-[1.05] transition-all duration-700 group-hover:scale-105 group-hover:brightness-100"
+                  sizes="(min-width: 768px) 500px, calc(100vw - 40px)"
+                  priority
+                />
+              </div>
+            </AnimatedReveal>
 
-        <AnimatedReveal className="mx-auto mt-36 max-w-[820px]">
-          <div className="group rounded-[34px] border border-black/10 bg-[#efede9] px-8 py-14 text-center transition-all duration-500 hover:bg-white hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] md:px-16">
-            <h2 className="text-2xl font-medium leading-none tracking-normal text-black transition-transform duration-500 group-hover:scale-[1.02]">
-              Computer Engineering
-            </h2>
-            <p className="mx-auto mt-8 max-w-[620px] text-[13px] leading-6 text-black/52 transition-colors duration-500 group-hover:text-black/70">
-              Graduated in Computer Engineering from Universidade do Minho, with foundations in
-              software engineering, databases, distributed systems, computer networks, security,
-              human-computer interaction and artificial intelligence.
-            </p>
+            <AnimatedReveal delay={1.08} className="flex flex-col justify-center">
+              <p className="text-[15px] leading-8 text-black/70 md:text-[16px] xl:text-[17px]">
+                I&apos;m Hélder Cruz, a Software Engineer graduated in Computer Engineering from Universidade do Minho. 
+                I live in Braga (Portugal) and work in digital products that combine technical depth, thoughtful design and real-world usefulness.
+              </p>
+              
+              <div className="mt-8 flex flex-wrap gap-2">
+                {heroStats.map((stat, index) => (
+                  <motion.span
+                    key={stat}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.18 + index * 0.08, duration: 0.35 }}
+                    className="rounded-full border border-black/10 bg-[#efede9] px-4 py-2 text-[9px] font-bold uppercase tracking-[0.12em] text-black/50 transition-colors duration-300 hover:bg-black hover:text-white"
+                  >
+                    {stat}
+                  </motion.span>
+                ))}
+              </div>
+            </AnimatedReveal>
+
           </div>
-        </AnimatedReveal>
+        </section>
 
+        {/* HISTÓRIA E INTRODUÇÃO (TIMELINE MINIMALISTA E CLARA) */}
+        <section className="mt-36 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <SectionHeading
+            title="From curiosity to engineering."
+            intro="My interest in technology started through gaming. At first, it was curiosity: wanting to understand how the systems behind those experiences worked. Over time, that curiosity became a need to build things myself, understand software from the inside and use it to solve real problems."
+          />
+
+          <AnimatedReveal delay={0.08}>
+            {/* SoftCard padrão (claro) e com paddings reduzidos para ficar compacto */}
+            <SoftCard className="relative p-6 md:p-8">
+              <div className="relative">
+                
+                {/* Linha Fixa Ultra Discreta */}
+                <div
+                  aria-hidden="true"
+                  className="absolute bottom-2 left-[7px] top-2 w-px bg-black/[0.04]"
+                />
+                
+                {/* ANIMAÇÃO AUTÓNOMA 1: O fluxo de dados contínuo (gota a cair) */}
+                <div className="absolute bottom-2 left-[7px] top-2 w-px overflow-hidden">
+                  <motion.div
+                    animate={{ y: ["-100%", "300%"] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                    className="h-[30%] w-full bg-gradient-to-b from-transparent via-black/20 to-transparent"
+                  />
+                </div>
+
+                <div className="relative z-10 flex flex-col gap-6">
+                  {storyJourneySteps.map((item, index) => (
+                    <motion.article
+                      key={item.step}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1, duration: 0.5 }}
+                      className="grid grid-cols-[28px_1fr] items-start gap-4"
+                    >
+                      {/* Ponto Cirúrgico */}
+                      <div className="relative flex justify-center pt-1.5">
+                        <div className="flex h-4 w-4 items-center justify-center rounded-full border border-black/5 bg-[#fbfaf7] shadow-sm">
+                          {/* ANIMAÇÃO AUTÓNOMA 2: Respiração assíncrona das bolinhas */}
+                          <motion.div
+                            animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
+                            transition={{ 
+                              duration: 3, 
+                              delay: index * 0.5, /* Delay sequencial cria um efeito de onda */
+                              repeat: Infinity, 
+                              ease: "easeInOut" 
+                            }}
+                            className="h-1.5 w-1.5 rounded-full bg-black/40"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Texto Super Compacto e Direto */}
+                      <div>
+                        <h3 className="flex items-center gap-2 text-[15px] font-semibold tracking-tight text-black/90">
+                          <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-black/30">
+                            0{index + 1} ·
+                          </span>
+                          {item.title}
+                        </h3>
+                        <p className="mt-1.5 text-[13px] leading-relaxed text-black/60">
+                          {item.text}
+                        </p>
+                      </div>
+                    </motion.article>
+                  ))}
+                </div>
+              </div>
+            </SoftCard>
+          </AnimatedReveal>
+        </section>
+
+        {/* BASES ACADÉMICAS */}
         <section className="mt-36">
-          <AnimatedReveal>
-            <h2 className="text-center text-2xl font-medium leading-none tracking-normal text-black">
-              How I Work
-            </h2>
-          </AnimatedReveal>
-          <AnimatedReveal delay={0.08} className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {workValues.map((item, index) => {
-              const Icon = item.icon;
+          <SectionHeading
+            title="A broad engineering foundation."
+            intro="My background in Computer Engineering gave me a technical foundation that goes beyond web development. During my degree, I worked across areas such as databases, object-oriented programming, distributed systems, cybersecurity, machine learning, computer graphics, statistics, calculus, low-level programming and software engineering."
+          />
+
+          <AnimatedReveal delay={0.08} className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {foundationAreas.map((area, index) => {
+              const Icon = area.icon;
 
               return (
                 <motion.article
-                  key={item.title}
-                  initial={{ opacity: 0, y: 20 }}
+                  key={area.title}
+                  initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                  className="group flex min-h-[168px] flex-col justify-between rounded-[24px] border border-black/10 bg-[#efede9] p-7 transition-all duration-500 hover:-translate-y-2 hover:bg-white hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.12)]"
+                  transition={{ delay: index * 0.05, duration: 0.45 }}
+                  className="group rounded-[22px] border border-black/10 bg-[#efede9] p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-md"
                 >
-                  {/* Ícone com animação no hover */}
-                  <div className="rounded-full bg-black/5 p-3 w-fit transition-all duration-500 group-hover:bg-black group-hover:shadow-md">
-                    <Icon aria-hidden="true" className="h-5 w-5 stroke-[1.8] text-black transition-colors duration-500 group-hover:text-white" />
+                  <div className="w-fit rounded-full bg-black/5 p-2.5 transition-colors duration-300 group-hover:bg-black">
+                    <Icon aria-hidden="true" className="h-5 w-5 stroke-[1.8] text-black/48 transition-colors duration-300 group-hover:text-white" />
                   </div>
-                  <h3 className="text-[13px] font-semibold leading-5 tracking-normal text-black transition-transform duration-500 group-hover:translate-x-1">
-                    {item.title}
+                  <h3 className="mt-6 text-[13px] font-semibold leading-5 text-black transition-transform duration-300 group-hover:translate-x-1">
+                    {area.title}
                   </h3>
                 </motion.article>
               );
             })}
           </AnimatedReveal>
+
+          <AnimatedReveal delay={0.12} className="mt-6">
+            <Link
+              href="https://github.com/dium-li3/2526-G42"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Airport terminal system repository on GitHub"
+              className="group grid gap-8 rounded-[28px] border border-black/10 bg-black p-7 text-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-black hover:shadow-[0_22px_50px_-22px_rgba(0,0,0,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black md:grid-cols-[0.72fr_1.28fr] md:p-9"
+            >
+              <div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.08] transition-colors duration-300 group-hover:border-white/25 group-hover:bg-white/[0.12]">
+                  <Plane aria-hidden="true" className="h-5 w-5 text-white/80 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </div>
+                <h3 className="mt-8 text-3xl font-semibold leading-none transition-transform duration-300 group-hover:translate-x-1">Airport terminal system</h3>
+              </div>
+              <p className="max-w-2xl text-[14px] leading-7 text-white/64 md:text-[15px]">
+                One of the projects that shaped the way I think about software was an airport
+                terminal system, where flights, airports, airplanes, passengers, tickets and
+                operational flows had to be modelled and managed together. It helped me understand
+                that good software is not only about writing code, but about designing systems that
+                represent complex real-world processes clearly.
+              </p>
+            </Link>
+          </AnimatedReveal>
         </section>
 
+        {/* PROJETOS REAIS */}
         <section className="mt-36">
-          <AnimatedReveal>
-            <h2 className="text-center text-2xl font-medium leading-none tracking-normal text-black">
-              Skills
-            </h2>
-          </AnimatedReveal>
-          <AnimatedReveal
-            delay={0.08}
-            className="mx-auto mt-10 flex max-w-[760px] flex-wrap justify-center gap-3"
-          >
-            {skills.map((skill, index) => (
-              <motion.span
-                key={skill}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+          <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <SectionHeading
+              title="Real client work, real constraints."
+              intro="Working with real clients taught me how to communicate technical decisions clearly, understand business needs and turn vague ideas into working software."
+            />
+            <AnimatedReveal delay={0.08} className="shrink-0">
+              <PortfolioInteractiveLink href="/projects">View selected projects</PortfolioInteractiveLink>
+            </AnimatedReveal>
+          </div>
+
+          <AnimatedReveal delay={0.12} className="mt-12 grid gap-5 lg:grid-cols-3">
+            {clientProjects.map((project, index) => (
+              <motion.article
+                key={project.title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.02 }}
-                className="cursor-default rounded-full border border-black/10 bg-[#efede9] px-4 py-1.5 text-[9px] font-bold uppercase tracking-[0.12em] text-black/42 transition-all duration-300 hover:-translate-y-1 hover:bg-black hover:text-white hover:shadow-lg hover:border-black"
+                transition={{ delay: index * 0.08, duration: 0.5 }}
+                className={cn(
+                  "group rounded-[28px] border border-black/10 bg-[#efede9] p-7 transition-all duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0_22px_50px_-22px_rgba(0,0,0,0.18)]",
+                  index === 0 && "lg:col-span-1"
+                )}
               >
-                {skill}
-              </motion.span>
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-black/35 transition-colors duration-300 group-hover:text-black/60">
+                  0{index + 1}
+                </p>
+                <h3 className="mt-8 text-2xl font-semibold leading-none text-black transition-transform duration-300 group-hover:translate-x-1">
+                  {project.title}
+                </h3>
+                <p className="mt-6 text-[13px] leading-7 text-black/58">{project.text}</p>
+              </motion.article>
             ))}
           </AnimatedReveal>
         </section>
 
+        {/* PRINCIPIOS */}
+        <section className="mt-36">
+          <SectionHeading
+            title="How I approach software."
+            intro="I like to start by understanding the purpose of the project, the people who will use it and the workflows it needs to support. Before writing code, I build a mental model of the product: what needs to exist, how the system should behave and how the user should move through it."
+          />
+
+          <AnimatedReveal delay={0.08} className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {principles.map((principle, index) => (
+              <motion.article
+                key={principle.title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.06, duration: 0.45 }}
+                className="group flex min-h-[260px] flex-col justify-between rounded-[26px] border border-black/10 bg-[#efede9] p-6 transition-all duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-lg"
+              >
+                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-black/32 transition-colors duration-300 group-hover:text-[#ff4b2b]">
+                  Principle
+                </span>
+                <div>
+                  <h3 className="text-[17px] font-semibold leading-5 text-black transition-transform duration-300 group-hover:translate-x-1">
+                    {principle.title}
+                  </h3>
+                  <p className="mt-5 text-[13px] leading-6 text-black/56">{principle.text}</p>
+                </div>
+              </motion.article>
+            ))}
+          </AnimatedReveal>
+        </section>
+
+        {/* VALORES */}
+        <section className="mt-36">
+          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+            <SectionHeading
+              title="What I care about."
+              intro="Perfectionism, critical thinking and responsibility shape the way I work. I care about building things that are useful, not just visually impressive."
+            />
+
+            <AnimatedReveal delay={0.08}>
+              <div className="max-w-[720px] lg:ml-auto">
+                <div className="divide-y divide-black/10 border-y border-black/10">
+                  {coreValues.map((value, index) => (
+                    <motion.article
+                      key={value.title}
+                      initial={{ opacity: 0, y: 14 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.06, duration: 0.4 }}
+                      className="grid gap-4 py-6 sm:grid-cols-[72px_0.7fr_1fr] sm:items-start"
+                    >
+                      <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-black/28">
+                        0{index + 1}
+                      </span>
+                      <h3 className="text-[18px] font-semibold leading-5 text-black">
+                        {value.title}
+                      </h3>
+                      <p className="text-[13px] leading-6 text-black/56">
+                        {value.text}
+                      </p>
+                    </motion.article>
+                  ))}
+                </div>
+              </div>
+            </AnimatedReveal>
+          </div>
+        </section>
+
+        {/* BEYOND CODE */}
         <AnimatedReveal className="mt-36">
-          <div className="group flex min-h-[430px] flex-col items-center justify-center rounded-[34px] border border-black/10 bg-[#efede9] px-6 py-16 text-center transition-all duration-700 hover:bg-[#111111] hover:border-transparent">
-            <h2 className="max-w-[660px] text-[44px] font-semibold leading-[0.9] tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[64px] md:text-[76px]">
-              Want to build
-              <br />
-              something together?
+          <div className="group grid gap-8 rounded-[32px] border border-black/10 bg-[#efede9] p-7 transition-all duration-700 hover:bg-white hover:shadow-xl md:grid-cols-[0.8fr_1.2fr] md:p-9">
+            <div>
+              <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.18em] text-black/35 transition-colors duration-300 group-hover:text-black/60">
+                Beyond Code
+              </p>
+              <h2 className="text-3xl font-semibold leading-none text-black transition-transform duration-500 group-hover:translate-x-1">
+                Beyond code.
+              </h2>
+              <div className="mt-8 flex gap-3 text-black/42">
+                <Trophy aria-hidden="true" className="h-5 w-5 transition-colors duration-300 group-hover:text-yellow-600" />
+                <Dumbbell aria-hidden="true" className="h-5 w-5 transition-colors duration-300 group-hover:text-black" />
+                <Users aria-hidden="true" className="h-5 w-5 transition-colors duration-300 group-hover:text-blue-600" />
+              </div>
+            </div>
+            <p className="max-w-3xl text-[14px] leading-7 text-black/58 transition-colors duration-500 group-hover:text-black/75">
+              Outside software, I also compete as an esports athlete for Universidade do Minho,
+              where I reached national podiums and became national champion in 2026. I also train
+              MMA, play basketball and enjoy reading about psychology, sociology and human
+              behaviour. These interests influence the way I think about discipline, competition,
+              people and decision-making.
+            </p>
+          </div>
+        </AnimatedReveal>
+
+        {/* SKILLS GROUPS */}
+        <section className="mt-36">
+          <SectionHeading
+            align="center"
+            title="Skills and technologies."
+            intro="A practical toolkit for building interfaces, backend logic, internal tools and production-ready digital systems."
+          />
+
+          <AnimatedReveal delay={0.08} className="mt-12 grid gap-5 md:grid-cols-2">
+            {skillGroups.map((group, groupIndex) => (
+              <SoftCard key={group.title} className="hover:-translate-y-1">
+                <div className="flex items-center gap-3">
+                  <div className="rounded-full bg-black/5 p-2 transition-colors duration-300 group-hover:bg-black">
+                    <GraduationCap aria-hidden="true" className="h-5 w-5 text-black/40 transition-colors duration-300 group-hover:text-white" />
+                  </div>
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-black/60 transition-colors duration-300 group-hover:text-black">
+                    {group.title}
+                  </h3>
+                </div>
+                <div className="mt-7 flex flex-wrap gap-2">
+                  {group.skills.map((skill, index) => (
+                    <motion.span
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: (groupIndex * 0.1) + (index * 0.04) }}
+                      className="cursor-default rounded-full border border-black/10 bg-[#fbfaf7] px-3 py-1.5 text-[11px] font-semibold text-black/58 transition-all duration-300 hover:-translate-y-0.5 hover:border-black/30 hover:bg-black hover:text-white hover:shadow-md"
+                    >
+                      {skill}
+                    </motion.span>
+                  ))}
+                </div>
+              </SoftCard>
+            ))}
+          </AnimatedReveal>
+        </section>
+
+        {/* CTA FINAL */}
+        <AnimatedReveal className="mt-36">
+          <div className="group flex min-h-[390px] flex-col items-center justify-center rounded-[34px] border border-black/10 bg-[#efede9] px-6 py-16 text-center transition-all duration-700 hover:border-transparent hover:bg-[#111111]">
+            <h2 className="max-w-[760px] text-[42px] font-semibold leading-[0.92] tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[62px] md:text-[76px]">
+              Want to build something together?
             </h2>
+            <p className="mt-7 max-w-[520px] text-[14px] leading-7 text-black/54 transition-colors duration-700 group-hover:text-white/62">
+              Let&apos;s build something meaningful, useful and made to last.
+            </p>
             <ContactTrigger asChild>
-              <PortfolioInteractiveButton className="mt-10 transition-transform duration-500 group-hover:scale-110">
-                Contacto
-              </PortfolioInteractiveButton>
+              <div className="mt-10 transition-transform duration-500 group-hover:scale-110">
+                <PortfolioInteractiveButton>
+                  Contact
+                </PortfolioInteractiveButton>
+              </div>
             </ContactTrigger>
           </div>
         </AnimatedReveal>
-      </section>
+      </div>
     </PageShell>
   );
 }
