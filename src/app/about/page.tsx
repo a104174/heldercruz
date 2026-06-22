@@ -32,12 +32,6 @@ import {
 import { TextAnimate } from "@/components/ui/text-animate";
 import { cn } from "@/lib/utils";
 
-const heroStats = [
-  "Computer Engineering Graduate",
-  "Real Client Projects",
-  "Software, Websites & Backoffices"
-];
-
 const storyJourneySteps = [
   {
     step: "01",
@@ -139,7 +133,7 @@ const skillGroups = [
   },
   {
     title: "Data & Infrastructure",
-    skills: ["PostgreSQL", "Supabase", "Docker", "Vercel", "Cloudflare"]
+    skills: ["PostgreSQL", "Supabase", "Docker", "Vercel", "Cloudflare", "Netlify"]
   },
   {
     title: "Tools",
@@ -249,21 +243,6 @@ export default function AboutPage() {
                 I&apos;m Hélder Cruz, a Software Engineer graduated in Computer Engineering from Universidade do Minho. 
                 I live in Braga (Portugal) and work in digital products that combine technical depth, thoughtful design and real-world usefulness.
               </p>
-              
-              <div className="mt-8 flex flex-wrap gap-2">
-                {heroStats.map((stat, index) => (
-                  <motion.span
-                    key={stat}
-                    initial={{ opacity: 0, y: 8 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.18 + index * 0.08, duration: 0.35 }}
-                    className="rounded-full border border-black/10 bg-[#efede9] px-4 py-2 text-[9px] font-bold uppercase tracking-[0.12em] text-black/50 transition-colors duration-300 hover:bg-black hover:text-white"
-                  >
-                    {stat}
-                  </motion.span>
-                ))}
-              </div>
             </AnimatedReveal>
 
           </div>
@@ -277,69 +256,66 @@ export default function AboutPage() {
           />
 
           <AnimatedReveal delay={0.08}>
-            {/* SoftCard padrão (claro) e com paddings reduzidos para ficar compacto */}
-            <SoftCard className="relative p-6 md:p-8">
-              <div className="relative">
+            <div className="relative px-1 py-2 md:px-3">
                 
-                {/* Linha Fixa Ultra Discreta */}
-                <div
-                  aria-hidden="true"
-                  className="absolute bottom-2 left-[7px] top-2 w-px bg-black/[0.04]"
+              {/* Linha Fixa Ultra Discreta */}
+              <div
+                aria-hidden="true"
+                className="absolute bottom-4 left-[14px] top-4 w-px bg-black/[0.04] md:left-[22px]"
+              />
+                
+              {/* ANIMAÇÃO AUTÓNOMA 1: O fluxo de dados contínuo (gota a cair) */}
+              <div className="absolute bottom-4 left-[14px] top-4 w-px overflow-hidden md:left-[22px]">
+                <motion.div
+                  animate={{ y: ["-100%", "300%"] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                  className="h-[30%] w-full bg-gradient-to-b from-transparent via-black/20 to-transparent"
                 />
-                
-                {/* ANIMAÇÃO AUTÓNOMA 1: O fluxo de dados contínuo (gota a cair) */}
-                <div className="absolute bottom-2 left-[7px] top-2 w-px overflow-hidden">
-                  <motion.div
-                    animate={{ y: ["-100%", "300%"] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                    className="h-[30%] w-full bg-gradient-to-b from-transparent via-black/20 to-transparent"
-                  />
-                </div>
-
-                <div className="relative z-10 flex flex-col gap-6">
-                  {storyJourneySteps.map((item, index) => (
-                    <motion.article
-                      key={item.step}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1, duration: 0.5 }}
-                      className="grid grid-cols-[28px_1fr] items-start gap-4"
-                    >
-                      {/* Ponto Cirúrgico */}
-                      <div className="relative flex justify-center pt-1.5">
-                        <div className="flex h-4 w-4 items-center justify-center rounded-full border border-black/5 bg-[#fbfaf7] shadow-sm">
-                          {/* ANIMAÇÃO AUTÓNOMA 2: Respiração assíncrona das bolinhas */}
-                          <motion.div
-                            animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
-                            transition={{ 
-                              duration: 3, 
-                              delay: index * 0.5, /* Delay sequencial cria um efeito de onda */
-                              repeat: Infinity, 
-                              ease: "easeInOut" 
-                            }}
-                            className="h-1.5 w-1.5 rounded-full bg-black/40"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Texto Super Compacto e Direto */}
-                      <div>
-                        <h3 className="flex items-center gap-2 text-[15px] font-semibold tracking-tight text-black/90">
-                          <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-black/30">
-                            0{index + 1} ·
-                          </span>
-                          {item.title}
-                        </h3>
-                        <p className="mt-1.5 text-[13px] leading-relaxed text-black/60">
-                          {item.text}
-                        </p>
-                      </div>
-                    </motion.article>
-                  ))}
-                </div>
               </div>
-            </SoftCard>
+
+              <div className="relative z-10 flex flex-col gap-6">
+                {storyJourneySteps.map((item, index) => (
+                  <motion.article
+                    key={item.step}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                    className="grid grid-cols-[28px_1fr] items-start gap-4"
+                  >
+                    {/* Ponto Cirúrgico */}
+                    <div className="relative flex justify-center pt-1.5">
+                      <div className="flex h-4 w-4 items-center justify-center rounded-full border border-black/5 bg-[#fbfaf7] shadow-sm">
+                        {/* ANIMAÇÃO AUTÓNOMA 2: Respiração assíncrona das bolinhas */}
+                        <motion.div
+                          animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
+                          transition={{ 
+                            duration: 3, 
+                            delay: index * 0.5, /* Delay sequencial cria um efeito de onda */
+                            repeat: Infinity, 
+                            ease: "easeInOut" 
+                          }}
+                          className="h-1.5 w-1.5 rounded-full bg-black/40"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Texto Super Compacto e Direto */}
+                    <div>
+                      <h3 className="flex items-center gap-2 text-[15px] font-semibold tracking-tight text-black/90">
+                        <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-black/30">
+                          0{index + 1} ·
+                        </span>
+                        {item.title}
+                      </h3>
+                      <p className="mt-1.5 text-[13px] leading-relaxed text-black/60">
+                        {item.text}
+                      </p>
+                    </div>
+                  </motion.article>
+                ))}
+              </div>
+            </div>
           </AnimatedReveal>
         </section>
 
@@ -380,15 +356,15 @@ export default function AboutPage() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open Airport terminal system repository on GitHub"
-              className="group grid gap-8 rounded-[28px] border border-black/10 bg-black p-7 text-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-black hover:shadow-[0_22px_50px_-22px_rgba(0,0,0,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black md:grid-cols-[0.72fr_1.28fr] md:p-9"
+              className="group grid gap-8 rounded-[28px] border border-black/10 bg-[#efede9] p-7 text-black shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-black/15 hover:bg-white hover:shadow-[0_22px_50px_-22px_rgba(0,0,0,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black md:grid-cols-[0.72fr_1.28fr] md:p-9"
             >
               <div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.08] transition-colors duration-300 group-hover:border-white/25 group-hover:bg-white/[0.12]">
-                  <Plane aria-hidden="true" className="h-5 w-5 text-white/80 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-black/[0.04] transition-colors duration-300 group-hover:border-black/15 group-hover:bg-black/[0.06]">
+                  <Plane aria-hidden="true" className="h-5 w-5 text-black/62 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </div>
                 <h3 className="mt-8 text-3xl font-semibold leading-none transition-transform duration-300 group-hover:translate-x-1">Airport terminal system</h3>
               </div>
-              <p className="max-w-2xl text-[14px] leading-7 text-white/64 md:text-[15px]">
+              <p className="max-w-2xl text-[14px] leading-7 text-black/62 md:text-[15px]">
                 One of the projects that shaped the way I think about software was an airport
                 terminal system, where flights, airports, airplanes, passengers, tickets and
                 operational flows had to be modelled and managed together. It helped me understand
@@ -524,8 +500,7 @@ export default function AboutPage() {
               Outside software, I also compete as an esports athlete for Universidade do Minho,
               where I reached national podiums and became national champion in 2026. I also train
               MMA, play basketball and enjoy reading about psychology, sociology and human
-              behaviour. These interests influence the way I think about discipline, competition,
-              people and decision-making.
+              behaviour. 
             </p>
           </div>
         </AnimatedReveal>
@@ -570,19 +545,17 @@ export default function AboutPage() {
 
         {/* CTA FINAL */}
         <AnimatedReveal className="mt-36">
-          <div className="group flex min-h-[390px] flex-col items-center justify-center rounded-[34px] border border-black/10 bg-[#efede9] px-6 py-16 text-center transition-all duration-700 hover:border-transparent hover:bg-[#111111]">
-            <h2 className="max-w-[760px] text-[42px] font-semibold leading-[0.92] tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[62px] md:text-[76px]">
+          <div className="flex min-h-[390px] flex-col items-center justify-center rounded-[34px] border border-black/10 bg-[#efede9] px-6 py-16 text-center shadow-sm">
+            <h2 className="max-w-[760px] text-[42px] font-semibold leading-[0.92] tracking-normal text-black sm:text-[62px] md:text-[76px]">
               Want to build something together?
             </h2>
-            <p className="mt-7 max-w-[520px] text-[14px] leading-7 text-black/54 transition-colors duration-700 group-hover:text-white/62">
+            <p className="mt-7 max-w-[520px] text-[14px] leading-7 text-black/54">
               Let&apos;s build something meaningful, useful and made to last.
             </p>
             <ContactTrigger asChild>
-              <div className="mt-10 transition-transform duration-500 group-hover:scale-110">
-                <PortfolioInteractiveButton>
-                  Contact
-                </PortfolioInteractiveButton>
-              </div>
+              <PortfolioInteractiveButton className="mt-10">
+                Contact
+              </PortfolioInteractiveButton>
             </ContactTrigger>
           </div>
         </AnimatedReveal>
