@@ -452,7 +452,7 @@ function ManifestoSection() {
       </div>
       <AnimatedReveal>
         <p className="relative z-10 mx-auto max-w-5xl text-balance text-2xl font-light leading-tight text-black sm:text-3xl md:text-5xl">
-          From visual direction to backend logic, I build digital products that feel simple on the surface and reliable behind the scenes.
+          I’ve worked on client projects that go beyond the interface, combining websites, backoffices, email flows, databases and practical tools for real businesses.
         </p>
       </AnimatedReveal>
     </SectionShell>
@@ -545,10 +545,10 @@ function SystemsSection() {
             </div>
             <div className="space-y-3">
               {[
-                { icon: Folder, label: "Frontend_App", color: "text-[#ff4b2b]" },
-                { icon: Database, label: "Supabase_DB", color: "text-[#8a2387]" },
-                { icon: FileText, label: "Contact_Flows", color: "text-[#e94057]" },
-                { icon: ShieldCheck, label: "API_Backoffice", color: "text-[#f27121]" }
+                { icon: Folder, label: "Interface Design", color: "text-[#ff4b2b]" },
+                { icon: Database, label: "Database Layer", color: "text-[#8a2387]" },
+                { icon: FileText, label: "Backoffice Systems", color: "text-[#e94057]" },
+                { icon: ShieldCheck, label: "Built-in Security", color: "text-[#f27121]" }
               ].map((item) => (
                 <motion.div
                   key={item.label}
@@ -567,23 +567,23 @@ function SystemsSection() {
           <FeatureRail
             title={
               <>
-                The engineering foundation
+                The structure behind
                 <br />
-                for your product.
+                software that works.
               </>
             }
             items={[
               {
-                title: "Frontend Development",
-                text: "Interfaces built with clear hierarchy, responsive layouts and reusable component patterns."
+                title: "Interface Design",
+                text: "Clean, responsive interfaces shaped around the way people actually use the product."
               },
               {
                 title: "Backoffice Systems",
-                text: "Internal workflows for reservations, billing, content and operational needs."
+                text: "Internal tools for reservations, billing, content and every day-to-day operations."
               },
               {
-                title: "API Integrations",
-                text: "Reliable connections between forms, email services, databases and deployed products."
+                title: "Systems & Integrations",
+                text: "Databases, APIs, email flows and security layers working quietly behind the scenes."
               }
             ]}
           />
