@@ -46,6 +46,55 @@ const casaFeatures = [
   }
 ];
 
+const casaScreenshots = [
+  {
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-22_21-23-52.webp",
+    title: "Public website",
+    description: "Homepage and public presence with events, albums, restaurant and reservation paths."
+  },
+  {
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-23_02-59-08.webp",
+    title: "Reservation flow",
+    description: "Date, group size and availability selection for restaurant bookings."
+  },
+  {
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-23_03-14-12.webp",
+    title: "Reservation backoffice",
+    description: "Operational view for capacity, upcoming days and manual booking actions."
+  },
+  {
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-23_03-08-14.webp",
+    title: "Email management",
+    description: "Backoffice tooling for contacts, groups, campaigns and email composition."
+  },
+  {
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-23_03-09-37.webp",
+    title: "Work schedules",
+    description: "Staff planning interface for shifts, teams and monthly service organization."
+  },
+  {
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-23_03-00-22.webp",
+    title: "Member sign-up",
+    description: "Public family membership form with a focused registration experience."
+  },
+  {
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-23_03-01-14.webp",
+    title: "Albums",
+    description: "Public gallery browsing for events and community moments."
+  },
+  {
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-22_21-24-19.webp",
+    title: "Contact page",
+    description: "Contact details, schedule and location presented in a clear public page."
+  }
+];
+
+const casaFeatureScreenshots = [
+  casaScreenshots[0],
+  casaScreenshots[2],
+  casaScreenshots[3]
+];
+
 const casaChallenges = [
   {
     title: "Managing real business data",
@@ -176,47 +225,30 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   };
 }
 
-function BrowserPreview() {
-  return (
-    <div className="relative mx-auto flex aspect-[2.22] w-[82%] max-w-[840px] overflow-hidden rounded-[24px] border border-black/18 bg-[#eceae5] shadow-[0_28px_70px_rgba(0,0,0,0.28)]">
-      <div className="absolute left-5 top-4 flex gap-2">
-        <span className="h-2 w-2 rounded-full bg-[#ef767a]" />
-        <span className="h-2 w-2 rounded-full bg-black/18" />
-        <span className="h-2 w-2 rounded-full bg-black/18" />
-      </div>
-      <div className="mt-14 grid w-full grid-cols-[0.36fr_1fr] gap-6 px-8 pb-8">
-        <div className="rounded-sm bg-[#fbfaf7] p-6">
-          <span className="block h-3 w-28 rounded-full bg-black/12" />
-          <span className="mt-4 block h-3 w-20 rounded-full bg-black/12" />
-          <span className="mt-4 block h-3 w-44 max-w-full rounded-full bg-black/12" />
-        </div>
-        <div className="space-y-6 rounded-sm bg-[#fbfaf7] p-7">
-          <span className="block h-28 rounded-sm border border-black/8 bg-[#efede9]" />
-          <div className="grid grid-cols-2 gap-5">
-            <span className="block h-24 rounded-sm border border-black/8 bg-[#efede9]" />
-            <span className="block h-24 rounded-sm border border-black/8 bg-[#efede9]" />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function HeroVisual() {
   return (
     <AnimatedReveal delay={0.08}>
       <div className="relative mt-28 overflow-hidden rounded-[34px] border border-black/12 bg-black p-10 shadow-[0_24px_80px_rgba(0,0,0,0.12)] md:p-16">
         <Image
-          src="/benfica/telemovel1.webp"
+          src={casaScreenshots[0].src}
           alt=""
           fill
           priority
-          className="scale-125 object-cover opacity-45 blur-sm"
+          className="scale-110 object-cover opacity-45 blur-sm"
           sizes="(min-width: 1024px) 1120px, 100vw"
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(95,185,190,0.42),transparent_45%),linear-gradient(135deg,rgba(2,13,15,0.78),rgba(1,9,10,0.98))]" />
         <div className="relative z-10 flex min-h-[420px] items-center justify-center">
-          <BrowserPreview />
+          <div className="relative aspect-[5/4] w-full max-w-[900px] overflow-hidden rounded-[28px] border border-white/20 bg-white shadow-[0_28px_70px_rgba(0,0,0,0.34)]">
+            <Image
+              src={casaScreenshots[0].src}
+              alt="Casa Benfica Lenzburg public website homepage mockup"
+              fill
+              priority
+              className="object-cover object-top"
+              sizes="(min-width: 1024px) 900px, 100vw"
+            />
+          </div>
         </div>
       </div>
     </AnimatedReveal>
@@ -230,22 +262,19 @@ function FeatureCard({
   feature: (typeof casaFeatures)[number];
   index: number;
 }) {
+  const screenshot = casaFeatureScreenshots[index];
+
   return (
     <article className="overflow-hidden rounded-[20px] border border-black/10 bg-[#efede9]">
-      <div className="relative h-44 overflow-hidden bg-black">
+      <div className="relative h-52 overflow-hidden bg-black">
         <Image
-          src="/benfica/telemovel1.webp"
-          alt=""
+          src={screenshot.src}
+          alt={`${screenshot.title} mockup from Casa Benfica Lenzburg`}
           fill
-          className={cn(
-            "object-cover opacity-70",
-            index === 0 && "rotate-[-8deg] scale-125",
-            index === 1 && "scale-150 blur-[1px]",
-            index === 2 && "scale-125 blur-sm"
-          )}
+          className="object-cover object-top transition duration-700 hover:scale-[1.035]"
           sizes="(min-width: 768px) 33vw, 100vw"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(239,237,233,0.42))]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_56%,rgba(239,237,233,0.32))]" />
       </div>
       <div className="p-6">
         <h3 className="text-xl font-medium leading-none tracking-normal text-black">{feature.title}</h3>
@@ -265,6 +294,35 @@ function ChallengeCard({ challenge }: { challenge: (typeof casaChallenges)[numbe
         {challenge.title}
       </h3>
       <p className="mt-4 text-[12px] leading-6 text-black/52">{challenge.description}</p>
+    </article>
+  );
+}
+
+function CasaScreenshotCard({
+  screenshot,
+  priority = false,
+  className
+}: {
+  screenshot: (typeof casaScreenshots)[number];
+  priority?: boolean;
+  className?: string;
+}) {
+  return (
+    <article className={cn("group overflow-hidden rounded-[24px] border border-black/10 bg-white shadow-sm", className)}>
+      <div className="relative aspect-[5/4] overflow-hidden bg-[#111111]">
+        <Image
+          src={screenshot.src}
+          alt={`${screenshot.title} mockup from Casa Benfica Lenzburg`}
+          fill
+          priority={priority}
+          className="object-cover object-top transition duration-700 group-hover:scale-[1.035]"
+          sizes="(min-width: 1024px) 50vw, 100vw"
+        />
+      </div>
+      <div className="p-6">
+        <h3 className="text-xl font-semibold leading-none text-black">{screenshot.title}</h3>
+        <p className="mt-3 text-sm leading-6 text-black/55">{screenshot.description}</p>
+      </div>
     </article>
   );
 }
@@ -584,6 +642,47 @@ function CasaBenficaProjectPage({ project }: { project: Project }) {
           {casaFeatures.map((feature, index) => (
             <FeatureCard key={feature.title} feature={feature} index={index} />
           ))}
+        </AnimatedReveal>
+
+        <AnimatedReveal className="mx-auto mt-32 grid max-w-[980px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <h2 className="text-3xl font-semibold leading-tight text-black md:text-5xl">
+            Public pages and internal tools in the same ecosystem.
+          </h2>
+          <p className="text-[15px] leading-8 text-black/56">
+            The project combines public-facing sections for visitors with practical operational
+            interfaces for reservations, communication, team schedules and event content.
+          </p>
+        </AnimatedReveal>
+
+        <AnimatedReveal delay={0.08} className="mt-20 grid gap-6 md:grid-cols-2">
+          {casaScreenshots.slice(0, 6).map((screenshot, index) => (
+            <CasaScreenshotCard
+              key={screenshot.src}
+              screenshot={screenshot}
+              priority={index < 2}
+              className={index === 0 ? "md:col-span-2" : undefined}
+            />
+          ))}
+        </AnimatedReveal>
+
+        <AnimatedReveal className="mt-28 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-black/38">
+              Community Content
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight text-black md:text-4xl">
+              Event albums and contact paths stay part of the public experience.
+            </h2>
+            <p className="mt-5 text-[14px] leading-7 text-black/56">
+              The website also supports browsing community moments and finding practical venue
+              information without needing to enter the internal backoffice.
+            </p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            {casaScreenshots.slice(6).map((screenshot) => (
+              <CasaScreenshotCard key={screenshot.src} screenshot={screenshot} />
+            ))}
+          </div>
         </AnimatedReveal>
 
         <section className="mt-36">

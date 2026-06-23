@@ -85,9 +85,9 @@ const insightCards = [
     image: "/xvstudio/xvstudio-sites.webp"
   },
   {
-    title: "Useful products for real client workflows",
+    title: "Useful products for real client needs",
     eyebrow: "Delivery",
-    image: "/hausb/hausb-about.webp"
+    image: "/benfica/screenshot_1.5x_postspark_2026-06-23_03-00-22.webp"
   }
 ];
 

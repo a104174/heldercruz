@@ -101,6 +101,32 @@ function WorkVisual({
 }) {
   const variant = visualVariants[project.slug];
 
+  if (project.slug === "casa-benfica-lenzburg") {
+    return (
+      <div
+        className={cn(
+          "relative flex items-center justify-center overflow-hidden rounded-[24px] border border-black/10 bg-[#111111]",
+          featured ? "aspect-[16/9] min-h-[340px] md:min-h-[640px]" : "aspect-square min-h-[280px]"
+        )}
+        aria-label={project.image.alt}
+      >
+        <Image
+          src={
+            featured
+              ? "/benfica/screenshot_1.5x_postspark_2026-06-22_21-23-52.webp"
+              : "/benfica/screenshot_1.5x_postspark_2026-06-23_02-59-08.webp"
+          }
+          alt=""
+          fill
+          className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.035]"
+          sizes={featured ? "(min-width: 768px) 60vw, 100vw" : "(min-width: 768px) 40vw, 100vw"}
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(0,0,0,0.34))] opacity-70 transition-opacity duration-700 group-hover:opacity-35" />
+        <p className="sr-only">{project.image.label}</p>
+      </div>
+    );
+  }
+
   if (project.slug === "hausb") {
     return (
       <div

@@ -14,6 +14,33 @@ export function ProjectVisual({ project, className, compact }: ProjectVisualProp
     "--project-accent": project.accent
   } as CSSProperties;
 
+  if (project.slug === "casa-benfica-lenzburg") {
+    return (
+      <div
+        className={cn(
+          "group/visual relative overflow-hidden rounded-lg border border-line bg-[#111111]",
+          compact ? "aspect-[4/3]" : "aspect-[16/10]",
+          className
+        )}
+        aria-label={project.image.alt}
+      >
+        <Image
+          src={
+            compact
+              ? "/benfica/screenshot_1.5x_postspark_2026-06-23_02-59-08.webp"
+              : "/benfica/screenshot_1.5x_postspark_2026-06-22_21-23-52.webp"
+          }
+          alt=""
+          fill
+          className="object-cover object-top transition duration-700 group-hover/visual:scale-[1.03]"
+          sizes={compact ? "(min-width: 768px) 33vw, 100vw" : "(min-width: 1024px) 900px, 100vw"}
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_58%,rgba(0,0,0,0.28))]" />
+        <p className="sr-only">{project.image.label}</p>
+      </div>
+    );
+  }
+
   if (project.slug === "hausb") {
     return (
       <div

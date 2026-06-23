@@ -41,8 +41,8 @@ export const projects: Project[] = [
     ],
     href: "/projects/casa-benfica-lenzburg",
     image: {
-      alt: "Visual placeholder for Casa Benfica Lenzburg",
-      label: "Reservations, billing and public website"
+      alt: "Screenshots from the Casa Benfica Lenzburg website and backoffice",
+      label: "Casa Benfica website, reservations and backoffice screens"
     },
     accent: "#111111",
     technicalNotes: [
