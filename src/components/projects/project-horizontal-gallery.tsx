@@ -80,41 +80,68 @@ function GalleryCard({
     <article
       data-project-gallery-card
       className={cn(
-        "group relative min-w-0 overflow-hidden rounded-[28px] border border-black/10 bg-[#111111] shadow-[0_24px_80px_rgba(0,0,0,0.12)]",
+        "group relative min-w-0 overflow-hidden rounded-[28px] border border-black/5 bg-[#111111] shadow-[0_24px_80px_rgba(0,0,0,0.08)]",
         pinned
           ? "h-[var(--gallery-card-height)] w-[var(--gallery-card-width)] shrink-0"
-          : "aspect-[5/4]"
+          : "aspect-[4/3]" 
       )}
     >
-      <Image
-        src={item.image}
-        alt={item.alt}
-        fill
-        priority={priority}
-        className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.018]"
-        sizes={
-          pinned
-            ? "(min-width: 1728px) 1500px, 92vw"
-            : "(min-width: 640px) 50vw, 100vw"
-        }
-      />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/28 via-transparent to-transparent" />
+      {pinned ? (
+        <Image
+          src={item.image}
+          alt={item.alt}
+          fill
+          priority={priority}
+          className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.012]"
+          sizes="(min-width: 1440px) 1200px, 84vw"
+        />
+      ) : (
+        <>
+          <Image
+            src={item.image}
+            alt=""
+            aria-hidden="true"
+            fill
+            className="scale-110 object-cover object-center opacity-55 blur-2xl"
+            sizes="20vw"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-black/8" />
+          <div className="absolute inset-0 p-4 sm:p-6">
+            <div className="relative h-full w-full transition-transform duration-700 group-hover:scale-[1.01]">
+              <Image
+                src={item.image}
+                alt={item.alt}
+                fill
+                priority={priority}
+                className="object-contain object-center drop-shadow-[0_24px_38px_rgba(0,0,0,0.22)]"
+                sizes="(min-width: 640px) 46vw, 92vw"
+              />
+            </div>
+          </div>
+        </>
+      )}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/24 via-transparent to-transparent" />
       <div
         className={cn(
-          "absolute bottom-4 left-4 max-w-[min(520px,85%)] rounded-2xl border border-white/35 bg-white/78 shadow-[0_12px_35px_rgba(0,0,0,0.14)] backdrop-blur-xl",
-          pinned ? "bottom-6 left-6 p-5" : "p-4 sm:bottom-5 sm:left-5"
+          // Largura reduzida (de 460px para 360px)
+          "absolute bottom-4 left-4 max-w-[min(360px,85%)] rounded-2xl border border-white/35 bg-white/78 shadow-[0_12px_35px_rgba(0,0,0,0.14)] backdrop-blur-xl",
+          // Paddings reduzidos para um look mais compacto
+          pinned ? "bottom-6 left-6 p-4" : "p-3 sm:bottom-5 sm:left-5 sm:p-4"
         )}
       >
-        <h3 className={cn("font-semibold leading-none text-black", pinned ? "text-base" : "text-sm sm:text-base")}>
+        {/* Título mais pequeno (text-sm) */}
+        <h3 className={cn("font-semibold leading-none text-black", pinned ? "text-sm" : "text-xs sm:text-sm")}>
           {item.title}
         </h3>
-        <p className={cn("text-black/60", pinned ? "mt-2 text-sm leading-5" : "mt-2 text-xs leading-5 sm:text-sm")}>
+        {/* Descrição mais pequena (text-xs) com margem superior ligeiramente reduzida */}
+        <p className={cn("text-black/60", pinned ? "mt-1.5 text-xs leading-5" : "mt-1.5 text-[11px] leading-4 sm:text-xs sm:leading-5")}>
           {item.description}
         </p>
       </div>
     </article>
   );
 }
+
 
 function GalleryFallback({
   eyebrow,
@@ -221,8 +248,9 @@ export function ProjectHorizontalGallery({
   }
 
   const galleryStyle = {
-    "--gallery-card-width": "min(92vw, 1500px)",
-    "--gallery-card-height": "min(78svh, 820px)",
+    "--gallery-card-width": "min(84vw, 1200px)",
+    // Aumentada a altura do cartão de 68svh/680px para 76svh/760px
+    "--gallery-card-height": "min(76svh, 760px)",
     "--gallery-gutter": "max(2rem, calc((100vw - var(--gallery-card-width)) / 2))",
     height: scrollHeight
   } as CSSProperties;
@@ -251,7 +279,8 @@ export function ProjectHorizontalGallery({
       >
         <div
           ref={viewportRef}
-          className="sticky top-0 flex h-svh min-h-[680px] items-center overflow-hidden pb-8 pt-24"
+          // Ajustado o min-h para 800px para suportar o cartão mais alto com folga
+          className="sticky top-0 flex h-svh min-h-[800px] items-center overflow-hidden pb-8 pt-24"
         >
           <motion.div
             ref={trackRef}
