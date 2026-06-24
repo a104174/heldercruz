@@ -267,6 +267,7 @@ function FloatingVisual({
 
   return (
     <motion.div
+      data-collage-card
       animate={shouldFloat ? { y: [0, -12, 0] } : { y: 0 }}
       transition={
         shouldFloat
@@ -279,7 +280,7 @@ function FloatingVisual({
           : { duration: 0 }
       }
       className={cn(
-        "relative min-w-0 2xl:absolute",
+        "relative min-w-0",
         className
       )}
     >
@@ -292,135 +293,175 @@ function FloatingVisual({
   );
 }
 
-function CollageSection() {
+function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
   const shouldReduceMotion = useReducedMotion();
-  const isFloatingLayout = useMinViewportWidth(1536);
+  const isFloatingLayout = useMinViewportWidth(1280);
   const shouldFloat = isFloatingLayout && !shouldReduceMotion;
+  const isScene = layout === "scene";
 
   return (
-    <section className="relative z-10 isolate w-full overflow-visible bg-[#fbfaf7]">
+    <>
+      <FloatingVisual
+        image="/hausb/hausb-home.webp"
+        enableFloat={isScene && isFloatingLayout}
+        className={cn(
+          isScene ? "absolute left-[3%] top-[4%] h-[24%] w-[24%]" : "min-h-[235px]"
+        )}
+        floatDuration={6}
+      >
+        <div className="absolute bottom-4 left-4 right-4 rounded-[18px] border border-white/45 bg-white/35 p-4 shadow-lg backdrop-blur-xl">
+          <div className="mb-2 flex items-center justify-between text-[10px] font-bold uppercase text-black">
+            <span>Deploying</span>
+            <span>78%</span>
+          </div>
+          <div className="h-1.5 overflow-hidden rounded-full bg-black/10">
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: "78%" }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              className="h-1.5 rounded-full bg-black"
+            />
+          </div>
+        </div>
+      </FloatingVisual>
+
+      <FloatingVisual
+        image="/hausb/hausb-mobile-menu.webp"
+        enableFloat={isScene && isFloatingLayout}
+        className={cn(
+          isScene ? "absolute right-[5%] top-[6%] h-[30%] w-[20%]" : "min-h-[290px]"
+        )}
+        floatDelay={1}
+        floatDuration={5}
+      >
+        <div className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/55 bg-white/45 shadow-sm backdrop-blur-xl">
+          <motion.div animate={{ rotate: 360 }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }}>
+            <Sparkles aria-hidden="true" className="h-4 w-4 text-black" />
+          </motion.div>
+        </div>
+      </FloatingVisual>
+
+      <motion.div
+        data-collage-card
+        animate={isScene && shouldFloat ? { y: [0, -8, 0] } : { y: 0 }}
+        transition={
+          isScene && shouldFloat
+            ? { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
+            : { duration: 0 }
+        }
+        className={cn(
+          "relative min-w-0",
+          isScene ? "absolute left-[3%] top-[40%] h-[18%] w-[18%]" : "min-h-[180px]"
+        )}
+      >
+        <AnimatedReveal className="flex h-full min-h-[inherit] rounded-[24px] border border-white/50 bg-white/35 p-5 shadow-[0_16px_45px_rgba(0,0,0,0.1)] backdrop-blur-2xl">
+          <div className="w-full">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <span className="text-sm font-bold text-black">API Sync</span>
+              <span className="relative h-6 w-11 shrink-0 rounded-full bg-black">
+                <motion.span
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute right-1 top-1 h-4 w-4 rounded-full bg-white"
+                />
+              </span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-tr from-[#ff416c] to-[#ff4b2b] text-white shadow-md">
+                <GitBranch aria-hidden="true" className="h-4 w-4" />
+              </span>
+              <span className="min-w-0">
+                <span className="block truncate text-xs font-bold text-black">Contact Flow</span>
+                <span className="text-xs text-[#6e6a63]">Connected</span>
+              </span>
+            </div>
+          </div>
+        </AnimatedReveal>
+      </motion.div>
+
+      <FloatingVisual
+        image="/xvstudio/xvstudio-contact.webp"
+        enableFloat={isScene && isFloatingLayout}
+        className={cn(
+          isScene ? "absolute right-[2%] top-[42%] h-[22%] w-[22%]" : "min-h-[220px]"
+        )}
+        floatDelay={2}
+        floatDuration={7}
+      >
+        <div className="absolute left-4 top-4 flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full border border-white/55 bg-white/45 px-4 py-2 shadow-sm backdrop-blur-xl">
+          <motion.span
+            animate={{ opacity: [1, 0.4, 1] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="h-2 w-2 shrink-0 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.85)]"
+          />
+          <span className="truncate text-[10px] font-bold uppercase text-black">Database Layer</span>
+        </div>
+      </FloatingVisual>
+
+      <FloatingVisual
+        image="/hausb/hausb-mobile-construcao.webp"
+        enableFloat={isScene && isFloatingLayout}
+        className={cn(
+          isScene ? "absolute bottom-[4%] left-[8%] h-[24%] w-[27%]" : "min-h-[245px]"
+        )}
+        floatDelay={0.5}
+      >
+        <div className="absolute bottom-5 left-5 flex max-w-[calc(100%-2.5rem)] items-center gap-2 rounded-full border border-white/55 bg-white/45 px-4 py-2 shadow-sm backdrop-blur-xl">
+          <MonitorSmartphone aria-hidden="true" className="h-4 w-4 shrink-0 text-black" />
+          <span className="truncate text-[10px] font-bold uppercase text-black">Responsive UI</span>
+        </div>
+      </FloatingVisual>
+
+      <FloatingVisual
+        image="/hausb/hausb-portfolio.webp"
+        enableFloat={isScene && isFloatingLayout}
+        className={cn(
+          isScene ? "absolute bottom-[3%] right-[9%] h-[22%] w-[25%]" : "min-h-[230px]"
+        )}
+        floatDelay={1.5}
+        floatDuration={5.5}
+      >
+        <div className="absolute bottom-5 left-5 right-5 rounded-[18px] border border-white/45 bg-white/35 p-4 backdrop-blur-xl">
+          <span className="text-xs font-bold text-black">Client Portal</span>
+          <p className="mt-1 line-clamp-2 text-xs leading-5 text-black/70">Ready for handoff and iteration.</p>
+        </div>
+      </FloatingVisual>
+    </>
+  );
+}
+
+function CollageSection() {
+  return (
+    <section className="relative z-10 isolate w-full overflow-hidden bg-[#fbfaf7] px-5 py-20 sm:px-8 md:py-24 xl:px-10 xl:py-28">
       <div aria-hidden="true" className="absolute inset-0 z-0 bg-[#fbfaf7]" />
-      <div className="relative z-10 mx-auto w-full max-w-[1728px] overflow-visible px-5 py-20 sm:px-8 md:py-24 lg:px-10 2xl:min-h-[1120px] 2xl:py-32">
-        <AnimatedReveal className="pointer-events-none relative z-10 flex items-center justify-center 2xl:absolute 2xl:inset-0">
-          <h2 className="metallic-title pb-[0.08em] text-center text-[clamp(3rem,8vw,6.5rem)] font-bold leading-[1.02] 2xl:text-[118px]">
+
+      <div className="relative z-10 mx-auto hidden w-full max-w-[1536px] xl:block">
+        <div data-collage-scene className="@container/collage relative aspect-[1536/980] w-full">
+          <AnimatedReveal className="pointer-events-none absolute left-[22%] top-[29%] z-10 flex w-[56%] items-center justify-center">
+            <h2 data-collage-title className="metallic-title pb-[0.08em] text-center text-[clamp(4.5rem,7.7cqw,7.375rem)] font-bold leading-[1.02]">
+              Design-Led
+              <br />
+              Engineering
+            </h2>
+          </AnimatedReveal>
+
+          <div className="absolute inset-0 z-20">
+            <CollageVisuals layout="scene" />
+          </div>
+        </div>
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[900px] xl:hidden">
+        <AnimatedReveal className="flex items-center justify-center">
+          <h2 data-collage-title className="metallic-title pb-[0.08em] text-center text-[clamp(3rem,11vw,6.5rem)] font-bold leading-[1.02]">
             Design-Led
             <br />
             Engineering
           </h2>
         </AnimatedReveal>
 
-        <div className="relative z-20 mx-auto mt-12 grid w-full max-w-[760px] grid-cols-1 gap-5 md:gap-6 min-[1180px]:max-w-[1120px] min-[1180px]:grid-cols-2 2xl:absolute 2xl:inset-0 2xl:mt-0 2xl:block 2xl:max-w-none">
-          <FloatingVisual
-            image="/hausb/hausb-home.webp"
-            enableFloat={isFloatingLayout}
-            className="min-h-[235px] 2xl:left-[8%] 2xl:top-[8%] 2xl:h-[250px] 2xl:w-[340px]"
-            floatDuration={6}
-          >
-            <div className="absolute bottom-4 left-4 right-4 rounded-[18px] border border-white/45 bg-white/35 p-4 shadow-lg backdrop-blur-xl">
-              <div className="mb-2 flex items-center justify-between text-[10px] font-bold uppercase text-black">
-                <span>Deploying</span>
-                <span>78%</span>
-              </div>
-              <div className="h-1.5 rounded-full bg-black/10 overflow-hidden">
-                <motion.div 
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "78%" }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
-                  className="h-1.5 rounded-full bg-black" 
-                />
-              </div>
-            </div>
-          </FloatingVisual>
-
-          <FloatingVisual
-            image="/hausb/hausb-mobile-menu.webp"
-            enableFloat={isFloatingLayout}
-            className="min-h-[290px] 2xl:right-[10%] 2xl:top-[12%] 2xl:h-[310px] 2xl:w-[280px]"
-            floatDelay={1}
-            floatDuration={5}
-          >
-            <div className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/55 bg-white/45 shadow-sm backdrop-blur-xl">
-              <motion.div animate={{ rotate: 360 }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }}>
-                <Sparkles aria-hidden="true" className="h-4 w-4 text-black" />
-              </motion.div>
-            </div>
-          </FloatingVisual>
-
-          <motion.div
-            animate={shouldFloat ? { y: [0, -8, 0] } : { y: 0 }}
-            transition={
-              shouldFloat
-                ? { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
-                : { duration: 0 }
-            }
-            className="relative min-h-[180px] min-w-0 2xl:absolute 2xl:left-[4%] 2xl:top-[46%] 2xl:min-h-0 2xl:w-[280px]"
-          >
-            <AnimatedReveal className="flex h-full min-h-[inherit] rounded-[24px] border border-white/50 bg-white/35 p-5 shadow-[0_16px_45px_rgba(0,0,0,0.1)] backdrop-blur-2xl">
-              <div>
-                <div className="mb-4 flex items-center justify-between">
-                  <span className="text-sm font-bold text-black">API Sync</span>
-                  <span className="relative h-6 w-11 rounded-full bg-black">
-                    <motion.span
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="absolute right-1 top-1 h-4 w-4 rounded-full bg-white"
-                    />
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-tr from-[#ff416c] to-[#ff4b2b] text-white shadow-md">
-                    <GitBranch aria-hidden="true" className="h-4 w-4" />
-                  </span>
-                  <span>
-                    <span className="block text-xs font-bold text-black">Contact Flow</span>
-                    <span className="text-xs text-[#6e6a63]">Connected</span>
-                  </span>
-                </div>
-              </div>
-            </AnimatedReveal>
-          </motion.div>
-
-          <FloatingVisual
-            image="/xvstudio/xvstudio-contact.webp"
-            enableFloat={isFloatingLayout}
-            className="min-h-[220px] 2xl:right-[5%] 2xl:top-[48%] 2xl:h-[220px] 2xl:w-[330px]"
-            floatDelay={2}
-            floatDuration={7}
-          >
-            <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-white/55 bg-white/45 px-4 py-2 shadow-sm backdrop-blur-xl">
-              <motion.span 
-                animate={{ opacity: [1, 0.4, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.85)]" 
-              />
-              <span className="text-[10px] font-bold uppercase text-black">Database Layer</span>
-            </div>
-          </FloatingVisual>
-
-          <FloatingVisual
-            image="/hausb/hausb-mobile-construcao.webp"
-            enableFloat={isFloatingLayout}
-            className="min-h-[245px] 2xl:left-[14%] 2xl:top-[70%] 2xl:h-[250px] 2xl:w-[380px]"
-            floatDelay={0.5}
-          >
-            <div className="absolute bottom-5 left-5 flex items-center gap-2 rounded-full border border-white/55 bg-white/45 px-4 py-2 shadow-sm backdrop-blur-xl">
-              <MonitorSmartphone aria-hidden="true" className="h-4 w-4 text-black" />
-              <span className="text-[10px] font-bold uppercase text-black">Responsive UI</span>
-            </div>
-          </FloatingVisual>
-
-          <FloatingVisual
-            image="/hausb/hausb-portfolio.webp"
-            enableFloat={isFloatingLayout}
-            className="min-h-[230px] 2xl:right-[15%] 2xl:top-[76%] 2xl:h-[230px] 2xl:w-[360px]"
-            floatDelay={1.5}
-            floatDuration={5.5}
-          >
-            <div className="absolute bottom-5 left-5 right-5 rounded-[18px] border border-white/45 bg-white/35 p-4 backdrop-blur-xl">
-              <span className="text-xs font-bold text-black">Client Portal</span>
-              <p className="mt-1 text-xs leading-5 text-black/70">Ready for handoff and iteration.</p>
-            </div>
-          </FloatingVisual>
+        <div className="mt-12 grid w-full grid-cols-1 gap-5 sm:grid-cols-2 md:gap-6">
+          <CollageVisuals layout="grid" />
         </div>
       </div>
     </section>

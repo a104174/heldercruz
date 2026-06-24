@@ -12,9 +12,9 @@ export const experienceItems = [
       "Built real-world websites and internal tools for clients, including public websites, backoffice systems, contact flows, reservation management and billing-related features."
   },
   {
-    title: "Computer Engineering",
+    title: "Software Engineering",
     organization: "Universidade do Minho",
     description:
-      "Graduated in Computer Engineering, with academic foundations in software engineering, databases, distributed systems, computer networks, security, human-computer interaction and artificial intelligence."
+      "Graduated in Software Engineering, with academic foundations in computer engineering, databases, distributed systems, computer networks, security, human-computer interaction and artificial intelligence."
   }
 ];

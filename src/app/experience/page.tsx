@@ -27,29 +27,18 @@ import { TypingAnimation } from "@/components/ui/typing-animation";
 import { experienceItems } from "@/data/experience";
 import { cn } from "@/lib/utils";
 
-/* 
-  NOTA: Como este ficheiro agora usa "use client", a metadata tem de ser 
-  movida para um ficheiro experience/layout.tsx
-  
-  import type { Metadata } from "next";
-  export const metadata: Metadata = {
-    title: "Experience",
-    description: "Experience timeline for Hélder Cruz, including Complear internship, freelance projects and Computer Engineering at Universidade do Minho."
-  };
-*/
-
 const timelineMeta = [
   {
     organization: "Complear",
-    period: "2023"
+    period: "2025"
   },
   {
     organization: "Independent",
-    period: "2022 - Present"
+    period: "2025 - Present"
   },
   {
     organization: "Universidade do Minho",
-    period: "2018 - 2023"
+    period: "2022 - 2026"
   }
 ];
 
@@ -131,7 +120,10 @@ export default function ExperiencePage() {
   return (
     <PageShell>
       <section className="mx-auto w-full max-w-[1180px] px-5 pb-28 pt-32 sm:px-8 md:pb-36 md:pt-40 lg:px-10">
-        <AnimatedReveal className="max-w-[900px]">
+        
+        {/* HERO SECTION COREOGRAFADA */}
+        <div className="max-w-[900px]">
+          {/* Efeito de movimento removido, mantendo apenas a respiração de opacidade */}
           <motion.p
             animate={{ opacity: [0.4, 1, 0.4] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -146,32 +138,39 @@ export default function ExperiencePage() {
             duration={0.8}
             className="max-w-[900px] text-[48px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[72px] md:text-[80px]"
           >
-            Experience shaped by real projects, teamwork and engineering foundations.
+            Engineering for the real world.
           </TextAnimate>
 
-          <div className="mt-7 min-h-[84px] max-w-[600px] md:min-h-[56px]">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="mt-7 min-h-[84px] max-w-[600px] md:min-h-[56px]"
+          >
             <TypingAnimation
-              duration={30}
+              duration={12}
               className="text-left text-[15px] font-normal leading-7 tracking-normal text-black/56"
             >
-              A mix of academic background, internship experience and freelance client work.
+              From Software Engineering foundations to client projects, my experience has been shaped by building, communicating and delivering software for real needs.
             </TypingAnimation>
-          </div>
-        </AnimatedReveal>
+          </motion.div>
+        </div>
 
-        <AnimatedReveal delay={0.08} className="relative mt-36">
-          {/* Linha vertical condutora da Timeline (Visível apenas em Desktop) */}
+        {/* TIMELINE COESA (ENTRA TODA DE UMA VEZ) */}
+        <AnimatedReveal delay={0.5} className="relative mt-36">
+          {/* Linha vertical condutora da Timeline */}
           <div className="absolute bottom-0 left-1/2 top-0 hidden w-[1px] -translate-x-1/2 bg-black/10 md:block" />
 
-          {/* Timeline robusta com CSS Grid e Order */}
           <div className="relative z-10 mx-auto flex max-w-[1040px] flex-col gap-y-16 md:gap-y-24">
             {experienceItems.map((item, index) => {
               const meta = timelineMeta[index];
               const isReversed = index % 2 !== 0;
 
               return (
-                <div key={item.title} className="grid gap-6 md:grid-cols-[1fr_70px_1fr] md:gap-0">
-                  
+                <div 
+                  key={item.title} 
+                  className="grid gap-6 md:grid-cols-[1fr_70px_1fr] md:gap-0"
+                >
                   {/* Bloco de Título */}
                   <div
                     className={cn(
@@ -192,7 +191,7 @@ export default function ExperiencePage() {
                     <span className="h-2.5 w-2.5 rounded-full bg-black ring-[10px] ring-[#fbfaf7] transition-all duration-500 hover:scale-150 hover:bg-[#ff4b2b]" />
                   </div>
 
-                  {/* Bloco da Descrição com Hover Interativo */}
+                  {/* Bloco da Descrição */}
                   <div
                     className={cn(
                       "group order-3 md:self-center",
@@ -205,13 +204,13 @@ export default function ExperiencePage() {
                       </p>
                     </div>
                   </div>
-
                 </div>
               );
             })}
           </div>
         </AnimatedReveal>
 
+        {/* SKILLS IN PRACTICE */}
         <section className="mt-36">
           <AnimatedReveal>
             <h2 className="text-3xl font-medium leading-none tracking-normal text-black">
@@ -302,6 +301,7 @@ export default function ExperiencePage() {
           </AnimatedReveal>
         </section>
 
+        {/* CTA FINAL */}
         <AnimatedReveal className="mt-36">
           <div className="group flex min-h-[430px] flex-col items-center justify-center rounded-[34px] border border-black/5 bg-[#e9e7e3] px-6 py-16 text-center transition-all duration-700 hover:border-transparent hover:bg-[#111111]">
             <h2 className="max-w-[850px] text-[46px] font-semibold leading-[0.94] tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[66px] md:text-[78px]">

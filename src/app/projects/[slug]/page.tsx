@@ -7,6 +7,10 @@ import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { PageShell } from "@/components/layout/page-shell";
 import { Section } from "@/components/layout/section";
 import { ProjectHero } from "@/components/projects/project-hero";
+import {
+  ProjectHorizontalGallery,
+  type ProjectGalleryItem
+} from "@/components/projects/project-horizontal-gallery";
 import { ProjectVisual } from "@/components/projects/project-visual";
 import {
   PortfolioInteractiveButton,
@@ -197,6 +201,18 @@ const xvStudioScreenshots = [
     description: "Compact service browsing with the same visual language as desktop."
   }
 ];
+
+function toGalleryItems(
+  screenshots: Array<{ src: string; title: string; description: string }>,
+  projectName: string
+): ProjectGalleryItem[] {
+  return screenshots.map((screenshot) => ({
+    title: screenshot.title,
+    description: screenshot.description,
+    image: screenshot.src,
+    alt: `${screenshot.title} screenshot from ${projectName}`
+  }));
+}
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -416,27 +432,14 @@ function XvStudioProjectPage({ project }: { project: Project }) {
           </div>
         </AnimatedReveal>
 
-        <AnimatedReveal className="mx-auto mt-32 grid max-w-[980px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <h2 className="text-3xl font-semibold leading-tight text-black md:text-5xl">
-            A service website with guided contact and admin screens.
-          </h2>
-          <p className="text-[15px] leading-8 text-black/56">
-            XV Studio combines a polished public website with a practical contact flow and
-            backoffice surfaces. The screenshots show the production UI across service pages,
-            project intake and editing states.
-          </p>
-        </AnimatedReveal>
-
-        <AnimatedReveal delay={0.08} className="mt-20 grid gap-6 md:grid-cols-2">
-          {xvStudioScreenshots.slice(0, 6).map((screenshot, index) => (
-            <XvStudioScreenshotCard
-              key={screenshot.src}
-              screenshot={screenshot}
-              priority={index < 2}
-              className={index === 0 ? "md:col-span-2" : undefined}
-            />
-          ))}
-        </AnimatedReveal>
+        <div className="mt-24 md:mt-32">
+          <ProjectHorizontalGallery
+            eyebrow="Project ecosystem"
+            title="A service website with guided contact and admin screens."
+            description="XV Studio combines a polished public website with a practical contact flow and backoffice surfaces. The screenshots show the production UI across service pages, project intake and editing states."
+            items={toGalleryItems(xvStudioScreenshots.slice(0, 6), "XV Studio")}
+          />
+        </div>
 
         <AnimatedReveal className="mt-28 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
@@ -520,27 +523,14 @@ function HausbProjectPage({ project }: { project: Project }) {
           </div>
         </AnimatedReveal>
 
-        <AnimatedReveal className="mx-auto mt-32 grid max-w-[980px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <h2 className="text-3xl font-semibold leading-tight text-black md:text-5xl">
-            A clean business website with real responsive screens.
-          </h2>
-          <p className="text-[15px] leading-8 text-black/56">
-            The HAUSB website was built around clear service communication, calm visual hierarchy
-            and responsive pages that feel consistent across desktop and mobile. These screenshots
-            show the production-facing layouts rather than abstract placeholders.
-          </p>
-        </AnimatedReveal>
-
-        <AnimatedReveal delay={0.08} className="mt-20 grid gap-6 md:grid-cols-2">
-          {hausbScreenshots.slice(0, 4).map((screenshot, index) => (
-            <HausbScreenshotCard
-              key={screenshot.src}
-              screenshot={screenshot}
-              priority={index < 2}
-              className={index === 0 ? "md:col-span-2" : undefined}
-            />
-          ))}
-        </AnimatedReveal>
+        <div className="mt-24 md:mt-32">
+          <ProjectHorizontalGallery
+            eyebrow="Project ecosystem"
+            title="A clean business website with real responsive screens."
+            description="The HAUSB website was built around clear service communication, calm visual hierarchy and responsive pages that feel consistent across desktop and mobile. These screenshots show the production-facing layouts rather than abstract placeholders."
+            items={toGalleryItems(hausbScreenshots.slice(0, 4), "HAUSB website")}
+          />
+        </div>
 
         <AnimatedReveal className="mt-28 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
@@ -644,26 +634,14 @@ function CasaBenficaProjectPage({ project }: { project: Project }) {
           ))}
         </AnimatedReveal>
 
-        <AnimatedReveal className="mx-auto mt-32 grid max-w-[980px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <h2 className="text-3xl font-semibold leading-tight text-black md:text-5xl">
-            Public pages and internal tools in the same ecosystem.
-          </h2>
-          <p className="text-[15px] leading-8 text-black/56">
-            The project combines public-facing sections for visitors with practical operational
-            interfaces for reservations, communication, team schedules and event content.
-          </p>
-        </AnimatedReveal>
-
-        <AnimatedReveal delay={0.08} className="mt-20 grid gap-6 md:grid-cols-2">
-          {casaScreenshots.slice(0, 6).map((screenshot, index) => (
-            <CasaScreenshotCard
-              key={screenshot.src}
-              screenshot={screenshot}
-              priority={index < 2}
-              className={index === 0 ? "md:col-span-2" : undefined}
-            />
-          ))}
-        </AnimatedReveal>
+        <div className="mt-24 md:mt-32">
+          <ProjectHorizontalGallery
+            eyebrow="Project ecosystem"
+            title="Public pages and internal tools in the same ecosystem."
+            description="The project combines public-facing sections for visitors with practical operational interfaces for reservations, communication, team schedules and event content."
+            items={toGalleryItems(casaScreenshots.slice(0, 6), "Casa Benfica Lenzburg")}
+          />
+        </div>
 
         <AnimatedReveal className="mt-28 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
