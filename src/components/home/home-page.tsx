@@ -55,12 +55,12 @@ const focusCards = [
   {
     title: "Frontend Development",
     text: "Clean responsive interfaces with polished interaction details.",
-    image: "/hausb/hausb-home.webp"
+    image: "/hausb/hausb-lsf.webp"
   },
   {
     title: "Backoffice Systems",
     text: "Practical internal tools for reservations, billing and operations.",
-    image: "/xvstudio/xv-backoffice.webp"
+    image: "/benfica/screenshot_1.5x_postspark_2026-06-25_01-10-54.webp"
   },
   {
     title: "API Integrations",
@@ -77,18 +77,18 @@ const focusCards = [
 const insightCards = [
   {
     title: "Engineering clean interfaces",
-    eyebrow: "Frontend",
-    image: "/hausb/hausb-arquitetura.webp"
+    eyebrow: "Casa Benfica Lenzburg",
+    image: "/benfica/screenshot_1.5x_postspark_2026-06-25_00-35-51.webp"
   },
   {
     title: "From polished websites to business tools",
-    eyebrow: "Systems",
-    image: "/xvstudio/xv-laser.webp"
+    eyebrow: "HAUSB",
+    image: "/hausb/hausb-mobile-construcao.webp"
   },
   {
     title: "Useful products for real client needs",
-    eyebrow: "Delivery",
-    image: "/benfica/screenshot_1.5x_postspark_2026-06-25_00-35-51.webp"
+    eyebrow: "XV Studio",
+    image: "/xvstudio/xv-laser.webp"
   }
 ];
 
@@ -636,10 +636,34 @@ function SystemsSection() {
 }
 
 function FocusSection() {
+  const titleText = "Built for real client needs.";
+
   return (
     <SectionShell className="flex flex-col items-center py-20 md:py-28">
       <AnimatedReveal className="text-center">
-        <h2 className="text-3xl font-bold text-black md:text-4xl">Built for real client needs.</h2>
+        {/* Usamos flex e flex-wrap para garantir que as letras fluem corretamente em mobile */}
+        <h2 aria-label={titleText} className="flex flex-wrap justify-center text-3xl font-bold text-black md:text-4xl">
+          {titleText.split("").map((char, index) => (
+            <motion.span
+              key={index}
+              aria-hidden="true"
+              animate={{ 
+                opacity: [0.6, 1, 0.6],
+                y: [0, -1.5, 0] 
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: index * 0.05, // O delay matemático cria o efeito de onda
+                ease: "easeInOut"
+              }}
+              // Se for um espaço, aplicamos uma largura fixa, caso contrário, mantemos inline-block para o transform funcionar
+              className={char === " " ? "w-[0.25em]" : "inline-block"}
+            >
+              {char}
+            </motion.span>
+          ))}
+        </h2>
       </AnimatedReveal>
 
       <div className="mt-12 grid w-full max-w-[1240px] gap-5 md:grid-cols-2 lg:gap-6">
