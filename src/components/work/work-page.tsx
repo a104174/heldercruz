@@ -106,7 +106,9 @@ function WorkVisual({
       <div
         className={cn(
           "relative flex items-center justify-center overflow-hidden rounded-[24px] border border-black/10 bg-[#111111]",
-          featured ? "aspect-[16/9] min-h-[340px] md:min-h-[640px]" : "aspect-square min-h-[280px]"
+          featured
+            ? "mx-auto aspect-[4/3] w-full max-w-[1080px]"
+            : "aspect-square min-h-[280px]"
         )}
         aria-label={project.image.alt}
       >
@@ -118,8 +120,9 @@ function WorkVisual({
           }
           alt=""
           fill
-          className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.035]"
-          sizes={featured ? "(min-width: 768px) 60vw, 100vw" : "(min-width: 768px) 40vw, 100vw"}
+          quality={95}
+          className="object-cover object-center transition duration-700 ease-out group-hover:scale-[1.02]"
+          sizes={featured ? "(min-width: 1280px) 1080px, (min-width: 768px) 82vw, 100vw" : "(min-width: 768px) 40vw, 100vw"}
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(0,0,0,0.34))] opacity-70 transition-opacity duration-700 group-hover:opacity-35" />
         <p className="sr-only">{project.image.label}</p>
@@ -137,7 +140,7 @@ function WorkVisual({
         aria-label={project.image.alt}
       >
         <Image
-          src={featured ? "/hausb/hausb-home.webp" : "/hausb/hausb-mobile-menu.webp"}
+          src={featured ? "/hausb/hausb-home.webp" : "/hausb/hausb-arquitetura.webp"}
           alt=""
           fill
           className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.035]"
@@ -159,7 +162,7 @@ function WorkVisual({
         aria-label={project.image.alt}
       >
         <Image
-          src={featured ? "/xvstudio/xv-home.webp" : "/xvstudio/xv-mobile-home.webp"}
+          src={featured ? "/xvstudio/xv-home.webp" : "/xvstudio/xv-mobile-websites.webp"}
           alt=""
           fill
           className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.035]"
@@ -206,7 +209,9 @@ function ProjectTile({ project, featured = false, index = 0 }: { project: Projec
         <div
           className={cn(
             "mt-5 grid gap-3",
-            featured ? "md:grid-cols-[1fr_auto] md:items-start" : "grid-cols-1"
+            featured
+              ? "mx-auto w-full max-w-[1080px] md:grid-cols-[1fr_auto] md:items-start"
+              : "grid-cols-1"
           )}
         >
           <div>

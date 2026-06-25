@@ -637,40 +637,29 @@ function SystemsSection() {
 
 function FocusSection() {
   return (
-    <SectionShell className="flex flex-col items-center py-24 md:py-36">
+    <SectionShell className="flex flex-col items-center py-20 md:py-28">
       <AnimatedReveal className="text-center">
         <h2 className="text-3xl font-bold text-black md:text-4xl">Built for real client needs.</h2>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          {["Frontend", "Backoffice", "APIs", "Data"].map((item, index) => (
-            <motion.span
-              key={item}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={cn(
-                "rounded-full px-5 py-2 text-sm font-bold shadow-sm cursor-default",
-                index === 0 ? "bg-black text-[#fbfaf7]" : "bg-white text-black"
-              )}
-            >
-              {item}
-            </motion.span>
-          ))}
-        </div>
       </AnimatedReveal>
 
-      <div className="mt-14 grid w-full gap-5 md:grid-cols-2">
+      <div className="mt-12 grid w-full max-w-[1240px] gap-5 md:grid-cols-2 lg:gap-6">
         {focusCards.map((card, index) => (
           <AnimatedReveal
             key={card.title}
             delay={index * 0.04}
-            className="group relative flex min-h-[360px] overflow-hidden rounded-[28px] border border-black/10 p-7 shadow-sm md:min-h-[420px]"
+            className="group relative flex aspect-[4/3] overflow-hidden rounded-[28px] border border-black/10 shadow-sm"
           >
-            <div
-              className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-110"
-              style={imageStyle(card.image)}
+            <Image
+              src={card.image}
+              alt={card.title}
+              fill
+              quality={95}
+              sizes="(min-width: 1280px) 610px, (min-width: 768px) 46vw, 92vw"
+              className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035]"
             />
-            <div className="absolute inset-0 bg-black/45 transition-opacity duration-500 group-hover:bg-black/60" />
-            <div className="relative z-10 mt-auto max-w-md text-white">
-              <h3 className="text-xl font-bold">{card.title}</h3>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/22 to-black/5" />
+            <div className="relative z-10 mt-auto max-w-md p-6 text-white sm:p-7">
+              <h3 className="text-lg font-bold sm:text-xl">{card.title}</h3>
               <p className="mt-2 text-sm leading-6 text-white/78">{card.text}</p>
             </div>
           </AnimatedReveal>
