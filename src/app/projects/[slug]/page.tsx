@@ -138,9 +138,14 @@ const hausbScreenshots = [
     description: "A service page with structured content, strong image rhythm and clear hierarchy."
   },
   {
-    src: "/hausb/hausb-contrucao.webp",
+    src: "/hausb/hausb-construcao.webp",
     title: "Construction page",
     description: "A focused page for construction services with consistent visual language."
+  },
+  {
+    src: "/hausb/hausb-lsf.webp",
+    title: "Light steel framing",
+    description: "A dedicated LSF service page explaining the system, its composition and benefits."
   },
   {
     src: "/hausb/hausb-about.webp",
@@ -153,52 +158,67 @@ const hausbScreenshots = [
     description: "Project showcase page designed to support visual browsing and trust."
   },
   {
+    src: "/hausb/hausb-contacto.webp",
+    title: "Contact page",
+    description: "A focused contact experience with project enquiries and business details."
+  },
+  {
     src: "/hausb/hausb-mobile-menu.webp",
     title: "Mobile navigation",
     description: "Responsive menu state prepared for compact screens and touch navigation."
+  },
+  {
+    src: "/hausb/hausb-mobile-construcao.webp",
+    title: "Mobile construction page",
+    description: "Construction services adapted to a focused, readable mobile layout."
   }
 ];
 
 const xvStudioScreenshots = [
   {
-    src: "/xvstudio/xvstudio-home.webp",
+    src: "/xvstudio/xv-home.webp",
     title: "Homepage",
     description: "A polished service landing page with strong visual rhythm and clear positioning."
   },
   {
-    src: "/xvstudio/xvstudio-sites.webp",
-    title: "Website services",
-    description: "Service presentation built around concise copy, hierarchy and direct conversion paths."
+    src: "/xvstudio/xv-foto.webp",
+    title: "Photography services",
+    description: "Photography service pages combining visual storytelling, equipment and production detail."
   },
   {
-    src: "/xvstudio/xvstudio-contact.webp",
-    title: "Contact flow",
-    description: "A focused contact experience designed to guide visitors into the right project request."
+    src: "/xvstudio/xv-laser.webp",
+    title: "Laser & NFC",
+    description: "A specialized service page for precision laser work and NFC-enabled products."
   },
   {
-    src: "/xvstudio/xvstudio-contact-project.webp",
-    title: "Project details",
-    description: "Step-based project input state for collecting useful context without overwhelming users."
+    src: "/xvstudio/xv-contacto.webp",
+    title: "Contact page",
+    description: "A direct contact and social presence page designed to make collaboration easy."
   },
   {
-    src: "/xvstudio/xvstudio-backoffice.webp",
+    src: "/xvstudio/xv-modal-contacto.webp",
+    title: "Guided contact flow",
+    description: "Step-based project input for collecting scope, goals and useful context."
+  },
+  {
+    src: "/xvstudio/xv-backoffice.webp",
     title: "Backoffice",
     description: "Internal management surface for keeping content and business operations organized."
   },
   {
-    src: "/xvstudio/xvstudio-edicao.webp",
-    title: "Editing state",
-    description: "Admin editing flow prepared for practical updates and content maintenance."
+    src: "/xvstudio/xv-edicao.webp",
+    title: "Editing services",
+    description: "Post-production services presented through clear packages and practical detail."
   },
   {
-    src: "/xvstudio/xvstudio-home-mobile.webp",
+    src: "/xvstudio/xv-mobile-home.webp",
     title: "Mobile homepage",
     description: "Responsive landing state tuned for narrow screens."
   },
   {
-    src: "/xvstudio/xvstudio-services-mobile.webp",
-    title: "Mobile services",
-    description: "Compact service browsing with the same visual language as desktop."
+    src: "/xvstudio/xv-mobile-websites.webp",
+    title: "Mobile websites",
+    description: "Web service pages adapted for focused browsing on narrow screens."
   }
 ];
 
@@ -422,7 +442,7 @@ function XvStudioProjectPage({ project }: { project: Project }) {
         <AnimatedReveal delay={0.08} className="mt-16 overflow-hidden rounded-[34px] border border-black/10 bg-black shadow-[0_24px_80px_rgba(0,0,0,0.12)]">
           <div className="relative aspect-[4/3] md:aspect-[16/10]">
             <Image
-              src="/xvstudio/xvstudio-home.webp"
+              src="/xvstudio/xv-home.webp"
               alt="XV Studio homepage screenshot"
               fill
               priority
@@ -437,7 +457,7 @@ function XvStudioProjectPage({ project }: { project: Project }) {
             eyebrow="Project ecosystem"
             title="A service website with guided contact and admin screens."
             description="XV Studio combines a polished public website with a practical contact flow and backoffice surfaces. The screenshots show the production UI across service pages, project intake and editing states."
-            items={toGalleryItems(xvStudioScreenshots.slice(0, 6), "XV Studio")}
+            items={toGalleryItems(xvStudioScreenshots.slice(0, 7), "XV Studio")}
           />
         </div>
 
@@ -455,7 +475,7 @@ function XvStudioProjectPage({ project }: { project: Project }) {
             </p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
-            {xvStudioScreenshots.slice(6).map((screenshot) => (
+            {xvStudioScreenshots.slice(7).map((screenshot) => (
               <XvStudioScreenshotCard key={screenshot.src} screenshot={screenshot} />
             ))}
           </div>
@@ -513,7 +533,7 @@ function HausbProjectPage({ project }: { project: Project }) {
         <AnimatedReveal delay={0.08} className="mt-16 overflow-hidden rounded-[34px] border border-black/10 bg-black shadow-[0_24px_80px_rgba(0,0,0,0.12)]">
           <div className="relative aspect-[4/3] md:aspect-[16/10]">
             <Image
-              src="/hausb/mac2.webp"
+              src="/hausb/hausb-home.webp"
               alt="HAUSB website displayed on a desktop mockup"
               fill
               priority
@@ -528,7 +548,7 @@ function HausbProjectPage({ project }: { project: Project }) {
             eyebrow="Project ecosystem"
             title="A clean business website with real responsive screens."
             description="The HAUSB website was built around clear service communication, calm visual hierarchy and responsive pages that feel consistent across desktop and mobile. These screenshots show the production-facing layouts rather than abstract placeholders."
-            items={toGalleryItems(hausbScreenshots.slice(0, 4), "HAUSB website")}
+            items={toGalleryItems(hausbScreenshots.slice(0, 7), "HAUSB website")}
           />
         </div>
 
@@ -546,7 +566,7 @@ function HausbProjectPage({ project }: { project: Project }) {
             </p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
-            {hausbScreenshots.slice(4).map((screenshot) => (
+            {hausbScreenshots.slice(7).map((screenshot) => (
               <HausbScreenshotCard key={screenshot.src} screenshot={screenshot} />
             ))}
           </div>

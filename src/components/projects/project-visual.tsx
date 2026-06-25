@@ -52,7 +52,7 @@ export function ProjectVisual({ project, className, compact }: ProjectVisualProp
         aria-label={project.image.alt}
       >
         <Image
-          src={compact ? "/hausb/hausb-home.webp" : "/hausb/mac2.webp"}
+          src={compact ? "/hausb/hausb-mobile-menu.webp" : "/hausb/hausb-home.webp"}
           alt=""
           fill
           className="object-cover object-top transition duration-700 group-hover/visual:scale-[1.03]"
@@ -75,7 +75,7 @@ export function ProjectVisual({ project, className, compact }: ProjectVisualProp
         aria-label={project.image.alt}
       >
         <Image
-          src={compact ? "/xvstudio/xvstudio-home-mobile.webp" : "/xvstudio/xvstudio-home.webp"}
+          src={compact ? "/xvstudio/xv-mobile-home.webp" : "/xvstudio/xv-home.webp"}
           alt=""
           fill
           className="object-cover object-top transition duration-700 group-hover/visual:scale-[1.03]"

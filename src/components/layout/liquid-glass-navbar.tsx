@@ -147,7 +147,8 @@ export function LiquidGlassNavbar() {
                 alt="Hélder Cruz logo"
                 width={36}
                 height={36}
-                className="h-9 w-9 shrink-0 object-contain drop-shadow-[0_2px_3px_rgba(0,0,0,0.08)]"
+                loading="eager"
+                className="h-9 w-auto shrink-0 object-contain drop-shadow-[0_2px_3px_rgba(0,0,0,0.08)]"
                 priority
               />
             </Link>

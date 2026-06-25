@@ -46,7 +46,7 @@ const technologies = [
   "REST APIs"
 ];
 
-const heroImage = "/hausb/mac2.webp";
+const heroImage = "/hausb/hausb-home.webp";
 const heroTitle = "Building software that works";
 const heroTitleWords = heroTitle.split(" ");
 
@@ -59,12 +59,12 @@ const focusCards = [
   {
     title: "Backoffice Systems",
     text: "Practical internal tools for reservations, billing and operations.",
-    image: "/xvstudio/xvstudio-backoffice.webp"
+    image: "/xvstudio/xv-backoffice.webp"
   },
   {
     title: "API Integrations",
     text: "Reliable connections between forms, emails, databases and deployments.",
-    image: "/xvstudio/xvstudio-contact-project.webp"
+    image: "/xvstudio/xv-modal-contacto.webp"
   },
   {
     title: "Product Delivery",
@@ -82,7 +82,7 @@ const insightCards = [
   {
     title: "From polished websites to business tools",
     eyebrow: "Systems",
-    image: "/xvstudio/xvstudio-sites.webp"
+    image: "/xvstudio/xv-laser.webp"
   },
   {
     title: "Useful products for real client needs",
@@ -380,7 +380,7 @@ function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
       </motion.div>
 
       <FloatingVisual
-        image="/xvstudio/xvstudio-contact.webp"
+        image="/xvstudio/xv-contacto.webp"
         enableFloat={isScene && isFloatingLayout}
         className={cn(
           isScene ? "absolute right-[2%] top-[42%] h-[22%] w-[22%]" : "min-h-[220px]"

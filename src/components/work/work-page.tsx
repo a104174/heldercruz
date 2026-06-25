@@ -137,7 +137,7 @@ function WorkVisual({
         aria-label={project.image.alt}
       >
         <Image
-          src={featured ? "/hausb/mac2.webp" : "/hausb/hausb-home.webp"}
+          src={featured ? "/hausb/hausb-home.webp" : "/hausb/hausb-mobile-menu.webp"}
           alt=""
           fill
           className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.035]"
@@ -159,7 +159,7 @@ function WorkVisual({
         aria-label={project.image.alt}
       >
         <Image
-          src={featured ? "/xvstudio/xvstudio-home.webp" : "/xvstudio/xvstudio-home-mobile.webp"}
+          src={featured ? "/xvstudio/xv-home.webp" : "/xvstudio/xv-mobile-home.webp"}
           alt=""
           fill
           className="object-cover object-top transition duration-700 ease-out group-hover:scale-[1.035]"

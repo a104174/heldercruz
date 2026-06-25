@@ -54,7 +54,7 @@ export function HomeFooter() {
                 alt="Hélder Cruz logo"
                 width={48}
                 height={48}
-                className="h-12 w-12 object-contain transition-transform duration-500 group-hover:rotate-12"
+                className="h-12 w-auto object-contain transition-transform duration-500 group-hover:rotate-12"
               />
             </Link>
             <p className="max-w-sm text-sm leading-7 text-white/55">
