@@ -87,7 +87,7 @@ const insightCards = [
   {
     title: "Useful products for real client needs",
     eyebrow: "Delivery",
-    image: "/benfica/screenshot_1.5x_postspark_2026-06-23_03-00-22.webp"
+    image: "/benfica/screenshot_1.5x_postspark_2026-06-25_00-35-51.webp"
   }
 ];
 

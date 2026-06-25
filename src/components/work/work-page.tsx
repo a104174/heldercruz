@@ -113,8 +113,8 @@ function WorkVisual({
         <Image
           src={
             featured
-              ? "/benfica/screenshot_1.5x_postspark_2026-06-22_21-23-52.webp"
-              : "/benfica/screenshot_1.5x_postspark_2026-06-23_02-59-08.webp"
+              ? "/benfica/screenshot_1.5x_postspark_2026-06-25_00-35-09.webp"
+              : "/benfica/device-mockup_1.5x_postspark_2026-06-25_01-21-47.webp"
           }
           alt=""
           fill
@@ -188,9 +188,16 @@ function WorkVisual({
   );
 }
 
-function ProjectTile({ project, featured = false }: { project: Project; featured?: boolean }) {
+function ProjectTile({ project, featured = false, index = 0 }: { project: Project; featured?: boolean; index?: number }) {
   return (
-    <article className={cn("group", featured && "md:col-span-2")}>
+    <motion.article 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      // Atraso baseado no index, criando a cascata suave
+      transition={{ delay: 0.1 + index * 0.15, duration: 0.6, ease: "easeOut" }}
+      className={cn("group", featured && "md:col-span-2")}
+    >
       <Link
         href={project.href}
         className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
@@ -213,7 +220,7 @@ function ProjectTile({ project, featured = false }: { project: Project; featured
           <TagList project={project} align={featured ? "end" : "start"} />
         </div>
       </Link>
-    </article>
+    </motion.article>
   );
 }
 
@@ -223,7 +230,9 @@ export function WorkPage() {
   return (
     <PageShell>
       <section className="mx-auto w-full max-w-[1200px] px-5 pb-20 pt-28 sm:px-8 md:pb-28 md:pt-40 lg:px-10">
-        <AnimatedReveal className="max-w-[620px]">
+        
+        {/* HERO SECTION - Título rápido e typing imediato */}
+        <div className="max-w-[620px]">
           <motion.p 
             animate={{ opacity: [0.4, 1, 0.4] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -235,29 +244,36 @@ export function WorkPage() {
           <TextAnimate 
             animation="blurIn" 
             as="h1" 
-            duration={0.8}
+            duration={0.4}
             className="text-[48px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[72px] md:text-[80px]"
           >
             Selected Work
           </TextAnimate>
           
-          <div className="mt-7 min-h-[84px] max-w-[600px] md:min-h-[56px]">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+            className="mt-7 min-h-[84px] max-w-[600px] md:min-h-[56px]"
+          >
             <TypingAnimation 
-              duration={25}
+              duration={6}
               className="text-left text-[15px] font-normal leading-7 text-black/56 tracking-normal"
             >
               Three real-world projects built for clients, combining clean interfaces, responsive design and practical business-focused features.
             </TypingAnimation>
-          </div>
-        </AnimatedReveal>
+          </motion.div>
+        </div>
 
-        <AnimatedReveal delay={0.08} className="mt-24 grid gap-x-16 gap-y-32 md:grid-cols-2">
-          <ProjectTile project={featuredProject} featured />
-          {secondaryProjects.map((project) => (
-            <ProjectTile key={project.slug} project={project} />
+        {/* PROJECTS GRID - Animados em cascata a partir do ProjectTile */}
+        <div className="mt-24 grid gap-x-16 gap-y-32 md:grid-cols-2">
+          <ProjectTile project={featuredProject} featured index={0} />
+          {secondaryProjects.map((project, idx) => (
+            <ProjectTile key={project.slug} project={project} index={idx + 1} />
           ))}
-        </AnimatedReveal>
+        </div>
 
+        {/* CTA FINAL */}
         <AnimatedReveal delay={0.1} className="mt-36">
           <div className="group flex min-h-[360px] flex-col items-center justify-center rounded-[24px] border border-black/10 bg-[#efede9] px-6 py-16 text-center transition-all duration-700 hover:border-transparent hover:bg-[#111111] md:min-h-[430px]">
             <h2 className="text-[42px] font-semibold leading-none tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[58px] md:text-[72px]">

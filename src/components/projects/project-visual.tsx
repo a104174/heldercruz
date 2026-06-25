@@ -27,8 +27,8 @@ export function ProjectVisual({ project, className, compact }: ProjectVisualProp
         <Image
           src={
             compact
-              ? "/benfica/screenshot_1.5x_postspark_2026-06-23_02-59-08.webp"
-              : "/benfica/screenshot_1.5x_postspark_2026-06-22_21-23-52.webp"
+              ? "/benfica/device-mockup_1.5x_postspark_2026-06-25_01-22-15.webp"
+              : "/benfica/screenshot_1.5x_postspark_2026-06-25_00-35-09.webp"
           }
           alt=""
           fill

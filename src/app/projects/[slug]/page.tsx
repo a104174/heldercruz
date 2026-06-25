@@ -52,42 +52,42 @@ const casaFeatures = [
 
 const casaScreenshots = [
   {
-    src: "/benfica/screenshot_1.5x_postspark_2026-06-22_21-23-52.webp",
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-25_00-35-09.webp",
     title: "Public website",
     description: "Homepage and public presence with events, albums, restaurant and reservation paths."
   },
   {
-    src: "/benfica/screenshot_1.5x_postspark_2026-06-23_02-59-08.webp",
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-25_01-10-54.webp",
     title: "Reservation flow",
     description: "Date, group size and availability selection for restaurant bookings."
   },
   {
-    src: "/benfica/screenshot_1.5x_postspark_2026-06-23_03-14-12.webp",
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-25_00-21-14.webp",
     title: "Reservation backoffice",
     description: "Operational view for capacity, upcoming days and manual booking actions."
   },
   {
-    src: "/benfica/screenshot_1.5x_postspark_2026-06-23_03-08-14.webp",
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-25_01-17-57.webp",
     title: "Email management",
     description: "Backoffice tooling for contacts, groups, campaigns and email composition."
   },
   {
-    src: "/benfica/screenshot_1.5x_postspark_2026-06-23_03-09-37.webp",
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-25_01-15-35.webp",
     title: "Work schedules",
     description: "Staff planning interface for shifts, teams and monthly service organization."
   },
   {
-    src: "/benfica/screenshot_1.5x_postspark_2026-06-23_03-00-22.webp",
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-25_00-35-51.webp",
     title: "Member sign-up",
     description: "Public family membership form with a focused registration experience."
   },
   {
-    src: "/benfica/screenshot_1.5x_postspark_2026-06-23_03-01-14.webp",
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-25_00-37-25.webp",
     title: "Albums",
     description: "Public gallery browsing for events and community moments."
   },
   {
-    src: "/benfica/screenshot_1.5x_postspark_2026-06-22_21-24-19.webp",
+    src: "/benfica/screenshot_1.5x_postspark_2026-06-25_00-38-16.webp",
     title: "Contact page",
     description: "Contact details, schedule and location presented in a clear public page."
   }

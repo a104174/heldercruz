@@ -135,7 +135,7 @@ export default function ExperiencePage() {
           <TextAnimate
             animation="blurIn"
             as="h1"
-            duration={0.8}
+            duration={0.6}
             className="max-w-[900px] text-[48px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[72px] md:text-[80px]"
           >
             Engineering for the real world.
@@ -148,7 +148,7 @@ export default function ExperiencePage() {
             className="mt-7 min-h-[84px] max-w-[600px] md:min-h-[56px]"
           >
             <TypingAnimation
-              duration={12}
+              duration={7}
               className="text-left text-[15px] font-normal leading-7 tracking-normal text-black/56"
             >
               From Software Engineering foundations to client projects, my experience has been shaped by building, communicating and delivering software for real needs.
@@ -157,7 +157,7 @@ export default function ExperiencePage() {
         </div>
 
         {/* TIMELINE COESA (ENTRA TODA DE UMA VEZ) */}
-        <AnimatedReveal delay={0.5} className="relative mt-36">
+        <AnimatedReveal delay={1} className="relative mt-36">
           {/* Linha vertical condutora da Timeline */}
           <div className="absolute bottom-0 left-1/2 top-0 hidden w-[1px] -translate-x-1/2 bg-black/10 md:block" />
 
@@ -305,11 +305,9 @@ export default function ExperiencePage() {
         <AnimatedReveal className="mt-36">
           <div className="group flex min-h-[430px] flex-col items-center justify-center rounded-[34px] border border-black/5 bg-[#e9e7e3] px-6 py-16 text-center transition-all duration-700 hover:border-transparent hover:bg-[#111111]">
             <h2 className="max-w-[850px] text-[46px] font-semibold leading-[0.94] tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[66px] md:text-[78px]">
-              Looking for someone
+              You decide
               <br />
-              who can build practical
-              <br />
-              digital products?
+              what&apos;s next.
             </h2>
             <ContactTrigger asChild>
               <PortfolioInteractiveButton className="mt-10 transition-transform duration-500 group-hover:scale-110">
