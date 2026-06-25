@@ -10,6 +10,7 @@ import {
   ShieldCheck,
   Sparkles
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
@@ -46,7 +47,7 @@ const technologies = [
   "REST APIs"
 ];
 
-const heroImage = "/hausb/hausb-home.webp";
+const heroImage = "/hausb/hausb-arquitetura.webp";
 const heroTitle = "Building software that works";
 const heroTitleWords = heroTitle.split(" ");
 
@@ -212,15 +213,24 @@ function HeroSection() {
           delay: shouldReduceMotion ? 0 : 0.9,
           ease: [0.22, 1, 0.36, 1]
         }}
-        className="relative z-10 mt-12 h-[360px] w-full max-w-[1450px] overflow-hidden rounded-[28px] border border-black/10 bg-[#151515] shadow-[0_30px_90px_rgba(0,0,0,0.24)] sm:h-[520px] md:rounded-[40px] lg:h-[760px]"
+        className="relative z-10 mt-12 aspect-[4/3] w-full max-w-[1120px] overflow-hidden rounded-[28px] bg-[#fbfaf7] shadow-[0_30px_90px_rgba(0,0,0,0.18)] ring-1 ring-white/60 md:rounded-[40px]"
       >
         <motion.div
           className="absolute inset-0"
-          initial={shouldReduceMotion ? false : { scale: 1.05 }}
+          initial={shouldReduceMotion ? false : { scale: 1.03 }}
           animate={{ scale: 1 }}
-          transition={{ duration: shouldReduceMotion ? 0 : 1.5, ease: "easeOut" }}
-          style={imageStyle(heroImage, "linear-gradient(transparent, transparent)")}
-        />
+          transition={{ duration: shouldReduceMotion ? 0 : 1.2, ease: "easeOut" }}
+        >
+          <Image
+            src={heroImage}
+            alt="Portfolio project preview"
+            fill
+            priority
+            quality={95}
+            sizes="(min-width: 1280px) 1120px, (min-width: 768px) 90vw, 100vw"
+            className="object-cover object-center"
+          />
+        </motion.div>
       </motion.div>
     </SectionShell>
   );
