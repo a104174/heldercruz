@@ -40,17 +40,17 @@ const InstagramIcon = (props: SVGProps<SVGSVGElement>) => (
 const directContacts = [
   {
     label: "Email",
-    value: "a104174@uminho.pt",
-    href: "mailto:a104174@uminho.pt",
+    value: "heldercruz.dev@gmail.com",
+    href: "mailto:heldercruz.dev@gmail.com",
     icon: Mail,
-    note: "Best for project context and formal proposals."
+    note: "Detailed messages, proposals and opportunities."
   },
   {
     label: "WhatsApp / Phone",
-    value: "+351 91X XXX XXX", // Substitui pelo teu número
-    href: "https://wa.me/351910000000", // Substitui pelo teu link wa.me
+    value: "+351 914 096 517", 
+    href: "https://wa.me/351914096517", 
     icon: MessageCircle,
-    note: "Available for quick messages and urgent inquiries."
+    note: "Available for quick messages and faster communication."
   }
 ];
 
@@ -85,7 +85,7 @@ export default function ContactPage() {
               duration={0.4}
               className="max-w-4xl text-[48px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[72px] md:text-[80px]"
             >
-              {"Let's build software\nthat works."}
+              {"Let's talk."}
             </TextAnimate>
 
             <motion.p 

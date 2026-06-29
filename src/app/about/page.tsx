@@ -403,28 +403,48 @@ export default function AboutPage() {
 
         {/* BEYOND CODE */}
         <AnimatedReveal className="mt-36">
-          <div className="group grid gap-8 rounded-[32px] border border-black/10 bg-[#efede9] p-7 transition-all duration-700 hover:bg-white hover:shadow-xl md:grid-cols-[0.8fr_1.2fr] md:p-9">
-            <div>
-              <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.18em] text-black/35 transition-colors duration-300 group-hover:text-black/60">
-                Beyond Code
+          <div className="group flex flex-col items-center justify-between gap-10 rounded-[32px] border border-black/10 bg-[#efede9] p-7 transition-all duration-700 hover:bg-white hover:shadow-xl md:flex-row md:p-9 lg:gap-16 lg:p-12">
+            
+            {/* Lado Esquerdo: Toda a Narrativa (Título, Texto, Ícones) */}
+            <div className="flex flex-col md:max-w-[55%] lg:max-w-[50%]">
+              <div>
+                <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.18em] text-black/35 transition-colors duration-300 group-hover:text-black/60">
+                  Beyond Code
+                </p>
+                <h2 className="text-3xl font-semibold leading-none text-black transition-transform duration-500 group-hover:translate-x-1 lg:text-4xl">
+                  Beyond code.
+                </h2>
+              </div>
+              
+              <p className="mt-6 text-[14px] leading-relaxed text-black/60 transition-colors duration-500 group-hover:text-black/80 lg:text-[15px]">
+                Outside software, I also compete as an esports athlete for Universidade do Minho,
+                where I reached national podiums and became national champion in 2026. I also train
+                MMA, play football/basketball and enjoy reading about psychology, sociology and human
+                behaviour.
               </p>
-              <h2 className="text-3xl font-semibold leading-none text-black transition-transform duration-500 group-hover:translate-x-1">
-                Beyond code.
-              </h2>
-              <div className="mt-8 flex gap-3 text-black/42">
+
+              <div className="mt-8 flex gap-5 text-black/40">
                 <Trophy aria-hidden="true" className="h-5 w-5 transition-colors duration-300 group-hover:text-yellow-600" />
                 <Dumbbell aria-hidden="true" className="h-5 w-5 transition-colors duration-300 group-hover:text-black" />
                 <Users aria-hidden="true" className="h-5 w-5 transition-colors duration-300 group-hover:text-blue-600" />
               </div>
             </div>
-            <p className="max-w-3xl text-[14px] leading-7 text-black/58 transition-colors duration-500 group-hover:text-black/75">
-              Outside software, I also compete as an esports athlete for Universidade do Minho,
-              where I reached national podiums and became national champion in 2026. I also train
-              MMA, play basketball and enjoy reading about psychology, sociology and human
-              behaviour. 
-            </p>
+
+            {/* Lado Direito: A Imagem como "Pilar" Visual */}
+            <div className="relative aspect-square w-full shrink-0 overflow-hidden rounded-[24px] border border-black/10 bg-black/5 shadow-md transition-transform duration-700 group-hover:-translate-y-1 sm:max-w-[360px] md:aspect-[4/5] md:w-[40%] lg:w-[380px]">
+              <Image
+                src="/pages/about/esports-champion.jpg"
+                alt="Esports championship moment"
+                fill
+                sizes="(min-width: 1024px) 380px, (min-width: 768px) 40vw, 100vw"
+                className="object-cover grayscale-[40%] saturate-[0.8] contrast-[1.05] transition duration-700 group-hover:scale-105 group-hover:grayscale-0 group-hover:saturate-100"
+              />
+              <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-100" />
+            </div>
+            
           </div>
         </AnimatedReveal>
+
 
         {/* SKILLS GROUPS */}
         <section className="mt-36">
