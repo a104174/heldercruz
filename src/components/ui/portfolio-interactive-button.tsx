@@ -78,7 +78,7 @@ export function NavbarInteractiveLink({
     >
       <div className="flex items-center justify-center gap-2">
         <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-white transition-all duration-300 group-hover:scale-[100.8]" />
-        <span className="inline-block font-sans text-[13px] font-semibold leading-none transition-all duration-300 group-hover:translate-x-4 group-hover:opacity-0">
+        <span className="inline-block font-sans text-[13px] font-semibold leading-none text-white transition-all duration-300 group-hover:translate-x-4 group-hover:opacity-0">
           {children}
         </span>
         <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0" />
