@@ -55,7 +55,7 @@ export const projects: Project[] = [
     slug: "xv-studio",
     title: "XV Studio",
     shortDescription:
-      "Multi-page service website with custom layouts, polished presentation and a step-based contact modal.",
+      "Multi-page service website with custom layouts, polished presentation and a guided contact flow.",
     longDescription:
       "Developed a multi-page service website with custom page layouts, polished visual presentation and an intuitive step-based contact experience.",
     role: "Frontend Developer",
@@ -64,7 +64,7 @@ export const projects: Project[] = [
     features: [
       "Multi-page website",
       "Custom service pages",
-      "Step-based contact modal",
+      "Guided contact flow",
       "Responsive layout",
       "Smooth user experience"
     ],

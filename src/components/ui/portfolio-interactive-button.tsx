@@ -62,6 +62,41 @@ const NavbarInteractiveHoverButton = forwardRef<HTMLButtonElement, PortfolioInte
   }
 );
 
+export function NavbarInteractiveLink({
+  children,
+  className,
+  showArrow = true,
+  ...props
+}: PortfolioInteractiveLinkProps) {
+  return (
+    <Link
+      className={cn(
+        "group relative inline-flex h-10 w-fit min-w-max cursor-pointer items-center justify-center overflow-hidden rounded-full border border-black bg-black px-5 text-center font-sans text-[13px] font-semibold leading-none text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_8px_18px_rgba(0,0,0,0.16)] ring-1 ring-black/5 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black whitespace-nowrap",
+        className
+      )}
+      {...props}
+    >
+      <div className="flex items-center justify-center gap-2">
+        <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-white transition-all duration-300 group-hover:scale-[100.8]" />
+        <span className="inline-block font-sans text-[13px] font-semibold leading-none transition-all duration-300 group-hover:translate-x-4 group-hover:opacity-0">
+          {children}
+        </span>
+        <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0" />
+        {showArrow && <ArrowRight aria-hidden="true" className="absolute h-4 w-4 opacity-0" />}
+      </div>
+      <div className="absolute inset-0 z-10 flex translate-x-4 items-center justify-center gap-2 text-black opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+        <span className="font-sans text-[13px] font-semibold leading-none">{children}</span>
+        {showArrow && (
+          <ArrowRight
+            aria-hidden="true"
+            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+          />
+        )}
+      </div>
+    </Link>
+  );
+}
+
 export function PortfolioInteractiveLink({
   children,
   className,

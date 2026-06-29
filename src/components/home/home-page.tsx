@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import {
   Database,
   FileText,
@@ -12,14 +12,10 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useInView, useReducedMotion } from "motion/react";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
-import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { HomeServicesBento } from "@/components/home/home-services-bento";
-import {
-  PortfolioInteractiveButton,
-  PortfolioInteractiveLink
-} from "@/components/ui/portfolio-interactive-button";
+import { PortfolioInteractiveLink } from "@/components/ui/portfolio-interactive-button";
 import { TextAnimate } from "@/components/ui/text-animate";
 import Text3DFlip from "@/components/ui/text-3d-flip";
 import { cn } from "@/lib/utils";
@@ -103,9 +99,7 @@ function imageStyle(url: string, overlay = "linear-gradient(180deg, rgba(0,0,0,0
 function HomeContactButton() {
   return (
     <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-      <ContactTrigger asChild>
-        <PortfolioInteractiveButton>Contact</PortfolioInteractiveButton>
-      </ContactTrigger>
+      <PortfolioInteractiveLink href="/contact">Contact</PortfolioInteractiveLink>
     </motion.div>
   );
 }
@@ -694,13 +688,87 @@ function FocusSection() {
 }
 
 function QuoteSection() {
+  const quote = "Good software should feel simple, useful and effortless.";
+  const quoteLines = [
+    "Good software should feel simple,",
+    "useful and effortless."
+  ];
+  const quoteRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const isQuoteInView = useInView(quoteRef, {
+    amount: 0.45,
+    once: true
+  });
+  const [typedQuote, setTypedQuote] = useState("");
+  const [isQuoteComplete, setIsQuoteComplete] = useState(false);
+  const visibleQuote = shouldReduceMotion ? quote : typedQuote;
+  const visibleQuoteLength = visibleQuote.length;
+  const isSignatureVisible = Boolean(shouldReduceMotion || isQuoteComplete);
+
+  useEffect(() => {
+    if (!isQuoteInView || shouldReduceMotion) {
+      return;
+    }
+
+    let currentIndex = 0;
+    const interval = window.setInterval(() => {
+      currentIndex += 1;
+      setTypedQuote(quote.slice(0, currentIndex));
+
+      if (currentIndex >= quote.length) {
+        window.clearInterval(interval);
+        setIsQuoteComplete(true);
+      }
+    }, 42);
+
+    return () => window.clearInterval(interval);
+  }, [isQuoteInView, quote, shouldReduceMotion]);
+
   return (
     <SectionShell className="flex flex-col items-center py-24 text-center md:py-36">
-      <AnimatedReveal>
-        <blockquote className="mx-auto max-w-5xl text-balance text-3xl font-normal leading-tight text-black md:text-5xl">
-          “Good software should feel simple, useful and effortless.”
+      <div ref={quoteRef}>
+        <blockquote
+          aria-label={`“${quote}”`}
+          className="mx-auto min-h-[7.5rem] max-w-5xl text-3xl font-normal leading-tight text-black sm:min-h-[6rem] md:min-h-[7.25rem] md:text-5xl"
+        >
+          {quoteLines.map((line, index) => {
+            const lineStart = quoteLines
+              .slice(0, index)
+              .reduce((length, currentLine) => length + currentLine.length + 1, 0);
+            const typedLineLength = Math.min(
+              Math.max(visibleQuoteLength - lineStart, 0),
+              line.length
+            );
+            const isActiveLine =
+              !isSignatureVisible &&
+              visibleQuoteLength >= lineStart &&
+              visibleQuoteLength <= lineStart + line.length;
+
+            return (
+              <span key={line} aria-hidden="true" className="block">
+                {index === 0 ? "“" : null}
+                {line.slice(0, typedLineLength)}
+                {isActiveLine ? (
+                  <motion.span
+                    aria-hidden="true"
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
+                    className="ml-1 inline-block text-black"
+                  >
+                    |
+                  </motion.span>
+                ) : null}
+                {isSignatureVisible && index === quoteLines.length - 1 ? "”" : null}
+              </span>
+            );
+          })}
         </blockquote>
-        <div className="mt-10 inline-flex items-center gap-4">
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 12, filter: "blur(8px)" }}
+          animate={isSignatureVisible ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 12, filter: "blur(8px)" }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-10 inline-flex items-center gap-4"
+        >
           <motion.span 
             whileHover={{ rotate: 360 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -712,8 +780,8 @@ function QuoteSection() {
             <span className="block text-sm font-bold text-black">Hélder Cruz</span>
             <span className="text-xs font-medium text-[#77736b]">Software Engineer</span>
           </span>
-        </div>
-      </AnimatedReveal>
+        </motion.div>
+      </div>
     </SectionShell>
   );
 }

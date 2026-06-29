@@ -7,9 +7,8 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { Button } from "@/components/ui/button";
-import { NavbarInteractiveHoverButton } from "@/components/ui/portfolio-interactive-button";
+import { NavbarInteractiveLink } from "@/components/ui/portfolio-interactive-button";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
@@ -204,14 +203,14 @@ export function LiquidGlassNavbar() {
                 />
                 <NavHoverText>Resume</NavHoverText>
               </Link>
-              <ContactTrigger asChild onClick={() => setMenuOpen(false)}>
-                <NavbarInteractiveHoverButton
-                  aria-label="Open contact modal"
-                  className="shadow-none"
-                >
-                  Contact
-                </NavbarInteractiveHoverButton>
-              </ContactTrigger>
+              <NavbarInteractiveLink
+                href="/contact"
+                aria-label="Open contact page"
+                className="shadow-none"
+                onClick={() => setMenuOpen(false)}
+              >
+                Contact
+              </NavbarInteractiveLink>
               <Button
                 type="button"
                 variant="ghost"

@@ -3,7 +3,6 @@ import Image from "next/image";
 import { Database, GitBranch, Layers, Rocket } from "lucide-react";
 import { notFound } from "next/navigation";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
-import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { PageShell } from "@/components/layout/page-shell";
 import { Section } from "@/components/layout/section";
 import { ProjectHero } from "@/components/projects/project-hero";
@@ -12,10 +11,7 @@ import {
   type ProjectGalleryItem
 } from "@/components/projects/project-horizontal-gallery";
 import { ProjectVisual } from "@/components/projects/project-visual";
-import {
-  PortfolioInteractiveButton,
-  PortfolioInteractiveLink
-} from "@/components/ui/portfolio-interactive-button";
+import { PortfolioInteractiveLink } from "@/components/ui/portfolio-interactive-button";
 import { getNextProject, getProjectBySlug, projects, type Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
@@ -705,9 +701,7 @@ function CasaBenficaProjectPage({ project }: { project: Project }) {
             <PortfolioInteractiveLink href="/projects">
               Voltar aos projetos
             </PortfolioInteractiveLink>
-            <ContactTrigger asChild>
-              <PortfolioInteractiveButton>Contacto</PortfolioInteractiveButton>
-            </ContactTrigger>
+            <PortfolioInteractiveLink href="/contact">Contacto</PortfolioInteractiveLink>
           </div>
         </AnimatedReveal>
       </section>

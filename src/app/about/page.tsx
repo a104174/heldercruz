@@ -13,10 +13,8 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
-import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { PageShell } from "@/components/layout/page-shell";
 import {
-  PortfolioInteractiveButton,
   PortfolioInteractiveLink
 } from "@/components/ui/portfolio-interactive-button";
 import { TextAnimate } from "@/components/ui/text-animate";
@@ -475,11 +473,12 @@ export default function AboutPage() {
             <p className="mt-7 max-w-[520px] text-[14px] leading-7 text-black/54 transition-colors duration-700 group-hover:text-white/62">
               Let&apos;s build something meaningful, useful and made to last.
             </p>
-            <ContactTrigger asChild>
-              <PortfolioInteractiveButton className="mt-10 transition-transform duration-500 group-hover:scale-105">
-                Contact
-              </PortfolioInteractiveButton>
-            </ContactTrigger>
+            <PortfolioInteractiveLink
+              href="/contact"
+              className="mt-10 transition-transform duration-500 group-hover:scale-105"
+            >
+              Contact
+            </PortfolioInteractiveLink>
           </div>
         </AnimatedReveal>
       </div>

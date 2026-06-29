@@ -4,9 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
-import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { PageShell } from "@/components/layout/page-shell";
-import { PortfolioInteractiveButton } from "@/components/ui/portfolio-interactive-button";
+import { PortfolioInteractiveLink } from "@/components/ui/portfolio-interactive-button";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import { projects, type Project, type ProjectSlug } from "@/data/projects";
@@ -287,11 +286,12 @@ export function WorkPage() {
             <p className="mt-6 max-w-[520px] text-[13px] leading-6 text-black/48 transition-colors duration-700 group-hover:text-white/60">
               Let&apos;s discuss how we can work together to build something beautiful and functional.
             </p>
-            <ContactTrigger asChild>
-              <PortfolioInteractiveButton className="mt-8 transition-transform duration-500 group-hover:scale-110">
-                Contacto
-              </PortfolioInteractiveButton>
-            </ContactTrigger>
+            <PortfolioInteractiveLink
+              href="/contact"
+              className="mt-8 transition-transform duration-500 group-hover:scale-110"
+            >
+              Contacto
+            </PortfolioInteractiveLink>
           </div>
         </AnimatedReveal>
       </section>

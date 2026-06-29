@@ -7,7 +7,9 @@ import { cn } from "@/lib/utils";
 
 type ContactFormProps = {
   className?: string;
+  idPrefix?: string;
   onSuccess?: () => void;
+  variant?: "detailed" | "simple";
 };
 
 type ContactState = {
@@ -53,11 +55,17 @@ function validate(values: ContactState) {
   return errors;
 }
 
-export function ContactForm({ className, onSuccess }: ContactFormProps) {
+export function ContactForm({
+  className,
+  idPrefix = "contact",
+  onSuccess,
+  variant = "detailed"
+}: ContactFormProps) {
   const [values, setValues] = useState<ContactState>(initialState);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState("");
+  const isSimpleVariant = variant === "simple";
 
   const updateValue = (field: keyof ContactState, value: string) => {
     setValues((current) => ({ ...current, [field]: value }));
@@ -122,6 +130,7 @@ export function ContactForm({ className, onSuccess }: ContactFormProps) {
     }
   };
 
+  const getFieldId = (field: string) => `${idPrefix}-${field}`;
   const inputClasses =
     "h-12 w-full rounded-lg border border-line bg-white px-4 text-sm text-ink transition placeholder:text-neutral-400 focus:border-ink focus:outline-none";
   const labelClasses = "text-sm font-semibold text-ink";
@@ -131,31 +140,31 @@ export function ContactForm({ className, onSuccess }: ContactFormProps) {
     <form className={cn("space-y-5", className)} onSubmit={handleSubmit} noValidate>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label className={labelClasses} htmlFor="contact-name">
+          <label className={labelClasses} htmlFor={getFieldId("name")}>
             Name
           </label>
           <input
-            id="contact-name"
+            id={getFieldId("name")}
             name="name"
             value={values.name}
             onChange={(event) => updateValue("name", event.target.value)}
             className={inputClasses}
             autoComplete="name"
             aria-invalid={Boolean(errors.name)}
-            aria-describedby={errors.name ? "contact-name-error" : undefined}
+            aria-describedby={errors.name ? getFieldId("name-error") : undefined}
           />
           {errors.name && (
-            <p id="contact-name-error" className={errorClasses}>
+            <p id={getFieldId("name-error")} className={errorClasses}>
               {errors.name}
             </p>
           )}
         </div>
         <div>
-          <label className={labelClasses} htmlFor="contact-email">
+          <label className={labelClasses} htmlFor={getFieldId("email")}>
             Email
           </label>
           <input
-            id="contact-email"
+            id={getFieldId("email")}
             name="email"
             value={values.email}
             onChange={(event) => updateValue("email", event.target.value)}
@@ -164,94 +173,117 @@ export function ContactForm({ className, onSuccess }: ContactFormProps) {
             inputMode="email"
             type="email"
             aria-invalid={Boolean(errors.email)}
-            aria-describedby={errors.email ? "contact-email-error" : undefined}
+            aria-describedby={errors.email ? getFieldId("email-error") : undefined}
           />
           {errors.email && (
-            <p id="contact-email-error" className={errorClasses}>
+            <p id={getFieldId("email-error")} className={errorClasses}>
               {errors.email}
             </p>
           )}
         </div>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-3">
+      {isSimpleVariant ? (
         <div>
-          <label className={labelClasses} htmlFor="contact-company">
-            Company
+          <label className={labelClasses} htmlFor={getFieldId("subject")}>
+            Subject
           </label>
           <input
-            id="contact-company"
-            name="company"
-            value={values.company}
-            onChange={(event) => updateValue("company", event.target.value)}
-            className={inputClasses}
-            autoComplete="organization"
-          />
-        </div>
-        <div>
-          <label className={labelClasses} htmlFor="contact-project-type">
-            Project type
-          </label>
-          <select
-            id="contact-project-type"
-            name="projectType"
+            id={getFieldId("subject")}
+            name="subject"
             value={values.projectType}
             onChange={(event) => updateValue("projectType", event.target.value)}
             className={inputClasses}
-          >
-            <option value="">Select</option>
-            {projectTypes.map((projectType) => (
-              <option key={projectType} value={projectType}>
-                {projectType}
-              </option>
-            ))}
-          </select>
+            autoComplete="off"
+            aria-invalid={Boolean(errors.projectType)}
+            aria-describedby={errors.projectType ? getFieldId("subject-error") : undefined}
+          />
+          {errors.projectType && (
+            <p id={getFieldId("subject-error")} className={errorClasses}>
+              {errors.projectType}
+            </p>
+          )}
         </div>
-        <div>
-          <label className={labelClasses} htmlFor="contact-budget">
-            Budget
-          </label>
-          <select
-            id="contact-budget"
-            name="budget"
-            value={values.budget}
-            onChange={(event) => updateValue("budget", event.target.value)}
-            className={inputClasses}
-          >
-            <option value="">Select</option>
-            {budgetRanges.map((budgetRange) => (
-              <option key={budgetRange} value={budgetRange}>
-                {budgetRange}
-              </option>
-            ))}
-          </select>
+      ) : (
+        <div className="grid gap-5 sm:grid-cols-3">
+          <div>
+            <label className={labelClasses} htmlFor={getFieldId("company")}>
+              Company
+            </label>
+            <input
+              id={getFieldId("company")}
+              name="company"
+              value={values.company}
+              onChange={(event) => updateValue("company", event.target.value)}
+              className={inputClasses}
+              autoComplete="organization"
+            />
+          </div>
+          <div>
+            <label className={labelClasses} htmlFor={getFieldId("project-type")}>
+              Project type
+            </label>
+            <select
+              id={getFieldId("project-type")}
+              name="projectType"
+              value={values.projectType}
+              onChange={(event) => updateValue("projectType", event.target.value)}
+              className={inputClasses}
+            >
+              <option value="">Select</option>
+              {projectTypes.map((projectType) => (
+                <option key={projectType} value={projectType}>
+                  {projectType}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className={labelClasses} htmlFor={getFieldId("budget")}>
+              Budget
+            </label>
+            <select
+              id={getFieldId("budget")}
+              name="budget"
+              value={values.budget}
+              onChange={(event) => updateValue("budget", event.target.value)}
+              className={inputClasses}
+            >
+              <option value="">Select</option>
+              {budgetRanges.map((budgetRange) => (
+                <option key={budgetRange} value={budgetRange}>
+                  {budgetRange}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-      </div>
+      )}
 
       <div>
-        <label className={labelClasses} htmlFor="contact-message">
+        <label className={labelClasses} htmlFor={getFieldId("message")}>
           Message
         </label>
         <textarea
-          id="contact-message"
+          id={getFieldId("message")}
           name="message"
           value={values.message}
           onChange={(event) => updateValue("message", event.target.value)}
           className={cn(inputClasses, "min-h-36 resize-y py-3 leading-6")}
           aria-invalid={Boolean(errors.message)}
-          aria-describedby={errors.message ? "contact-message-error" : undefined}
+          aria-describedby={errors.message ? getFieldId("message-error") : undefined}
         />
         {errors.message && (
-          <p id="contact-message-error" className={errorClasses}>
+          <p id={getFieldId("message-error")} className={errorClasses}>
             {errors.message}
           </p>
         )}
       </div>
 
       <div className="hidden" aria-hidden="true">
-        <label htmlFor="contact-website">Website</label>
+        <label htmlFor={getFieldId("website")}>Website</label>
         <input
-          id="contact-website"
+          id={getFieldId("website")}
           name="website"
           value={values.website}
           onChange={(event) => updateValue("website", event.target.value)}
@@ -261,7 +293,7 @@ export function ContactForm({ className, onSuccess }: ContactFormProps) {
       </div>
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <Button type="submit" disabled={status === "loading"}>
+        <Button type="submit" disabled={status === "loading"} className="h-12 rounded-full px-6">
           {status === "loading" ? (
             <>
               <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />

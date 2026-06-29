@@ -19,9 +19,8 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import { AnimatedReveal } from "@/components/animations/animated-reveal";
-import { ContactTrigger } from "@/components/contact/contact-trigger";
 import { PageShell } from "@/components/layout/page-shell";
-import { PortfolioInteractiveButton } from "@/components/ui/portfolio-interactive-button";
+import { PortfolioInteractiveLink } from "@/components/ui/portfolio-interactive-button";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import { experienceItems } from "@/data/experience";
@@ -309,11 +308,12 @@ export default function ExperiencePage() {
               <br />
               what&apos;s next.
             </h2>
-            <ContactTrigger asChild>
-              <PortfolioInteractiveButton className="mt-10 transition-transform duration-500 group-hover:scale-110">
-                Contacto
-              </PortfolioInteractiveButton>
-            </ContactTrigger>
+            <PortfolioInteractiveLink
+              href="/contact"
+              className="mt-10 transition-transform duration-500 group-hover:scale-110"
+            >
+              Contacto
+            </PortfolioInteractiveLink>
           </div>
         </AnimatedReveal>
       </section>
