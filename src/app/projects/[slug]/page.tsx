@@ -260,28 +260,16 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 function HeroVisual() {
   return (
     <AnimatedReveal delay={0.08}>
-      <div className="relative mt-28 overflow-hidden rounded-[34px] border border-black/12 bg-black p-10 shadow-[0_24px_80px_rgba(0,0,0,0.12)] md:p-16">
+      <div className="relative mt-28 overflow-hidden rounded-[34px] border border-black/10 bg-white shadow-[0_24px_80px_rgba(0,0,0,0.10)]">
         <Image
           src={casaScreenshots[0].src}
-          alt=""
-          fill
+          alt="Casa Benfica Lenzburg public website homepage mockup"
+          width={1800}
+          height={1440}
           priority
-          className="scale-110 object-cover opacity-45 blur-sm"
-          sizes="(min-width: 1024px) 1120px, 100vw"
+          className="h-auto w-full object-cover object-top"
+          sizes="(min-width: 1280px) 1120px, 100vw"
         />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(95,185,190,0.42),transparent_45%),linear-gradient(135deg,rgba(2,13,15,0.78),rgba(1,9,10,0.98))]" />
-        <div className="relative z-10 flex min-h-[420px] items-center justify-center">
-          <div className="relative aspect-[5/4] w-full max-w-[900px] overflow-hidden rounded-[28px] border border-white/20 bg-white shadow-[0_28px_70px_rgba(0,0,0,0.34)]">
-            <Image
-              src={casaScreenshots[0].src}
-              alt="Casa Benfica Lenzburg public website homepage mockup"
-              fill
-              priority
-              className="object-cover object-top"
-              sizes="(min-width: 1024px) 900px, 100vw"
-            />
-          </div>
-        </div>
       </div>
     </AnimatedReveal>
   );
@@ -481,7 +469,7 @@ function XvStudioProjectPage({ project }: { project: Project }) {
           <AnimatedReveal className="grid gap-4 md:grid-cols-3">
             {project.technicalNotes.map((note) => (
               <article key={note} className="rounded-lg border border-line bg-white p-6">
-                <p className="text-sm leading-7 text-muted">{note}</p>
+                <p className="text-sm leading-7 text-black/62">{note}</p>
               </article>
             ))}
           </AnimatedReveal>
@@ -490,11 +478,11 @@ function XvStudioProjectPage({ project }: { project: Project }) {
         <AnimatedReveal className="mt-28 rounded-[28px] border border-black/10 bg-white p-6 md:p-10">
           <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-black/38">
                 Next Project
               </p>
               <h2 className="mt-3 text-3xl font-semibold text-ink">{nextProject.title}</h2>
-              <p className="mt-3 max-w-2xl text-base leading-7 text-muted">
+              <p className="mt-3 max-w-2xl text-base leading-7 text-black/58">
                 {nextProject.shortDescription}
               </p>
             </div>
@@ -572,7 +560,7 @@ function HausbProjectPage({ project }: { project: Project }) {
           <AnimatedReveal className="grid gap-4 md:grid-cols-3">
             {project.technicalNotes.map((note) => (
               <article key={note} className="rounded-lg border border-line bg-white p-6">
-                <p className="text-sm leading-7 text-muted">{note}</p>
+                <p className="text-sm leading-7 text-black/62">{note}</p>
               </article>
             ))}
           </AnimatedReveal>
@@ -581,11 +569,11 @@ function HausbProjectPage({ project }: { project: Project }) {
         <AnimatedReveal className="mt-28 rounded-[28px] border border-black/10 bg-white p-6 md:p-10">
           <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-black/38">
                 Next Project
               </p>
               <h2 className="mt-3 text-3xl font-semibold text-ink">{nextProject.title}</h2>
-              <p className="mt-3 max-w-2xl text-base leading-7 text-muted">
+              <p className="mt-3 max-w-2xl text-base leading-7 text-black/58">
                 {nextProject.shortDescription}
               </p>
             </div>
@@ -722,19 +710,19 @@ function GenericProjectDetailPage({ project }: { project: Project }) {
             A focused project built around real client needs, clean execution and a practical
             production path.
           </p>
-          <p className="text-base leading-8 text-muted md:text-lg">{project.longDescription}</p>
+          <p className="text-base leading-8 text-black/58 md:text-lg">{project.longDescription}</p>
         </AnimatedReveal>
       </Section>
 
       <Section className="border-y border-line bg-soft" title="My Role">
         <AnimatedReveal className="grid gap-5 md:grid-cols-3">
           <article className="rounded-lg border border-line bg-white p-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted">Role</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-black/38">Role</p>
             <h2 className="mt-4 text-2xl font-semibold text-ink">{project.role}</h2>
           </article>
           <article className="rounded-lg border border-line bg-white p-6 md:col-span-2">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted">Scope</p>
-            <p className="mt-4 text-base leading-8 text-muted">{project.shortDescription}</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-black/38">Scope</p>
+            <p className="mt-4 text-base leading-8 text-black/58">{project.shortDescription}</p>
           </article>
         </AnimatedReveal>
       </Section>
@@ -756,14 +744,14 @@ function GenericProjectDetailPage({ project }: { project: Project }) {
         <AnimatedReveal className="grid gap-5 md:grid-cols-2">
           <div className="rounded-lg border border-line bg-white p-6">
             <h2 className="text-xl font-semibold text-ink">Core delivery</h2>
-            <p className="mt-4 text-base leading-8 text-muted">
+            <p className="mt-4 text-base leading-8 text-black/58">
               I translated the project requirements into responsive interfaces and implementation
               patterns that can be expanded with more detailed mockups and case-study content.
             </p>
           </div>
           <div className="rounded-lg border border-line bg-white p-6">
             <h2 className="text-xl font-semibold text-ink">Production readiness</h2>
-            <p className="mt-4 text-base leading-8 text-muted">
+            <p className="mt-4 text-base leading-8 text-black/58">
               The structure is prepared for deployment, clear routing, reusable sections and future
               visual refinement without changing the content model.
             </p>
@@ -788,7 +776,7 @@ function GenericProjectDetailPage({ project }: { project: Project }) {
             <ProjectVisual project={project} compact />
             <div className="rounded-lg border border-line bg-white p-6">
               <h2 className="text-xl font-semibold text-ink">Placeholder area</h2>
-              <p className="mt-4 text-base leading-8 text-muted">
+              <p className="mt-4 text-base leading-8 text-black/58">
                 This section is ready for final screenshots, browser mockups and page-specific visual
                 storytelling in the next phase.
               </p>
@@ -801,7 +789,7 @@ function GenericProjectDetailPage({ project }: { project: Project }) {
         <AnimatedReveal className="grid gap-4 md:grid-cols-3">
           {project.technicalNotes.map((note) => (
             <article key={note} className="rounded-lg border border-line bg-white p-6">
-              <p className="text-sm leading-7 text-muted">{note}</p>
+              <p className="text-sm leading-7 text-black/62">{note}</p>
             </article>
           ))}
         </AnimatedReveal>
@@ -811,11 +799,11 @@ function GenericProjectDetailPage({ project }: { project: Project }) {
         <AnimatedReveal className="mx-auto max-w-7xl rounded-lg border border-line bg-white p-6 md:p-10">
           <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-black/38">
                 Next Project
               </p>
               <h2 className="mt-3 text-3xl font-semibold text-ink">{nextProject.title}</h2>
-              <p className="mt-3 max-w-2xl text-base leading-7 text-muted">
+              <p className="mt-3 max-w-2xl text-base leading-7 text-black/58">
                 {nextProject.shortDescription}
               </p>
             </div>
