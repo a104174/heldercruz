@@ -349,16 +349,21 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Lado Direito: A Imagem como "Pilar" Visual */}
-            <div className="relative aspect-square w-full shrink-0 overflow-hidden rounded-[24px] border border-black/10 bg-black/5 shadow-md transition-transform duration-700 group-hover:-translate-y-1 sm:max-w-[360px] md:aspect-[4/5] md:w-[40%] lg:w-[380px]">
+            {/* Lado Direito: A Imagem Larga e Nítida */}
+            <div className="relative aspect-square w-full shrink-0 overflow-hidden rounded-[24px] border border-black/10 bg-black/5 shadow-md transition-transform duration-700 group-hover:-translate-y-1 sm:max-w-[360px] md:aspect-[4/5] md:w-[45%] lg:w-[420px]">
               <Image
                 src="/pages/about/esports-champion.jpg"
                 alt="Esports championship moment"
                 fill
-                sizes="(min-width: 1024px) 380px, (min-width: 768px) 40vw, 100vw"
+                /* O Segredo da Nitidez: Forçar o carregamento de resoluções muito superiores ao contentor */
+                sizes="(min-width: 1024px) 800px, (min-width: 768px) 600px, 100vw"
+                quality={95}
                 className="object-cover grayscale-[40%] saturate-[0.8] contrast-[1.05] transition duration-700 group-hover:scale-105 group-hover:grayscale-0 group-hover:saturate-100"
               />
               <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-100" />
+              <span className="absolute bottom-4 left-4 rounded-full bg-white/95 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.08em] text-black/80 shadow-sm backdrop-blur-md">
+                University Esports · &apos;26
+              </span>
             </div>
             
           </div>

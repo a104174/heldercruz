@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { NavbarInteractiveLink } from "@/components/ui/portfolio-interactive-button";
 import { siteConfig } from "@/config/site";
-import { locales, stripLocaleFromPathname, type Locale } from "@/i18n/locales";
+import { stripLocaleFromPathname, type Locale } from "@/i18n/locales";
 import { useDictionary, useLanguageSwitcherHref, useLocale, useLocalizedHref } from "@/i18n/use-i18n";
 import { cn } from "@/lib/utils";
 
@@ -216,21 +216,6 @@ export function LiquidGlassNavbar() {
                   className="relative z-10 h-3.5 w-3.5 stroke-[1.8] transition duration-300 ease-out group-hover/nav-item:-translate-y-0.5 group-hover/nav-item:scale-105"
                 />
                 <NavHoverText>{dictionary.common.resume}</NavHoverText>
-              </Link>
-              <Link
-                href={alternateHref}
-                aria-label={`${dictionary.nav.switchLanguage}: ${alternateLocale.toUpperCase()}`}
-                className="liquid-glass-button hidden h-10 items-center gap-1.5 rounded-full px-3 text-[10px] font-bold uppercase text-black/62 transition duration-300 hover:bg-white/28 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:inline-flex"
-                onClick={() => setMenuOpen(false)}
-              >
-                {locales.map((item) => (
-                  <span
-                    key={item}
-                    className={cn(item === locale ? "text-black" : "text-black/38")}
-                  >
-                    {item.toUpperCase()}
-                  </span>
-                ))}
               </Link>
               <NavbarInteractiveLink
                 href="/contact"

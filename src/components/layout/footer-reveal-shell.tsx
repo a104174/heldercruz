@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 export const FOOTER_REVEAL_ENABLED = true;
 
-const FOOTER_REVEAL_HEIGHT = "clamp(440px, 45vh, 560px)";
+const FOOTER_REVEAL_HEIGHT = "clamp(720px, 100svh, 980px)";
 
 export function shouldUseFooterReveal(pathname: string) {
   const normalizedPathname = stripLocaleFromPathname(pathname);
