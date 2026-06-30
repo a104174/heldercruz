@@ -18,6 +18,7 @@ import { HomeServicesBento } from "@/components/home/home-services-bento";
 import { PortfolioInteractiveLink } from "@/components/ui/portfolio-interactive-button";
 import { TextAnimate } from "@/components/ui/text-animate";
 import Text3DFlip from "@/components/ui/text-3d-flip";
+import { useDictionary, useLocalizedHref } from "@/i18n/use-i18n";
 import { cn } from "@/lib/utils";
 
 const technologies = [
@@ -44,8 +45,6 @@ const technologies = [
 ];
 
 const heroImage = "/hausb/hausb-arquitetura.webp";
-const heroTitle = "Building software that works";
-const heroTitleWords = heroTitle.split(" ");
 
 const focusCards = [
   {
@@ -97,9 +96,11 @@ function imageStyle(url: string, overlay = "linear-gradient(180deg, rgba(0,0,0,0
 }
 
 function HomeContactButton() {
+  const dictionary = useDictionary();
+
   return (
     <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-      <PortfolioInteractiveLink href="/contact">Contact</PortfolioInteractiveLink>
+      <PortfolioInteractiveLink href="/contact">{dictionary.common.contact}</PortfolioInteractiveLink>
     </motion.div>
   );
 }
@@ -135,7 +136,10 @@ function useMinViewportWidth(width: number) {
 }
 
 function HeroSection() {
+  const dictionary = useDictionary();
   const shouldReduceMotion = useReducedMotion();
+  const heroTitle = dictionary.home.heroTitle;
+  const heroTitleWords = heroTitle.split(" ");
   const heroEntrance = {
     hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
     visible: { opacity: 1, y: 0, filter: "blur(0px)" }
@@ -181,7 +185,7 @@ function HeroSection() {
           }}
           className="mt-7 max-w-3xl text-base leading-7 text-[#6e6a63] sm:text-lg sm:leading-8"
         >
-          I build custom software tools, end-to-end websites and digital solutions tailored to each project, person and purpose.
+          {dictionary.metadata.homeDescription}
         </motion.p>
         <motion.div
           initial={shouldReduceMotion ? false : "hidden"}
@@ -194,7 +198,7 @@ function HeroSection() {
           }}
           className="mt-8 flex flex-col gap-3 sm:flex-row"
         >
-          <PortfolioInteractiveLink href="/projects">View projects</PortfolioInteractiveLink>
+          <PortfolioInteractiveLink href="/projects">{dictionary.common.viewProjects}</PortfolioInteractiveLink>
           <HomeContactButton />
         </motion.div>
       </div>
@@ -435,6 +439,11 @@ function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
 }
 
 function CollageSection() {
+  const dictionary = useDictionary();
+  const titleWords = dictionary.home.collageTitle.split(" ");
+  const firstLine = titleWords.slice(0, -1).join(" ");
+  const secondLine = titleWords.at(-1) ?? "";
+
   return (
     <section className="relative z-10 isolate w-full overflow-hidden bg-[#fbfaf7] px-5 py-20 sm:px-8 md:py-24 xl:px-10 xl:py-28">
       <div aria-hidden="true" className="absolute inset-0 z-0 bg-[#fbfaf7]" />
@@ -443,9 +452,9 @@ function CollageSection() {
         <div data-collage-scene className="@container/collage relative aspect-[1536/980] w-full">
           <AnimatedReveal className="pointer-events-none absolute left-[22%] top-[29%] z-10 flex w-[56%] items-center justify-center">
             <h2 data-collage-title className="metallic-title pb-[0.08em] text-center text-[clamp(4.5rem,7.7cqw,7.375rem)] font-bold leading-[1.02]">
-              Design-Led
+              {firstLine}
               <br />
-              Engineering
+              {secondLine}
             </h2>
           </AnimatedReveal>
 
@@ -458,9 +467,9 @@ function CollageSection() {
       <div className="relative z-10 mx-auto w-full max-w-[900px] xl:hidden">
         <AnimatedReveal className="flex items-center justify-center">
           <h2 data-collage-title className="metallic-title pb-[0.08em] text-center text-[clamp(3rem,11vw,6.5rem)] font-bold leading-[1.02]">
-            Design-Led
+            {firstLine}
             <br />
-            Engineering
+            {secondLine}
           </h2>
         </AnimatedReveal>
 
@@ -473,6 +482,8 @@ function CollageSection() {
 }
 
 function ManifestoSection() {
+  const dictionary = useDictionary();
+
   return (
     <SectionShell className="relative flex items-center justify-center py-28 text-center md:py-44">
       <div className="pointer-events-none absolute right-[6%] top-8 h-64 w-64 opacity-20 md:h-96 md:w-96">
@@ -488,7 +499,7 @@ function ManifestoSection() {
       </div>
       <AnimatedReveal>
         <p className="relative z-10 mx-auto max-w-5xl text-balance text-2xl font-light leading-tight text-black sm:text-3xl md:text-5xl">
-          I’ve worked on client projects that go beyond the interface, combining websites, backoffices, email flows, databases and practical tools for real businesses.
+          {dictionary.home.manifesto}
         </p>
       </AnimatedReveal>
     </SectionShell>
@@ -630,7 +641,8 @@ function SystemsSection() {
 }
 
 function FocusSection() {
-  const titleText = "Built for real client needs.";
+  const dictionary = useDictionary();
+  const titleText = dictionary.home.focusTitle;
 
   return (
     <SectionShell className="flex flex-col items-center py-20 md:py-28">
@@ -688,11 +700,9 @@ function FocusSection() {
 }
 
 function QuoteSection() {
-  const quote = "Good software should feel simple, useful and effortless.";
-  const quoteLines = [
-    "Good software should feel simple,",
-    "useful and effortless."
-  ];
+  const dictionary = useDictionary();
+  const quote = dictionary.home.quote;
+  const quoteLines = [...dictionary.home.quoteLines];
   const quoteRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
   const isQuoteInView = useInView(quoteRef, {
@@ -787,25 +797,28 @@ function QuoteSection() {
 }
 
 function InsightSection() {
+  const dictionary = useDictionary();
+  const localizeHref = useLocalizedHref();
+
   return (
     <SectionShell className="py-20 md:py-28">
       <div className="mb-10 flex items-end justify-between gap-6">
         <AnimatedReveal>
-          <p className="mb-3 text-[11px] font-bold uppercase text-[#77736b]">Latest Focus</p>
-          <h2 className="text-3xl font-bold text-black md:text-4xl">Built and shipped for clients</h2>
+          <p className="mb-3 text-[11px] font-bold uppercase text-[#77736b]">{dictionary.home.latestFocus}</p>
+          <h2 className="text-3xl font-bold text-black md:text-4xl">{dictionary.home.builtAndShipped}</h2>
         </AnimatedReveal>
         <Link
-          href="/work"
+          href={localizeHref("/projects")}
           className="hidden border-b border-black pb-1 text-sm font-bold text-black transition hover:text-[#ff4b2b] sm:inline-flex"
         >
-          View Work
+          {dictionary.common.work}
         </Link>
       </div>
       <div className="grid gap-6 md:grid-cols-3">
         {insightCards.map((card, index) => (
           <AnimatedReveal key={card.title} delay={index * 0.04}>
             <motion.div whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
-              <Link href="/work" className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black">
+              <Link href={localizeHref("/projects")} className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black">
                 <div
                   className="mb-5 h-[360px] rounded-[28px] border border-black/10 shadow-xl transition-all duration-500 group-hover:shadow-2xl md:h-[430px]"
                   style={imageStyle(card.image)}
@@ -822,6 +835,8 @@ function InsightSection() {
 }
 
 function CtaSection() {
+  const dictionary = useDictionary();
+
   return (
     <section className="px-5 py-24 sm:px-8 md:pt-28 md:pb-24 lg:px-10">
       <AnimatedReveal className="mx-auto flex max-w-5xl flex-col items-center text-center">
@@ -842,14 +857,14 @@ function CtaSection() {
           staggerFrom="center"
           transition={{ type: "spring", damping: 25, stiffness: 160 }}
         >
-          Have a project in mind?
+          {dictionary.home.ctaTitle}
         </Text3DFlip>
         <p className="mt-5 text-base leading-7 text-[#6e6a63] sm:text-lg">
-          Let&apos;s build something clean, fast and useful.
+          {dictionary.home.ctaText}
         </p>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row">
           <HomeContactButton />
-          <PortfolioInteractiveLink href="/projects">View projects</PortfolioInteractiveLink>
+          <PortfolioInteractiveLink href="/projects">{dictionary.common.viewProjects}</PortfolioInteractiveLink>
         </div>
       </AnimatedReveal>
     </section>

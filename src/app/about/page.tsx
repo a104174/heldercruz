@@ -18,86 +18,8 @@ import {
   PortfolioInteractiveLink
 } from "@/components/ui/portfolio-interactive-button";
 import { TextAnimate } from "@/components/ui/text-animate";
+import { useDictionary } from "@/i18n/use-i18n";
 import { cn } from "@/lib/utils";
-
-const storyJourneySteps = [
-  {
-    step: "01",
-    title: "Gaming",
-    text: "Where the curiosity started."
-  },
-  {
-    step: "02",
-    title: "Curiosity",
-    text: "Understanding how things worked became the real motivation."
-  },
-  {
-    step: "03",
-    title: "Systems",
-    text: "That curiosity evolved into thinking about logic, structure and behaviour."
-  },
-  {
-    step: "04",
-    title: "Software",
-    text: "Today, I use that mindset to build products for real people and real needs."
-  }
-];
-
-const clientProjects = [
-  {
-    title: "Casa Benfica Lenzburg",
-    text:
-      "The most complete project I have worked on so far. What started as a public website became a broader digital ecosystem with event and album management, membership systems, reservations, email flows, work schedules, event agendas, editable cocktail menus and restaurant billing tools. Several internal operations now rely on software I designed and built from the ground up."
-  },
-  {
-    title: "XV Studio",
-    text:
-      "A website designed around the agency's services, with a specific visual direction for each area and a contact flow built to feel simple, guided and intentional."
-  },
-  {
-    title: "HAUSB",
-    text:
-      "A project where development and brand direction came together. Beyond building the website, I helped shape the digital identity, structure the message and create content for a field I had to study and understand."
-  }
-];
-
-const principles = [
-  {
-    title: "Human-driven functionality",
-    text:
-      "Good software should consider human error, reduce unnecessary repetition and make important actions clear."
-  },
-  {
-    title: "Design before execution",
-    text:
-      "I usually think through the structure, flow and visual direction before moving into backend logic and frontend implementation."
-  },
-  {
-    title: "Reliable systems",
-    text:
-      "For me, software that works is software that handles edge cases, supports real workflows and remains dependable when real people use it."
-  },
-  {
-    title: "Clear communication",
-    text:
-      "Client work taught me how to explain technical decisions in simple terms and translate real needs into practical software."
-  }
-];
-
-const coreValues = [
-  {
-    title: "Responsibility",
-    text: "Owning decisions, respecting the people who depend on the work and keeping the product useful beyond the first delivery."
-  },
-  {
-    title: "Critical thinking",
-    text: "Questioning assumptions, understanding trade-offs and choosing solutions for the real problem, not just the obvious one."
-  },
-  {
-    title: "Attention to detail",
-    text: "Caring about the small interactions, edge cases and visual decisions that make software feel considered."
-  }
-];
 
 const skillGroups = [
   {
@@ -173,6 +95,7 @@ function SoftCard({
 }
 
 export default function AboutPage() {
+  const dictionary = useDictionary();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -187,7 +110,7 @@ export default function AboutPage() {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="mb-8 text-[10px] font-bold uppercase tracking-[0.18em] text-black/38"
             >
-              Portfolio / About
+              {dictionary.about.eyebrow}
             </motion.p>
 
             <TextAnimate
@@ -196,7 +119,7 @@ export default function AboutPage() {
               duration={0.65}
               className="max-w-[900px] text-left text-[48px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[72px] md:text-[86px]"
             >
-              Useful software starts with understanding people.
+              {dictionary.about.heroTitle}
             </TextAnimate>
           </AnimatedReveal>
 
@@ -217,8 +140,7 @@ export default function AboutPage() {
 
             <AnimatedReveal delay={1.08} className="flex flex-col justify-center">
               <p className="text-[15px] leading-8 text-black/70 md:text-[16px] xl:text-[17px]">
-                I&apos;m Hélder Cruz, a Software Engineer graduated in Computer Engineering from Universidade do Minho. 
-                I live in Braga (Portugal) and work in digital products that combine technical depth, thoughtful design and real-world usefulness.
+                {dictionary.about.heroIntro}
               </p>
             </AnimatedReveal>
 
@@ -228,8 +150,8 @@ export default function AboutPage() {
         {/* HISTÓRIA E INTRODUÇÃO (TIMELINE MINIMALISTA E CLARA) */}
         <section className="mt-36 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <SectionHeading
-            title="From curiosity to engineering."
-            intro="My interest in technology started through gaming. At first, it was curiosity: wanting to understand how the systems behind those experiences worked. Over time, that curiosity became a need to build things myself, understand software from the inside and use it to solve real problems."
+            title={dictionary.about.storyTitle}
+            intro={dictionary.about.storyIntro}
           />
 
           <AnimatedReveal delay={0.08}>
@@ -251,9 +173,9 @@ export default function AboutPage() {
               </div>
 
               <div className="relative z-10 flex flex-col gap-6">
-                {storyJourneySteps.map((item, index) => (
+                {dictionary.about.storyJourneySteps.map((item, index) => (
                   <motion.article
-                    key={item.step}
+                    key={item.title}
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -300,16 +222,16 @@ export default function AboutPage() {
         <section className="mt-36">
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <SectionHeading
-              title="Real client work, real constraints."
-              intro="Working with real clients taught me how to communicate technical decisions clearly, understand business needs and turn vague ideas into working software."
+              title={dictionary.about.clientWorkTitle}
+              intro={dictionary.about.clientWorkIntro}
             />
             <AnimatedReveal delay={0.08} className="shrink-0">
-              <PortfolioInteractiveLink href="/projects">View selected projects</PortfolioInteractiveLink>
+              <PortfolioInteractiveLink href="/projects">{dictionary.common.viewSelectedProjects}</PortfolioInteractiveLink>
             </AnimatedReveal>
           </div>
 
           <AnimatedReveal delay={0.12} className="mt-12 grid gap-5 lg:grid-cols-3">
-            {clientProjects.map((project, index) => (
+            {dictionary.about.clientProjects.map((project, index) => (
               <motion.article
                 key={project.title}
                 initial={{ opacity: 0, y: 18 }}
@@ -336,12 +258,12 @@ export default function AboutPage() {
         {/* PRINCIPIOS */}
         <section className="mt-36">
           <SectionHeading
-            title="How I approach software."
-            intro="I like to start by understanding the purpose of the project, the people who will use it and the workflows it needs to support. Before writing code, I build a mental model of the product: what needs to exist, how the system should behave and how the user should move through it."
+            title={dictionary.about.approachTitle}
+            intro={dictionary.about.approachIntro}
           />
 
           <AnimatedReveal delay={0.08} className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {principles.map((principle, index) => (
+            {dictionary.about.principles.map((principle, index) => (
               <motion.article
                 key={principle.title}
                 initial={{ opacity: 0, y: 18 }}
@@ -351,7 +273,7 @@ export default function AboutPage() {
                 className="group flex min-h-[260px] flex-col justify-between rounded-[26px] border border-black/10 bg-[#efede9] p-6 transition-all duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-lg"
               >
                 <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-black/32 transition-colors duration-300 group-hover:text-[#ff4b2b]">
-                  Principle
+                  {dictionary.about.principleLabel}
                 </span>
                 <div>
                   <h3 className="text-[17px] font-semibold leading-5 text-black transition-transform duration-300 group-hover:translate-x-1">
@@ -368,14 +290,14 @@ export default function AboutPage() {
         <section className="mt-36">
           <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
             <SectionHeading
-              title="What I care about."
-              intro="Perfectionism, critical thinking and responsibility shape the way I work. I care about building things that are useful, not just visually impressive."
+              title={dictionary.about.valuesTitle}
+              intro={dictionary.about.valuesIntro}
             />
 
             <AnimatedReveal delay={0.08}>
               <div className="max-w-[720px] lg:ml-auto">
                 <div className="divide-y divide-black/10 border-y border-black/10">
-                  {coreValues.map((value, index) => (
+                  {dictionary.about.coreValues.map((value, index) => (
                     <motion.article
                       key={value.title}
                       initial={{ opacity: 0, y: 14 }}
@@ -409,18 +331,15 @@ export default function AboutPage() {
             <div className="flex flex-col md:max-w-[55%] lg:max-w-[50%]">
               <div>
                 <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.18em] text-black/35 transition-colors duration-300 group-hover:text-black/60">
-                  Beyond Code
+                  {dictionary.about.beyondCodeEyebrow}
                 </p>
                 <h2 className="text-3xl font-semibold leading-none text-black transition-transform duration-500 group-hover:translate-x-1 lg:text-4xl">
-                  Beyond code.
+                  {dictionary.about.beyondCodeTitle}
                 </h2>
               </div>
               
               <p className="mt-6 text-[14px] leading-relaxed text-black/60 transition-colors duration-500 group-hover:text-black/80 lg:text-[15px]">
-                Outside software, I also compete as an esports athlete for Universidade do Minho,
-                where I reached national podiums and became national champion in 2026. I also train
-                MMA, play football/basketball and enjoy reading about psychology, sociology and human
-                behaviour.
+                {dictionary.about.beyondCodeText}
               </p>
 
               <div className="mt-8 flex gap-5 text-black/40">
@@ -450,8 +369,8 @@ export default function AboutPage() {
         <section className="mt-36">
           <SectionHeading
             align="center"
-            title="Skills and technologies."
-            intro="A practical toolkit for building interfaces, backend logic, internal tools and production-ready digital systems."
+            title={dictionary.about.skillsTitle}
+            intro={dictionary.about.skillsIntro}
           />
 
           <AnimatedReveal delay={0.08} className="mt-12 grid gap-5 md:grid-cols-2">
@@ -488,16 +407,16 @@ export default function AboutPage() {
         <AnimatedReveal className="mt-36">
           <div className="group flex min-h-[390px] flex-col items-center justify-center rounded-[34px] border border-black/10 bg-[#efede9] px-6 py-16 text-center shadow-sm transition-all duration-700 hover:border-transparent hover:bg-[#111111]">
             <h2 className="max-w-[760px] text-[42px] font-semibold leading-[0.92] tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[62px] md:text-[76px]">
-              Want to build something together?
+              {dictionary.about.ctaTitle}
             </h2>
             <p className="mt-7 max-w-[520px] text-[14px] leading-7 text-black/54 transition-colors duration-700 group-hover:text-white/62">
-              Let&apos;s build something meaningful, useful and made to last.
+              {dictionary.about.ctaText}
             </p>
             <PortfolioInteractiveLink
               href="/contact"
               className="mt-10 transition-transform duration-500 group-hover:scale-105"
             >
-              Contact
+              {dictionary.common.contact}
             </PortfolioInteractiveLink>
           </div>
         </AnimatedReveal>

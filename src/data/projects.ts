@@ -1,3 +1,6 @@
+import { getDictionary } from "@/i18n/dictionaries";
+import { defaultLocale, type Locale } from "@/i18n/locales";
+
 export type ProjectSlug = "casa-benfica-lenzburg" | "xv-studio" | "hausb";
 
 export type Project = {
@@ -19,7 +22,7 @@ export type Project = {
   technicalNotes: string[];
 };
 
-export const projects: Project[] = [
+const baseProjects: Project[] = [
   {
     slug: "casa-benfica-lenzburg",
     title: "Casa Benfica Lenzburg",
@@ -111,16 +114,40 @@ export const projects: Project[] = [
   }
 ];
 
-export function getProjectBySlug(slug: string) {
-  return projects.find((project) => project.slug === slug);
+export function getProjects(locale: Locale = defaultLocale): Project[] {
+  const dictionary = getDictionary(locale);
+
+  return baseProjects.map((project) => {
+    const translatedProject = dictionary.projects[project.slug];
+
+    return {
+      ...project,
+      shortDescription: translatedProject.shortDescription,
+      longDescription: translatedProject.longDescription,
+      role: translatedProject.role,
+      features: [...translatedProject.features],
+      image: {
+        alt: translatedProject.imageAlt,
+        label: translatedProject.imageLabel
+      },
+      technicalNotes: [...translatedProject.technicalNotes]
+    };
+  });
 }
 
-export function getNextProject(slug: string) {
-  const currentIndex = projects.findIndex((project) => project.slug === slug);
+export const projects: Project[] = getProjects();
+
+export function getProjectBySlug(slug: string, locale: Locale = defaultLocale) {
+  return getProjects(locale).find((project) => project.slug === slug);
+}
+
+export function getNextProject(slug: string, locale: Locale = defaultLocale) {
+  const localizedProjects = getProjects(locale);
+  const currentIndex = localizedProjects.findIndex((project) => project.slug === slug);
 
   if (currentIndex === -1) {
-    return projects[0];
+    return localizedProjects[0];
   }
 
-  return projects[(currentIndex + 1) % projects.length];
+  return localizedProjects[(currentIndex + 1) % localizedProjects.length];
 }

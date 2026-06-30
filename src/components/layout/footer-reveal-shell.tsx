@@ -2,6 +2,7 @@
 
 import type { CSSProperties, ReactNode } from "react";
 import { usePathname } from "next/navigation";
+import { stripLocaleFromPathname } from "@/i18n/locales";
 import { cn } from "@/lib/utils";
 
 export const FOOTER_REVEAL_ENABLED = true;
@@ -9,13 +10,15 @@ export const FOOTER_REVEAL_ENABLED = true;
 const FOOTER_REVEAL_HEIGHT = "clamp(440px, 45vh, 560px)";
 
 export function shouldUseFooterReveal(pathname: string) {
+  const normalizedPathname = stripLocaleFromPathname(pathname);
+
   return (
-    pathname === "/" ||
-    pathname === "/projects" ||
-    pathname === "/about" ||
-    pathname === "/experience" ||
-    pathname === "/contact" ||
-    pathname.startsWith("/projects/")
+    normalizedPathname === "/" ||
+    normalizedPathname === "/projects" ||
+    normalizedPathname === "/about" ||
+    normalizedPathname === "/experience" ||
+    normalizedPathname === "/contact" ||
+    normalizedPathname.startsWith("/projects/")
   );
 }
 

@@ -4,6 +4,7 @@ import { forwardRef, type AnchorHTMLAttributes, type ButtonHTMLAttributes, type 
 import Link, { type LinkProps } from "next/link";
 import { ArrowRight } from "lucide-react";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { useLocalizedHref } from "@/i18n/use-i18n";
 import { cn } from "@/lib/utils";
 
 const interactiveButtonClassName =
@@ -65,11 +66,16 @@ const NavbarInteractiveHoverButton = forwardRef<HTMLButtonElement, PortfolioInte
 export function NavbarInteractiveLink({
   children,
   className,
+  href,
   showArrow = true,
   ...props
 }: PortfolioInteractiveLinkProps) {
+  const localizeHref = useLocalizedHref();
+  const localizedHref = typeof href === "string" ? localizeHref(href) : href;
+
   return (
     <Link
+      href={localizedHref}
       className={cn(
         "group relative inline-flex h-10 w-fit min-w-max cursor-pointer items-center justify-center overflow-hidden rounded-full border border-black bg-black px-5 text-center font-sans text-[13px] font-semibold leading-none text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_8px_18px_rgba(0,0,0,0.16)] ring-1 ring-black/5 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black whitespace-nowrap",
         className
@@ -100,11 +106,16 @@ export function NavbarInteractiveLink({
 export function PortfolioInteractiveLink({
   children,
   className,
+  href,
   showArrow = true,
   ...props
 }: PortfolioInteractiveLinkProps) {
+  const localizeHref = useLocalizedHref();
+  const localizedHref = typeof href === "string" ? localizeHref(href) : href;
+
   return (
     <Link
+      href={localizedHref}
       className={cn(
         "group relative inline-flex h-11 w-fit min-w-max cursor-pointer items-center justify-center overflow-hidden rounded-full border border-black/15 bg-white px-7 text-center text-sm font-bold leading-none text-black shadow-[0_14px_32px_rgba(0,0,0,0.08)] transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black hover:border-black/30 whitespace-nowrap",
         className

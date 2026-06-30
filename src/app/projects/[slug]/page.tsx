@@ -13,13 +13,23 @@ import {
 import { ProjectVisual } from "@/components/projects/project-visual";
 import { PortfolioInteractiveLink } from "@/components/ui/portfolio-interactive-button";
 import { getNextProject, getProjectBySlug, projects, type Project } from "@/data/projects";
+import { getDictionary } from "@/i18n/dictionaries";
+import { createLocalizedMetadata } from "@/i18n/metadata";
+import { defaultLocale, isValidLocale, type Locale } from "@/i18n/locales";
 import { cn } from "@/lib/utils";
 
 type ProjectPageProps = {
   params: Promise<{
     slug: string;
+    locale?: string;
   }>;
 };
+
+type ProjectDetailCopy = ReturnType<typeof getDictionary>["projectDetail"];
+
+function resolveProjectLocale(locale?: string): Locale {
+  return isValidLocale(locale) ? locale : defaultLocale;
+}
 
 const casaMeta = [
   { label: "Role", value: "Full-stack Developer" },
@@ -237,8 +247,9 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { slug, locale: localeParam } = await params;
+  const locale = resolveProjectLocale(localeParam);
+  const project = getProjectBySlug(slug, locale);
 
   if (!project) {
     return {
@@ -246,15 +257,12 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     };
   }
 
-  return {
+  return createLocalizedMetadata({
+    locale,
+    pathname: `/projects/${project.slug}`,
     title: project.title,
-    description: project.shortDescription,
-    openGraph: {
-      title: project.title,
-      description: project.shortDescription,
-      type: "article"
-    }
-  };
+    description: project.shortDescription
+  });
 }
 
 function HeroVisual() {
@@ -405,15 +413,23 @@ function XvStudioScreenshotCard({
   );
 }
 
-function XvStudioProjectPage({ project }: { project: Project }) {
-  const nextProject = getNextProject(project.slug);
+function XvStudioProjectPage({
+  project,
+  locale,
+  copy
+}: {
+  project: Project;
+  locale: Locale;
+  copy: ProjectDetailCopy;
+}) {
+  const nextProject = getNextProject(project.slug, locale);
 
   return (
     <PageShell>
       <section className="mx-auto w-full max-w-[1200px] px-5 pb-28 pt-28 sm:px-8 md:pb-36 md:pt-36 lg:px-10">
         <AnimatedReveal className="mx-auto max-w-[920px] text-center">
           <span className="inline-flex rounded-full border border-black/10 bg-[#f2f0ec] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-black/38">
-            Case Study
+            {copy.caseStudy}
           </span>
           <h1 className="mt-6 text-[52px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[78px] md:text-[96px]">
             {project.title}
@@ -438,9 +454,9 @@ function XvStudioProjectPage({ project }: { project: Project }) {
 
         <div className="mt-24 md:mt-32">
           <ProjectHorizontalGallery
-            eyebrow="Project ecosystem"
-            title="A service website with guided contact and admin screens."
-            description="XV Studio combines a polished public website with a practical contact flow and backoffice surfaces. The screenshots show the production UI across service pages, project intake and editing states."
+            eyebrow={copy.projectEcosystem}
+            title={copy.xvGalleryTitle}
+            description={copy.xvGalleryDescription}
             items={toGalleryItems(xvStudioScreenshots.slice(0, 7), "XV Studio")}
           />
         </div>
@@ -448,14 +464,13 @@ function XvStudioProjectPage({ project }: { project: Project }) {
         <AnimatedReveal className="mt-28 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-black/38">
-              Responsive UI
+              {copy.responsiveUi}
             </p>
             <h2 className="mt-4 text-3xl font-semibold leading-tight text-black md:text-4xl">
-              Mobile layouts kept consistent with desktop.
+              {copy.xvMobileTitle}
             </h2>
             <p className="mt-5 text-[14px] leading-7 text-black/56">
-              The mobile screens preserve the same hierarchy and interaction patterns, keeping the
-              service browsing experience sharp on smaller devices.
+              {copy.xvMobileDescription}
             </p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
@@ -465,7 +480,7 @@ function XvStudioProjectPage({ project }: { project: Project }) {
           </div>
         </AnimatedReveal>
 
-        <Section className="mt-28 border-y border-line bg-transparent px-0" title="Technical Notes">
+        <Section className="mt-28 border-y border-line bg-transparent px-0" title={copy.technicalNotes}>
           <AnimatedReveal className="grid gap-4 md:grid-cols-3">
             {project.technicalNotes.map((note) => (
               <article key={note} className="rounded-lg border border-line bg-white p-6">
@@ -479,7 +494,7 @@ function XvStudioProjectPage({ project }: { project: Project }) {
           <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-black/38">
-                Next Project
+                {copy.nextProject}
               </p>
               <h2 className="mt-3 text-3xl font-semibold text-ink">{nextProject.title}</h2>
               <p className="mt-3 max-w-2xl text-base leading-7 text-black/58">
@@ -487,7 +502,7 @@ function XvStudioProjectPage({ project }: { project: Project }) {
               </p>
             </div>
             <PortfolioInteractiveLink href={nextProject.href}>
-              Ver projeto
+              {copy.viewProject}
             </PortfolioInteractiveLink>
           </div>
         </AnimatedReveal>
@@ -496,15 +511,23 @@ function XvStudioProjectPage({ project }: { project: Project }) {
   );
 }
 
-function HausbProjectPage({ project }: { project: Project }) {
-  const nextProject = getNextProject(project.slug);
+function HausbProjectPage({
+  project,
+  locale,
+  copy
+}: {
+  project: Project;
+  locale: Locale;
+  copy: ProjectDetailCopy;
+}) {
+  const nextProject = getNextProject(project.slug, locale);
 
   return (
     <PageShell>
       <section className="mx-auto w-full max-w-[1200px] px-5 pb-28 pt-28 sm:px-8 md:pb-36 md:pt-36 lg:px-10">
         <AnimatedReveal className="mx-auto max-w-[920px] text-center">
           <span className="inline-flex rounded-full border border-black/10 bg-[#f2f0ec] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-black/38">
-            Case Study
+            {copy.caseStudy}
           </span>
           <h1 className="mt-6 text-[56px] font-semibold leading-[0.92] tracking-normal text-black sm:text-[82px] md:text-[104px]">
             {project.title}
@@ -529,9 +552,9 @@ function HausbProjectPage({ project }: { project: Project }) {
 
         <div className="mt-24 md:mt-32">
           <ProjectHorizontalGallery
-            eyebrow="Project ecosystem"
-            title="A clean business website with real responsive screens."
-            description="The HAUSB website was built around clear service communication, calm visual hierarchy and responsive pages that feel consistent across desktop and mobile. These screenshots show the production-facing layouts rather than abstract placeholders."
+            eyebrow={copy.projectEcosystem}
+            title={copy.hausbGalleryTitle}
+            description={copy.hausbGalleryDescription}
             items={toGalleryItems(hausbScreenshots.slice(0, 7), "HAUSB website")}
           />
         </div>
@@ -539,14 +562,13 @@ function HausbProjectPage({ project }: { project: Project }) {
         <AnimatedReveal className="mt-28 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-black/38">
-              Responsive UI
+              {copy.responsiveUi}
             </p>
             <h2 className="mt-4 text-3xl font-semibold leading-tight text-black md:text-4xl">
-              Mobile states included from the start.
+              {copy.hausbMobileTitle}
             </h2>
             <p className="mt-5 text-[14px] leading-7 text-black/56">
-              The visual system carries through smaller screens, including service pages and
-              navigation states that keep the experience direct and usable.
+              {copy.hausbMobileDescription}
             </p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
@@ -556,7 +578,7 @@ function HausbProjectPage({ project }: { project: Project }) {
           </div>
         </AnimatedReveal>
 
-        <Section className="mt-28 border-y border-line bg-transparent px-0" title="Technical Notes">
+        <Section className="mt-28 border-y border-line bg-transparent px-0" title={copy.technicalNotes}>
           <AnimatedReveal className="grid gap-4 md:grid-cols-3">
             {project.technicalNotes.map((note) => (
               <article key={note} className="rounded-lg border border-line bg-white p-6">
@@ -570,7 +592,7 @@ function HausbProjectPage({ project }: { project: Project }) {
           <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-black/38">
-                Next Project
+                {copy.nextProject}
               </p>
               <h2 className="mt-3 text-3xl font-semibold text-ink">{nextProject.title}</h2>
               <p className="mt-3 max-w-2xl text-base leading-7 text-black/58">
@@ -578,7 +600,7 @@ function HausbProjectPage({ project }: { project: Project }) {
               </p>
             </div>
             <PortfolioInteractiveLink href={nextProject.href}>
-              Ver projeto
+              {copy.viewProject}
             </PortfolioInteractiveLink>
           </div>
         </AnimatedReveal>
@@ -587,19 +609,25 @@ function HausbProjectPage({ project }: { project: Project }) {
   );
 }
 
-function CasaBenficaProjectPage({ project }: { project: Project }) {
+function CasaBenficaProjectPage({
+  project,
+  copy
+}: {
+  project: Project;
+  copy: ProjectDetailCopy;
+}) {
   return (
     <PageShell>
       <section className="mx-auto w-full max-w-[1120px] px-5 pb-28 pt-28 sm:px-8 md:pb-36 md:pt-36 lg:px-10">
         <AnimatedReveal className="mx-auto max-w-[980px] text-center">
           <span className="inline-flex rounded-full border border-black/10 bg-[#f2f0ec] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-black/38">
-            Case Study
+            {copy.caseStudy}
           </span>
           <h1 className="mt-6 text-[48px] font-semibold leading-[0.96] tracking-normal text-black sm:text-[72px] md:text-[86px]">
             {project.title}
           </h1>
           <p className="mt-5 text-[15px] leading-6 text-black/54">
-            A public website and internal backoffice system built for a real business.
+            {copy.casaIntro}
           </p>
         </AnimatedReveal>
 
@@ -621,14 +649,10 @@ function CasaBenficaProjectPage({ project }: { project: Project }) {
 
         <AnimatedReveal className="mx-auto mt-36 max-w-[760px] text-center">
           <h2 className="text-3xl font-medium leading-none tracking-normal text-black">
-            From public presence to internal operations
+            {copy.casaSectionTitle}
           </h2>
           <p className="mt-8 text-[14px] leading-7 text-black/54">
-            Casa Benfica Lenzburg required a comprehensive digital overhaul. The challenge was
-            twofold: creating a compelling public-facing website to attract patrons and establish a
-            strong local brand presence, while simultaneously developing a robust internal backoffice
-            system to streamline their reservation and billing operations. This dual-natured project
-            demanded a seamless integration between front-end aesthetics and back-end utility.
+            {copy.casaSectionDescription}
           </p>
         </AnimatedReveal>
 
@@ -640,9 +664,9 @@ function CasaBenficaProjectPage({ project }: { project: Project }) {
 
         <div className="mt-24 md:mt-32">
           <ProjectHorizontalGallery
-            eyebrow="Project ecosystem"
-            title="Public pages and internal tools in the same ecosystem."
-            description="The project combines public-facing sections for visitors with practical operational interfaces for reservations, communication, team schedules and event content."
+            eyebrow={copy.projectEcosystem}
+            title={copy.casaGalleryTitle}
+            description={copy.casaGalleryDescription}
             items={toGalleryItems(casaScreenshots.slice(0, 6), "Casa Benfica Lenzburg")}
           />
         </div>
@@ -650,14 +674,13 @@ function CasaBenficaProjectPage({ project }: { project: Project }) {
         <AnimatedReveal className="mt-28 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-black/38">
-              Community Content
+              {copy.casaCommunityEyebrow}
             </p>
             <h2 className="mt-4 text-3xl font-semibold leading-tight text-black md:text-4xl">
-              Event albums and contact paths stay part of the public experience.
+              {copy.casaCommunityTitle}
             </h2>
             <p className="mt-5 text-[14px] leading-7 text-black/56">
-              The website also supports browsing community moments and finding practical venue
-              information without needing to enter the internal backoffice.
+              {copy.casaCommunityDescription}
             </p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
@@ -670,7 +693,7 @@ function CasaBenficaProjectPage({ project }: { project: Project }) {
         <section className="mt-36">
           <AnimatedReveal>
             <h2 className="text-center text-3xl font-medium leading-none tracking-normal text-black">
-              Core Challenges
+              {copy.casaChallengesTitle}
             </h2>
           </AnimatedReveal>
           <AnimatedReveal delay={0.08} className="mt-14 grid gap-6 md:grid-cols-2">
@@ -682,14 +705,13 @@ function CasaBenficaProjectPage({ project }: { project: Project }) {
 
         <AnimatedReveal className="mt-36 border-t border-black/10 pt-32 text-center">
           <p className="mx-auto max-w-[760px] text-3xl font-medium leading-[1.08] tracking-normal text-black md:text-[34px]">
-            Built as a practical digital system for a real client, combining public-facing design
-            with internal operational tools.
+            {copy.casaClosing}
           </p>
           <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <PortfolioInteractiveLink href="/projects">
-              Voltar aos projetos
+              {copy.backToProjects}
             </PortfolioInteractiveLink>
-            <PortfolioInteractiveLink href="/contact">Contacto</PortfolioInteractiveLink>
+            <PortfolioInteractiveLink href="/contact">{copy.contact}</PortfolioInteractiveLink>
           </div>
         </AnimatedReveal>
       </section>
@@ -697,8 +719,16 @@ function CasaBenficaProjectPage({ project }: { project: Project }) {
   );
 }
 
-function GenericProjectDetailPage({ project }: { project: Project }) {
-  const nextProject = getNextProject(project.slug);
+function GenericProjectDetailPage({
+  project,
+  locale,
+  copy
+}: {
+  project: Project;
+  locale: Locale;
+  copy: ProjectDetailCopy;
+}) {
+  const nextProject = getNextProject(project.slug, locale);
 
   return (
     <PageShell>
@@ -785,7 +815,7 @@ function GenericProjectDetailPage({ project }: { project: Project }) {
         </AnimatedReveal>
       </Section>
 
-      <Section className="border-y border-line bg-soft" title="Technical Notes">
+      <Section className="border-y border-line bg-soft" title={copy.technicalNotes}>
         <AnimatedReveal className="grid gap-4 md:grid-cols-3">
           {project.technicalNotes.map((note) => (
             <article key={note} className="rounded-lg border border-line bg-white p-6">
@@ -800,7 +830,7 @@ function GenericProjectDetailPage({ project }: { project: Project }) {
           <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-black/38">
-                Next Project
+                {copy.nextProject}
               </p>
               <h2 className="mt-3 text-3xl font-semibold text-ink">{nextProject.title}</h2>
               <p className="mt-3 max-w-2xl text-base leading-7 text-black/58">
@@ -808,7 +838,7 @@ function GenericProjectDetailPage({ project }: { project: Project }) {
               </p>
             </div>
             <PortfolioInteractiveLink href={nextProject.href}>
-              Ver projeto
+              {copy.viewProject}
             </PortfolioInteractiveLink>
           </div>
         </AnimatedReveal>
@@ -818,24 +848,38 @@ function GenericProjectDetailPage({ project }: { project: Project }) {
 }
 
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { slug, locale: localeParam } = await params;
+  const locale = resolveProjectLocale(localeParam);
+  const dictionary = getDictionary(locale);
+  const project = getProjectBySlug(slug, locale);
 
   if (!project) {
     notFound();
   }
 
   if (project.slug === "casa-benfica-lenzburg") {
-    return <CasaBenficaProjectPage project={project} />;
+    return <CasaBenficaProjectPage project={project} copy={dictionary.projectDetail} />;
   }
 
   if (project.slug === "xv-studio") {
-    return <XvStudioProjectPage project={project} />;
+    return (
+      <XvStudioProjectPage
+        project={project}
+        locale={locale}
+        copy={dictionary.projectDetail}
+      />
+    );
   }
 
   if (project.slug === "hausb") {
-    return <HausbProjectPage project={project} />;
+    return <HausbProjectPage project={project} locale={locale} copy={dictionary.projectDetail} />;
   }
 
-  return <GenericProjectDetailPage project={project} />;
+  return (
+    <GenericProjectDetailPage
+      project={project}
+      locale={locale}
+      copy={dictionary.projectDetail}
+    />
+  );
 }

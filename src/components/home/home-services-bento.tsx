@@ -21,6 +21,7 @@ import { AnimatedList } from "@/components/ui/animated-list";
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 import { Calendar } from "@/components/ui/calendar";
 import { Marquee } from "@/components/ui/marquee";
+import { useDictionary, useLocalizedHref } from "@/i18n/use-i18n";
 import { cn } from "@/lib/utils";
 
 const exportFiles = [
@@ -245,7 +246,7 @@ function IntegrationsPreview({ className }: { className?: string }) {
   );
 }
 
-const features = [
+const baseFeatures = [
   {
     Icon: FileTextIcon,
     name: "Data exports",
@@ -295,19 +296,27 @@ const features = [
 ];
 
 export function HomeServicesBento() {
+  const dictionary = useDictionary();
+  const localizeHref = useLocalizedHref();
+  const features = baseFeatures.map((feature, index) => ({
+    ...feature,
+    ...dictionary.home.serviceCards[index],
+    href: localizeHref(feature.href),
+    cta: dictionary.common.viewProjects
+  }));
+
   return (
     <section className="mx-auto w-full max-w-[1728px] px-5 py-20 sm:px-8 md:py-28 lg:px-10">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 max-w-3xl">
           <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-black/38">
-            Websites and systems
+            {dictionary.home.servicesEyebrow}
           </p>
           <h2 className="text-balance text-4xl font-semibold leading-[0.96] tracking-normal text-black sm:text-5xl md:text-6xl">
-            Features that bring real value to your website
+            {dictionary.home.servicesTitle}
           </h2>
           <p className="mt-6 max-w-2xl text-[15px] leading-7 text-black/56 sm:text-base">
-            Beyond polished pages, I build systems that organize data, automate workflows and
-            make running your project or business simpler.
+            {dictionary.home.servicesText}
           </p>
         </div>
 

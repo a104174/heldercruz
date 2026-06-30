@@ -1,16 +1,21 @@
+"use client";
+
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import type { Project } from "@/data/projects";
 import { ProjectVisual } from "@/components/projects/project-visual";
+import { useLocalizedHref } from "@/i18n/use-i18n";
 
 type ProjectCardProps = {
   project: Project;
 };
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const localizeHref = useLocalizedHref();
+
   return (
     <Link
-      href={project.href}
+      href={localizeHref(project.href)}
       className="group block rounded-lg border border-line bg-white p-3 transition duration-200 hover:-translate-y-1 hover:border-ink hover:shadow-[0_20px_60px_rgba(0,0,0,0.08)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
     >
       <ProjectVisual project={project} compact />

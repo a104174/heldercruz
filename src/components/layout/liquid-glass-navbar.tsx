@@ -10,13 +10,15 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { NavbarInteractiveLink } from "@/components/ui/portfolio-interactive-button";
 import { siteConfig } from "@/config/site";
+import { locales, stripLocaleFromPathname, type Locale } from "@/i18n/locales";
+import { useDictionary, useLanguageSwitcherHref, useLocale, useLocalizedHref } from "@/i18n/use-i18n";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { label: "Work", href: "/projects" },
-  { label: "About", href: "/about" },
-  { label: "Experience", href: "/experience" }
-];
+  { key: "work", href: "/projects" },
+  { key: "about", href: "/about" },
+  { key: "experience", href: "/experience" }
+] as const;
 
 const glassVariables = {
   "--x": "50%",
@@ -24,11 +26,17 @@ const glassVariables = {
 } as CSSProperties;
 
 function isRouteActive(pathname: string, href: string) {
+  const normalizedPathname = stripLocaleFromPathname(pathname);
+
   if (href === "/projects") {
-    return pathname === "/projects" || pathname === "/work" || pathname.startsWith("/projects/");
+    return (
+      normalizedPathname === "/projects" ||
+      normalizedPathname === "/work" ||
+      normalizedPathname.startsWith("/projects/")
+    );
   }
 
-  return pathname === href;
+  return normalizedPathname === href;
 }
 
 function LiquidGlassFilter() {
@@ -75,8 +83,13 @@ function NavHoverText({
 
 export function LiquidGlassNavbar() {
   const pathname = usePathname();
+  const locale = useLocale();
+  const dictionary = useDictionary();
+  const localizeHref = useLocalizedHref();
   const shouldReduceMotion = useReducedMotion();
   const [menuOpen, setMenuOpen] = useState(false);
+  const alternateLocale: Locale = locale === "en" ? "pt" : "en";
+  const alternateHref = useLanguageSwitcherHref(alternateLocale);
 
   useEffect(() => {
     if (!menuOpen) {
@@ -136,8 +149,8 @@ export function LiquidGlassNavbar() {
         >
           <div className="liquid-glass-content flex h-[48px] items-center justify-between gap-2 sm:h-[52px] md:justify-center md:gap-8 lg:gap-10">
             <Link
-              href="/"
-              aria-label="Go to homepage"
+              href={localizeHref("/")}
+              aria-label={dictionary.nav.goHome}
               className="flex min-w-0 items-center rounded-full px-1 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
               onClick={() => setMenuOpen(false)}
             >
@@ -158,11 +171,12 @@ export function LiquidGlassNavbar() {
             >
               {navLinks.map((link) => {
                 const active = isRouteActive(pathname, link.href);
+                const label = dictionary.common[link.key];
 
                 return (
                   <Link
                     key={link.href}
-                    href={link.href}
+                    href={localizeHref(link.href)}
                     aria-current={active ? "page" : undefined}
                     className={cn(navItemClassName, active && "text-black")}
                   >
@@ -181,7 +195,7 @@ export function LiquidGlassNavbar() {
                         }
                       />
                     )}
-                    <NavHoverText>{link.label}</NavHoverText>
+                    <NavHoverText>{label}</NavHoverText>
                   </Link>
                 );
               })}
@@ -190,8 +204,8 @@ export function LiquidGlassNavbar() {
             <div className="flex shrink-0 items-center gap-1.5 md:gap-2">
               <Link
                 href={siteConfig.links.resume}
-                title="Open Hélder Cruz resume"
-                aria-label="Open Hélder Cruz resume"
+                title={dictionary.nav.openResume}
+                aria-label={dictionary.nav.openResume}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="liquid-glass-button group/nav-item hidden h-10 items-center gap-2 overflow-hidden rounded-full px-4 text-[10px] font-bold uppercase text-black/66 transition duration-300 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:inline-flex"
@@ -201,15 +215,30 @@ export function LiquidGlassNavbar() {
                   aria-hidden="true"
                   className="relative z-10 h-3.5 w-3.5 stroke-[1.8] transition duration-300 ease-out group-hover/nav-item:-translate-y-0.5 group-hover/nav-item:scale-105"
                 />
-                <NavHoverText>Resume</NavHoverText>
+                <NavHoverText>{dictionary.common.resume}</NavHoverText>
+              </Link>
+              <Link
+                href={alternateHref}
+                aria-label={`${dictionary.nav.switchLanguage}: ${alternateLocale.toUpperCase()}`}
+                className="liquid-glass-button hidden h-10 items-center gap-1.5 rounded-full px-3 text-[10px] font-bold uppercase text-black/62 transition duration-300 hover:bg-white/28 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black sm:inline-flex"
+                onClick={() => setMenuOpen(false)}
+              >
+                {locales.map((item) => (
+                  <span
+                    key={item}
+                    className={cn(item === locale ? "text-black" : "text-black/38")}
+                  >
+                    {item.toUpperCase()}
+                  </span>
+                ))}
               </Link>
               <NavbarInteractiveLink
                 href="/contact"
-                aria-label="Open contact page"
+                aria-label={dictionary.nav.openContact}
                 className="shadow-none"
                 onClick={() => setMenuOpen(false)}
               >
-                Contact
+                {dictionary.common.contact}
               </NavbarInteractiveLink>
               <Button
                 type="button"
@@ -217,7 +246,7 @@ export function LiquidGlassNavbar() {
                 size="sm"
                 className="liquid-glass-button !h-10 !w-10 !rounded-full !px-0 !text-black hover:!bg-white/28 md:!hidden"
                 onClick={() => setMenuOpen((current) => !current)}
-                aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+                aria-label={menuOpen ? dictionary.nav.closeMenu : dictionary.nav.openMenu}
                 aria-controls="liquid-glass-mobile-menu"
                 aria-expanded={menuOpen}
               >
@@ -245,19 +274,20 @@ export function LiquidGlassNavbar() {
                 : { duration: 0.24, ease: [0.22, 1, 0.36, 1] }
               }
             >
-              <nav className="liquid-glass-content flex flex-col gap-1" aria-label="Mobile navigation">
+              <nav className="liquid-glass-content flex flex-col gap-1" aria-label={dictionary.nav.mobileNavigation}>
                 {navLinks.map((link) => {
                   const active = isRouteActive(pathname, link.href);
+                  const label = dictionary.common[link.key];
 
                   return (
                     <Link
                       key={link.href}
-                      href={link.href}
+                      href={localizeHref(link.href)}
                       aria-current={active ? "page" : undefined}
                       className={cn(mobileItemClassName, active && "liquid-glass-menu-item-active")}
                       onClick={() => setMenuOpen(false)}
                     >
-                      <span>{link.label}</span>
+                      <span>{label}</span>
                       {active && (
                         <motion.span
                           layoutId="liquid-mobile-active-dot"
@@ -274,15 +304,24 @@ export function LiquidGlassNavbar() {
                 })}
                 <Link
                   href={siteConfig.links.resume}
-                  title="Open Hélder Cruz resume"
-                  aria-label="Open Hélder Cruz resume"
+                  title={dictionary.nav.openResume}
+                  aria-label={dictionary.nav.openResume}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={mobileItemClassName}
                   onClick={() => setMenuOpen(false)}
                 >
-                  <span>Resume</span>
+                  <span>{dictionary.common.resume}</span>
                   <FileText aria-hidden="true" className="h-4 w-4 stroke-[1.8]" />
+                </Link>
+                <Link
+                  href={alternateHref}
+                  className={mobileItemClassName}
+                  onClick={() => setMenuOpen(false)}
+                  aria-label={`${dictionary.nav.switchLanguage}: ${alternateLocale.toUpperCase()}`}
+                >
+                  <span>{dictionary.nav.switchLanguage}</span>
+                  <span className="text-xs font-bold uppercase">{alternateLocale.toUpperCase()}</span>
                 </Link>
               </nav>
             </motion.div>

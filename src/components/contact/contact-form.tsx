@@ -4,6 +4,7 @@ import { Loader2, Send } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion, type Variants } from "motion/react";
 import { Button } from "@/components/ui/button";
+import { useDictionary } from "@/i18n/use-i18n";
 import { cn } from "@/lib/utils";
 
 type ContactFormProps = {
@@ -38,19 +39,19 @@ const initialState: ContactState = {
 const projectTypes = ["Website", "Web app", "Backoffice", "Consulting", "Other"];
 const budgetRanges = ["Under 2k", "2k - 5k", "5k - 10k", "10k+"];
 
-function validate(values: ContactState) {
+function validate(values: ContactState, messages: ReturnType<typeof useDictionary>["contactForm"]["errors"]) {
   const errors: FieldErrors = {};
 
   if (values.name.trim().length < 2) {
-    errors.name = "Please enter your name.";
+    errors.name = messages.name;
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
-    errors.email = "Please enter a valid email address.";
+    errors.email = messages.email;
   }
 
   if (values.message.trim().length < 10) {
-    errors.message = "Message is too short.";
+    errors.message = messages.message;
   }
 
   return errors;
@@ -80,6 +81,8 @@ export function ContactForm({
   onSuccess,
   variant = "detailed"
 }: ContactFormProps) {
+  const dictionary = useDictionary();
+  const labels = dictionary.contactForm;
   const [values, setValues] = useState<ContactState>(initialState);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -94,12 +97,12 @@ export function ContactForm({
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const validationErrors = validate(values);
+    const validationErrors = validate(values, labels.errors);
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setStatus("error");
-      setStatusMessage("Please check the highlighted fields.");
+      setStatusMessage(labels.errors.highlighted);
       return;
     }
 
@@ -134,18 +137,18 @@ export function ContactForm({
 
         setErrors(nextErrors);
         setStatus("error");
-        setStatusMessage(result.message || "Could not send the message.");
+        setStatusMessage(result.message || labels.errors.send);
         return;
       }
 
       setValues(initialState);
       setErrors({});
       setStatus("success");
-      setStatusMessage(result.message || "Message sent successfully.");
+      setStatusMessage(result.message || labels.success);
       onSuccess?.();
     } catch {
       setStatus("error");
-      setStatusMessage("Could not send the message. Please try again later.");
+      setStatusMessage(labels.errors.fallback);
     }
   };
 
@@ -169,7 +172,7 @@ export function ContactForm({
       <div className="grid gap-6 sm:grid-cols-2">
         <motion.div variants={itemVariants}>
           <label className={labelClasses} htmlFor={getFieldId("name")}>
-            Name
+            {labels.name}
           </label>
           <input
             id={getFieldId("name")}
@@ -198,7 +201,7 @@ export function ContactForm({
 
         <motion.div variants={itemVariants}>
           <label className={labelClasses} htmlFor={getFieldId("email")}>
-            Email
+            {labels.email}
           </label>
           <input
             id={getFieldId("email")}
@@ -231,7 +234,7 @@ export function ContactForm({
       {isSimpleVariant ? (
         <motion.div variants={itemVariants}>
           <label className={labelClasses} htmlFor={getFieldId("subject")}>
-            Subject
+            {labels.subject}
           </label>
           <input
             id={getFieldId("subject")}
@@ -248,7 +251,7 @@ export function ContactForm({
         <div className="grid gap-6 sm:grid-cols-3">
           <motion.div variants={itemVariants}>
             <label className={labelClasses} htmlFor={getFieldId("company")}>
-              Company
+              {labels.company}
             </label>
             <input
               id={getFieldId("company")}
@@ -262,7 +265,7 @@ export function ContactForm({
           
           <motion.div variants={itemVariants}>
             <label className={labelClasses} htmlFor={getFieldId("project-type")}>
-              Project type
+              {labels.projectType}
             </label>
             <select
               id={getFieldId("project-type")}
@@ -271,7 +274,7 @@ export function ContactForm({
               onChange={(event) => updateValue("projectType", event.target.value)}
               className={cn(inputClasses, "cursor-pointer appearance-none")}
             >
-              <option value="">Select</option>
+              <option value="">{labels.select}</option>
               {projectTypes.map((projectType) => (
                 <option key={projectType} value={projectType}>
                   {projectType}
@@ -282,7 +285,7 @@ export function ContactForm({
 
           <motion.div variants={itemVariants}>
             <label className={labelClasses} htmlFor={getFieldId("budget")}>
-              Budget
+              {labels.budget}
             </label>
             <select
               id={getFieldId("budget")}
@@ -291,7 +294,7 @@ export function ContactForm({
               onChange={(event) => updateValue("budget", event.target.value)}
               className={cn(inputClasses, "cursor-pointer appearance-none")}
             >
-              <option value="">Select</option>
+              <option value="">{labels.select}</option>
               {budgetRanges.map((budgetRange) => (
                 <option key={budgetRange} value={budgetRange}>
                   {budgetRange}
@@ -304,7 +307,7 @@ export function ContactForm({
 
       <motion.div variants={itemVariants}>
         <label className={labelClasses} htmlFor={getFieldId("message")}>
-          Message
+          {labels.message}
         </label>
         <textarea
           id={getFieldId("message")}
@@ -351,12 +354,12 @@ export function ContactForm({
           {status === "loading" ? (
             <>
               <Loader2 aria-hidden="true" className="mr-2 h-4 w-4 animate-spin" />
-              Sending...
+              {labels.sending}
             </>
           ) : (
             <>
               <Send aria-hidden="true" className="mr-2 h-4 w-4" />
-              Send message
+              {labels.sendMessage}
             </>
           )}
         </Button>

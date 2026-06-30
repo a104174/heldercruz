@@ -1,0 +1,382 @@
+export const en = {
+  metadata: {
+    homeTitle: "Software Engineer",
+    homeDescription:
+      "Hélder Cruz is a Software Engineer crafting clean, scalable and user-focused web applications.",
+    workTitle: "Selected Work",
+    workDescription:
+      "Three real-world projects built for clients, combining clean interfaces, responsive design and practical business-focused features.",
+    aboutTitle: "About",
+    aboutDescription:
+      "About Hélder Cruz, Software Engineer focused on useful and reliable digital products.",
+    experienceTitle: "Experience",
+    experienceDescription:
+      "Software engineering experience, education and client work from Hélder Cruz.",
+    contactTitle: "Contact",
+    contactDescription:
+      "Contact Hélder Cruz for software engineering projects and collaborations."
+  },
+  common: {
+    work: "Work",
+    projects: "Projects",
+    about: "About",
+    experience: "Experience",
+    contact: "Contact",
+    resume: "Resume",
+    cv: "Resume",
+    viewProjects: "View projects",
+    viewSelectedProjects: "View selected projects",
+    viewProject: "View project",
+    backHome: "Back home",
+    backToProjects: "Back to projects",
+    selectedWork: "Selected Work",
+    caseStudy: "Case Study",
+    nextProject: "Next Project",
+    technicalNotes: "Technical Notes"
+  },
+  nav: {
+    mainNavigation: "Main navigation",
+    mobileNavigation: "Mobile navigation",
+    goHome: "Go to homepage",
+    openResume: "Open Hélder Cruz resume",
+    openContact: "Open contact page",
+    openMenu: "Open navigation menu",
+    closeMenu: "Close navigation menu",
+    switchLanguage: "Switch language"
+  },
+  footer: {
+    description:
+      "Software Engineer building clean, scalable and useful digital products for real client needs.",
+    navigate: "Navigate",
+    connect: "Connect",
+    rights: "All rights reserved."
+  },
+  contactForm: {
+    name: "Name",
+    email: "Email",
+    subject: "Subject",
+    company: "Company",
+    projectType: "Project type",
+    budget: "Budget",
+    message: "Message",
+    select: "Select",
+    sendMessage: "Send message",
+    sending: "Sending...",
+    errors: {
+      name: "Please enter your name.",
+      email: "Please enter a valid email address.",
+      message: "Message is too short.",
+      highlighted: "Please check the highlighted fields.",
+      send: "Could not send the message.",
+      fallback: "Could not send the message. Please try again later."
+    },
+    success: "Message sent successfully."
+  },
+  contactPage: {
+    eyebrow: "Get in touch",
+    title: "Let's talk.",
+    intro:
+      "Whether you have a specific project in mind, need a tailored system, or just want to explore a potential collaboration, I am ready to talk.",
+    directConnect: "Direct Connect",
+    digitalPresence: "Digital Presence",
+    message: "Message",
+    formTitle: "Send the details directly.",
+    emailNote: "Detailed messages, proposals and opportunities.",
+    whatsappLabel: "WhatsApp / Phone",
+    whatsappNote: "Available for quick messages and faster communication."
+  },
+  home: {
+    heroTitle: "Building software that works",
+    quote: "Good software should feel simple, useful and effortless.",
+    quoteLines: ["Good software should feel simple,", "useful and effortless."],
+    ctaTitle: "Have a project in mind?",
+    ctaText: "Let's build something clean, fast and useful.",
+    latestFocus: "Latest Focus",
+    builtAndShipped: "Built and shipped for clients",
+    collageTitle: "Design-Led Engineering",
+    manifesto:
+      "I’ve worked on client projects that go beyond the interface, combining websites, backoffices, email flows, databases and practical tools for real businesses.",
+    focusTitle: "Built for real client needs.",
+    servicesEyebrow: "Websites and systems",
+    servicesTitle: "Features that bring real value to your website",
+    servicesText:
+      "Beyond polished pages, I build systems that organize data, automate workflows and make running your project or business simpler.",
+    serviceCards: [
+      {
+        name: "Data exports",
+        description: "I turn backoffice data into Excel/PDF reports ready to use."
+      },
+      {
+        name: "Notifications",
+        description: "I create alerts for bookings, requests, payments and important changes."
+      },
+      {
+        name: "Integrations",
+        description: "I connect websites to databases, emails, forms and external services."
+      },
+      {
+        name: "Calendars and scheduling",
+        description:
+          "I build calendars to organize events, appointments, tasks and internal operations."
+      }
+    ]
+  },
+  about: {
+    eyebrow: "Portfolio / About",
+    heroTitle: "Useful software starts with understanding people.",
+    heroIntro:
+      "I'm Hélder Cruz, a Software Engineer graduated in Computer Engineering from Universidade do Minho. I live in Braga (Portugal) and work in digital products that combine technical depth, thoughtful design and real-world usefulness.",
+    storyTitle: "From curiosity to engineering.",
+    storyIntro:
+      "My interest in technology started through gaming. At first, it was curiosity: wanting to understand how the systems behind those experiences worked. Over time, that curiosity became a need to build things myself, understand software from the inside and use it to solve real problems.",
+    storyJourneySteps: [
+      {
+        title: "Gaming",
+        text: "Where the curiosity started."
+      },
+      {
+        title: "Curiosity",
+        text: "Understanding how things worked became the real motivation."
+      },
+      {
+        title: "Systems",
+        text: "That curiosity evolved into thinking about logic, structure and behaviour."
+      },
+      {
+        title: "Software",
+        text: "Today, I use that mindset to build products for real people and real needs."
+      }
+    ],
+    clientWorkTitle: "Real client work, real constraints.",
+    clientWorkIntro:
+      "Working with real clients taught me how to communicate technical decisions clearly, understand business needs and turn vague ideas into working software.",
+    clientProjects: [
+      {
+        title: "Casa Benfica Lenzburg",
+        text:
+          "The most complete project I have worked on so far. What started as a public website became a broader digital ecosystem with event and album management, membership systems, reservations, email flows, work schedules, event agendas, editable cocktail menus and restaurant billing tools. Several internal operations now rely on software I designed and built from the ground up."
+      },
+      {
+        title: "XV Studio",
+        text:
+          "A website designed around the agency's services, with a specific visual direction for each area and a contact flow built to feel simple, guided and intentional."
+      },
+      {
+        title: "HAUSB",
+        text:
+          "A project where development and brand direction came together. Beyond building the website, I helped shape the digital identity, structure the message and create content for a field I had to study and understand."
+      }
+    ],
+    approachTitle: "How I approach software.",
+    approachIntro:
+      "I like to start by understanding the purpose of the project, the people who will use it and the workflows it needs to support. Before writing code, I build a mental model of the product: what needs to exist, how the system should behave and how the user should move through it.",
+    principleLabel: "Principle",
+    principles: [
+      {
+        title: "Human-driven functionality",
+        text:
+          "Good software should consider human error, reduce unnecessary repetition and make important actions clear."
+      },
+      {
+        title: "Design before execution",
+        text:
+          "I usually think through the structure, flow and visual direction before moving into backend logic and frontend implementation."
+      },
+      {
+        title: "Reliable systems",
+        text:
+          "For me, software that works is software that handles edge cases, supports real workflows and remains dependable when real people use it."
+      },
+      {
+        title: "Clear communication",
+        text:
+          "Client work taught me how to explain technical decisions in simple terms and translate real needs into practical software."
+      }
+    ],
+    valuesTitle: "What I care about.",
+    valuesIntro:
+      "Perfectionism, critical thinking and responsibility shape the way I work. I care about building things that are useful, not just visually impressive.",
+    coreValues: [
+      {
+        title: "Responsibility",
+        text:
+          "Owning decisions, respecting the people who depend on the work and keeping the product useful beyond the first delivery."
+      },
+      {
+        title: "Critical thinking",
+        text:
+          "Questioning assumptions, understanding trade-offs and choosing solutions for the real problem, not just the obvious one."
+      },
+      {
+        title: "Attention to detail",
+        text:
+          "Caring about the small interactions, edge cases and visual decisions that make software feel considered."
+      }
+    ],
+    beyondCodeEyebrow: "Beyond Code",
+    beyondCodeTitle: "Beyond code.",
+    beyondCodeText:
+      "Outside software, I also compete as an esports athlete for Universidade do Minho, where I reached national podiums and became national champion in 2026. I also train MMA, play basketball and enjoy reading about psychology, sociology and human behaviour.",
+    esportsBadge: "University esports · 2026",
+    skillsTitle: "Skills and technologies.",
+    skillsIntro:
+      "A practical toolkit for building interfaces, backend logic, internal tools and production-ready digital systems.",
+    ctaTitle: "Want to build something together?",
+    ctaText: "Let's build something meaningful, useful and made to last."
+  },
+  experience: {
+    eyebrow: "Portfolio / Experience",
+    heroTitle: "Engineering for the real world.",
+    heroIntro:
+      "From Software Engineering foundations to client projects, my experience has been shaped by building, communicating and delivering software for real needs.",
+    skillsTitle: "Skills in Practice",
+    skillCards: [
+      "Frontend development",
+      "Backend logic",
+      "Database-driven applications",
+      "Client communication",
+      "Deployment and production setup"
+    ],
+    foundationTitle: "A broad engineering foundation.",
+    foundationIntro:
+      "My background in Computer Engineering gave me a technical foundation that goes beyond web development. During my degree, I worked across areas such as databases, object-oriented programming, distributed systems, cybersecurity, machine learning, computer graphics, statistics, calculus, low-level programming and software engineering.",
+    foundationAreas: [
+      "Databases",
+      "Object-Oriented Programming",
+      "Distributed Systems",
+      "Cybersecurity",
+      "Machine Learning",
+      "Low-level Programming",
+      "Computer Graphics",
+      "Statistics & Calculus"
+    ],
+    airportRepositoryLabel: "Open Airport terminal system repository on GitHub",
+    airportTitle: "Airport terminal system",
+    airportDescription:
+      "One of the projects that shaped the way I think about software was an airport terminal system, where flights, airports, airplanes, passengers, tickets and operational flows had to be modelled and managed together. It helped me understand that good software is not only about writing code, but about designing systems that represent complex real-world processes clearly.",
+    ctaTitle: "You decide what's next."
+  },
+  projectDetail: {
+    caseStudy: "Case Study",
+    projectEcosystem: "Project ecosystem",
+    responsiveUi: "Responsive UI",
+    technicalNotes: "Technical Notes",
+    nextProject: "Next Project",
+    viewProject: "View project",
+    backToProjects: "Back to projects",
+    contact: "Contact",
+    casaIntro: "A public website and internal backoffice system built for a real business.",
+    casaSectionTitle: "From public presence to internal operations",
+    casaSectionDescription:
+      "Casa Benfica Lenzburg required a comprehensive digital overhaul. The challenge was twofold: creating a compelling public-facing website to attract patrons and establish a strong local brand presence, while simultaneously developing a robust internal backoffice system to streamline their reservation and billing operations. This dual-natured project demanded a seamless integration between front-end aesthetics and back-end utility.",
+    casaGalleryTitle: "Public pages and internal tools in the same ecosystem.",
+    casaGalleryDescription:
+      "The project combines public-facing sections for visitors with practical operational interfaces for reservations, communication, team schedules and event content.",
+    casaCommunityEyebrow: "Community Content",
+    casaCommunityTitle: "Event albums and contact paths stay part of the public experience.",
+    casaCommunityDescription:
+      "The website also supports browsing community moments and finding practical venue information without needing to enter the internal backoffice.",
+    casaChallengesTitle: "Core Challenges",
+    casaClosing:
+      "Built as a practical digital system for a real client, combining public-facing design with internal operational tools.",
+    xvGalleryTitle: "A service website with guided contact and admin screens.",
+    xvGalleryDescription:
+      "XV Studio combines a polished public website with a practical contact flow and backoffice surfaces. The screenshots show the production UI across service pages, project intake and editing states.",
+    xvMobileTitle: "Mobile layouts kept consistent with desktop.",
+    xvMobileDescription:
+      "The mobile screens preserve the same hierarchy and interaction patterns, keeping the service browsing experience sharp on smaller devices.",
+    hausbGalleryTitle: "A clean business website with real responsive screens.",
+    hausbGalleryDescription:
+      "The HAUSB website was built around clear service communication, calm visual hierarchy and responsive pages that feel consistent across desktop and mobile. These screenshots show the production-facing layouts rather than abstract placeholders.",
+    hausbMobileTitle: "Mobile states included from the start.",
+    hausbMobileDescription:
+      "The visual system carries through smaller screens, including service pages and navigation states that keep the experience direct and usable."
+  },
+  projects: {
+    "casa-benfica-lenzburg": {
+      shortDescription:
+        "Public website, reservation backoffice and restaurant billing system for Casa Benfica Lenzburg.",
+      longDescription:
+        "Developed the public website and internal backoffice systems for Casa Benfica Lenzburg, including reservation management and restaurant billing features.",
+      role: "Full-stack Developer",
+      features: [
+        "Public website",
+        "Reservation management",
+        "Admin backoffice",
+        "Restaurant billing system",
+        "Email integrations",
+        "Database structure",
+        "Production deployment"
+      ],
+      imageAlt: "Screenshots from the Casa Benfica Lenzburg website and backoffice",
+      imageLabel: "Casa Benfica website, reservations and backoffice screens",
+      technicalNotes: [
+        "Built around production-ready deployment flows on Vercel.",
+        "Structured to support reservation and billing-related internal workflows.",
+        "Email flows prepared with server-only Resend integration patterns."
+      ]
+    },
+    "xv-studio": {
+      shortDescription:
+        "Multi-page service website with custom layouts, polished presentation and a guided contact flow.",
+      longDescription:
+        "Developed a multi-page service website with custom page layouts, polished visual presentation and an intuitive step-based contact experience.",
+      role: "Frontend Developer",
+      features: [
+        "Multi-page website",
+        "Custom service pages",
+        "Guided contact flow",
+        "Responsive layout",
+        "Smooth user experience"
+      ],
+      imageAlt: "Screenshots from the XV Studio website and contact flow",
+      imageLabel: "XV Studio website screens and guided contact flow",
+      technicalNotes: [
+        "Component structure prepared for custom service pages.",
+        "Contact experience designed around progressive, step-based input.",
+        "Responsive layout patterns kept reusable for future page expansion."
+      ]
+    },
+    hausb: {
+      shortDescription:
+        "Modern business website focused on clean presentation, responsive layout and professional brand presence.",
+      longDescription:
+        "Developed a modern business website focused on clear communication, responsive design and professional presentation.",
+      role: "Frontend Developer",
+      features: [
+        "Business website",
+        "Responsive UI",
+        "Clean layout",
+        "Professional brand presentation",
+        "Deployment-ready frontend"
+      ],
+      imageAlt: "Screenshots from the HAUSB business website",
+      imageLabel: "HAUSB website screens and responsive brand presence",
+      technicalNotes: [
+        "Frontend structure optimized for clear content hierarchy.",
+        "Reusable responsive sections prepared for future visual mockups.",
+        "Deployment path kept simple for Vercel hosting."
+      ]
+    }
+  },
+  experienceItems: [
+    {
+      title: "Junior Frontend Developer Intern",
+      organization: "Complear",
+      description:
+        "Worked in an 8-person team, participated in code reviews and weekly feedback meetings, fixed frontend and backend bugs, and worked with technologies such as Elixir, React Flow and Phoenix LiveView."
+    },
+    {
+      title: "Freelance Software Projects",
+      organization: "Client work",
+      description:
+        "Built real-world websites and internal tools for clients, including public websites, backoffice systems, contact flows, reservation management and billing-related features."
+    },
+    {
+      title: "Software Engineering",
+      organization: "Universidade do Minho",
+      description:
+        "Graduated in Software Engineering, with academic foundations in computer engineering, databases, distributed systems, computer networks, security, human-computer interaction and artificial intelligence."
+    }
+  ]
+} as const;

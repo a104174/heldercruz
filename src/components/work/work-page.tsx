@@ -8,7 +8,8 @@ import { PageShell } from "@/components/layout/page-shell";
 import { PortfolioInteractiveLink } from "@/components/ui/portfolio-interactive-button";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { TypingAnimation } from "@/components/ui/typing-animation";
-import { projects, type Project, type ProjectSlug } from "@/data/projects";
+import { getProjects, type Project, type ProjectSlug } from "@/data/projects";
+import { useDictionary, useLocale, useLocalizedHref } from "@/i18n/use-i18n";
 import { cn } from "@/lib/utils";
 
 const visualVariants: Record<ProjectSlug, "browser" | "mobile" | "website"> = {
@@ -191,6 +192,8 @@ function WorkVisual({
 }
 
 function ProjectTile({ project, featured = false, index = 0 }: { project: Project; featured?: boolean; index?: number }) {
+  const localizeHref = useLocalizedHref();
+
   return (
     <motion.article 
       initial={{ opacity: 0, y: 30 }}
@@ -201,7 +204,7 @@ function ProjectTile({ project, featured = false, index = 0 }: { project: Projec
       className={cn("group", featured && "md:col-span-2")}
     >
       <Link
-        href={project.href}
+        href={localizeHref(project.href)}
         className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
       >
         <WorkVisual project={project} featured={featured} />
@@ -229,7 +232,9 @@ function ProjectTile({ project, featured = false, index = 0 }: { project: Projec
 }
 
 export function WorkPage() {
-  const [featuredProject, ...secondaryProjects] = projects;
+  const locale = useLocale();
+  const dictionary = useDictionary();
+  const [featuredProject, ...secondaryProjects] = getProjects(locale);
 
   return (
     <PageShell>
@@ -242,7 +247,7 @@ export function WorkPage() {
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="mb-8 text-[10px] font-bold uppercase tracking-[0.18em] text-black/38"
           >
-            Portfolio / Work
+            Portfolio / {dictionary.common.work}
           </motion.p>
           
           <TextAnimate 
@@ -251,7 +256,7 @@ export function WorkPage() {
             duration={0.4}
             className="text-[48px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[72px] md:text-[80px]"
           >
-            Selected Work
+            {dictionary.metadata.workTitle}
           </TextAnimate>
           
           <motion.div 
@@ -264,7 +269,7 @@ export function WorkPage() {
               duration={6}
               className="text-left text-[15px] font-normal leading-7 text-black/56 tracking-normal"
             >
-              Three real-world projects built for clients, combining clean interfaces, responsive design and practical business-focused features.
+              {dictionary.metadata.workDescription}
             </TypingAnimation>
           </motion.div>
         </div>
@@ -281,16 +286,16 @@ export function WorkPage() {
         <AnimatedReveal delay={0.1} className="mt-36">
           <div className="group flex min-h-[360px] flex-col items-center justify-center rounded-[24px] border border-black/10 bg-[#efede9] px-6 py-16 text-center transition-all duration-700 hover:border-transparent hover:bg-[#111111] md:min-h-[430px]">
             <h2 className="text-[42px] font-semibold leading-none tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[58px] md:text-[72px]">
-              Have a project in mind?
+              {dictionary.home.ctaTitle}
             </h2>
             <p className="mt-6 max-w-[520px] text-[13px] leading-6 text-black/48 transition-colors duration-700 group-hover:text-white/60">
-              Let&apos;s discuss how we can work together to build something beautiful and functional.
+              {dictionary.home.ctaText}
             </p>
             <PortfolioInteractiveLink
               href="/contact"
               className="mt-8 transition-transform duration-500 group-hover:scale-110"
             >
-              Contacto
+              {dictionary.common.contact}
             </PortfolioInteractiveLink>
           </div>
         </AnimatedReveal>
