@@ -1,6 +1,5 @@
 "use client";
 
-import { MessageCircle } from "lucide-react";
 import { useReducedMotion } from "motion/react";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -16,29 +15,24 @@ import {
 import { cn } from "@/lib/utils";
 
 const navigateLinks = [
-  { key: "home", href: "/" },
   { key: "work", href: "/projects" },
   { key: "about", href: "/about" },
+  { key: "experience", href: "/experience" },
   { key: "contact", href: "/contact" }
 ] as const;
 
-const socialLinks = [
-  { label: "GitHub", href: "https://github.com/a104174" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/heldercruz30" },
-  { label: "X", href: "https://x.com/hcruz30" },
-  { label: "Instagram", href: "https://www.instagram.com/hcruzz._/" }
-] as const;
+const footerSpecialties = ["Software", "Websites", "Branding", "Design"] as const;
 
 const footerCopy = {
   en: {
     home: "Home",
     getInTouch: "Get in Touch",
-    topStatement: "Based in Portugal"
+    topStatement: "Based in Portugal. For real needs"
   },
   pt: {
     home: "Início",
-    getInTouch: "Entrar em contacto",
-    topStatement: "Baseado em Portugal"
+    getInTouch: "Vamos Falar",
+    topStatement: "Baseado em Portugal. Com propósito"
   }
 } as const;
 
@@ -88,10 +82,36 @@ function FooterIconLink({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="inline-flex h-5 w-5 items-center justify-center text-white/48 transition-all duration-300 hover:-translate-y-0.5 hover:text-white"
+      className="inline-flex h-7 w-7 items-center justify-center text-white/48 transition-all duration-300 hover:-translate-y-0.5 hover:text-white"
     >
       {children}
     </Link>
+  );
+}
+
+function FooterHoverText({ children }: { children: ReactNode }) {
+  return (
+    <span className="relative z-10 block h-[1.12em] overflow-hidden leading-[1.12]">
+      <span className="block transition-transform duration-300 ease-out group-hover/nav-item:-translate-y-full">
+        {children}
+      </span>
+      <span className="absolute left-0 top-full block transition-transform duration-300 ease-out group-hover/nav-item:-translate-y-full">
+        {children}
+      </span>
+    </span>
+  );
+}
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.52 0 .2 5.32.2 11.87c0 2.09.55 4.13 1.59 5.93L0 24l6.38-1.67a11.8 11.8 0 0 0 5.69 1.45h.01c6.55 0 11.87-5.32 11.87-11.87 0-3.17-1.23-6.15-3.43-8.43ZM12.08 21.8h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.22-3.79 1 1.01-3.69-.24-.38a9.91 9.91 0 0 1-1.52-5.26c0-5.47 4.45-9.92 9.93-9.92 2.65 0 5.14 1.03 7.01 2.91a9.85 9.85 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.91 9.92Zm5.44-7.39c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.66.15-.2.3-.76.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.14-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.08-.15-.67-1.62-.92-2.23-.24-.58-.48-.5-.66-.51h-.56c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.9 1.22 3.1c.15.2 2.1 3.2 5.08 4.48.71.31 1.27.5 1.7.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.56-.35Z" />
+    </svg>
   );
 }
 
@@ -106,14 +126,14 @@ export function HomeFooter() {
   const contactHref = localizeHref("/contact");
 
   const localizedNavigateLinks = navigateLinks.map((link, index) => ({
-    label: link.key === "home" ? copy.home : dictionary.common[link.key],
+    label: dictionary.common[link.key],
     featured: index === 0,
     href: localizeHref(link.href)
   }));
 
   const languageLinks = [
     { locale: "pt", label: "PT", href: portugueseHref },
-    { locale: "en", label: "ENG", href: englishHref }
+    { locale: "en", label: "EN", href: englishHref }
   ] as const;
 
   return (
@@ -123,16 +143,8 @@ export function HomeFooter() {
       <div className="relative z-10 mx-auto flex h-full max-w-[1728px] flex-col pt-10 sm:pt-12 lg:pt-10">
         <AnimatedReveal className="flex min-h-16 items-center justify-between border-b border-white/10 text-xs font-semibold text-white/38 sm:min-h-[70px]">
           <div className="flex flex-wrap gap-x-4 gap-y-2">
-            {socialLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors duration-300 hover:text-white"
-              >
-                {link.label}
-              </Link>
+            {footerSpecialties.map((item) => (
+              <span key={item}>{item}</span>
             ))}
           </div>
 
@@ -156,13 +168,11 @@ export function HomeFooter() {
                   <Link
                     href={link.href}
                     className={cn(
-                      "group inline-flex items-center text-[26px] font-semibold leading-[0.92] tracking-[-0.06em] transition-colors duration-300 hover:text-white sm:text-[28px] lg:text-[30px]",
+                      "group/nav-item inline-flex items-center overflow-hidden text-[26px] font-semibold leading-none tracking-[-0.06em] transition-colors duration-300 hover:text-white sm:text-[28px] lg:text-[30px]",
                       link.featured ? "text-white" : "text-white/52"
                     )}
                   >
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">
-                      {link.label}
-                    </span>
+                    <FooterHoverText>{link.label}</FooterHoverText>
                   </Link>
                 </li>
               ))}
@@ -171,16 +181,16 @@ export function HomeFooter() {
 
           <div className="flex items-center gap-4 sm:justify-end">
             <FooterIconLink href="https://wa.me/351914096517" label="WhatsApp">
-              <MessageCircle aria-hidden="true" className="h-[15px] w-[15px] stroke-[2]" />
+              <WhatsAppIcon className="h-5 w-5" />
             </FooterIconLink>
             <FooterIconLink href="https://www.instagram.com/hcruzz._/" label="Instagram">
-              <InstagramIcon aria-hidden="true" className="h-[15px] w-[15px]" />
+              <InstagramIcon aria-hidden="true" className="h-5 w-5" />
             </FooterIconLink>
             <FooterIconLink href="https://github.com/a104174" label="GitHub">
-              <GithubIcon aria-hidden="true" className="h-[15px] w-[15px]" />
+              <GithubIcon aria-hidden="true" className="h-5 w-5" />
             </FooterIconLink>
             <FooterIconLink href="https://linkedin.com/in/heldercruz30" label="LinkedIn">
-              <LinkedinIcon aria-hidden="true" className="h-[15px] w-[15px]" />
+              <LinkedinIcon aria-hidden="true" className="h-5 w-5" />
             </FooterIconLink>
           </div>
         </AnimatedReveal>

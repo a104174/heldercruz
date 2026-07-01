@@ -849,7 +849,7 @@ function CtaSection() {
         </motion.span>
         <Text3DFlip
           as="h2"
-          className="justify-center bg-[#fbfaf7] font-sans text-4xl font-semibold leading-none tracking-[-0.05em] text-black sm:text-6xl md:text-7xl lg:text-8xl"
+          className="justify-center bg-[#fbfaf7] font-sans text-4xl font-semibold leading-[1.06] tracking-[-0.05em] text-black sm:text-6xl md:text-7xl lg:text-8xl"
           textClassName="bg-[#fbfaf7] text-black"
           flipTextClassName="bg-[#fbfaf7] text-black"
           rotateDirection="top"

@@ -245,14 +245,14 @@ const CharBox = memo(
       style={{ transform: CONTAINER_TRANSFORMS[rotateDirection] }}
     >
       <span
-        className={cn("relative h-[1lh] backface-hidden", textClassName)}
+        className={cn("relative h-[1.14lh] pb-[0.08em] backface-hidden", textClassName)}
         style={{ transform: FRONT_FACE_TRANSFORMS[rotateDirection] }}
       >
         {char}
       </span>
       <span
         className={cn(
-          "absolute top-0 left-0 h-[1lh] backface-hidden",
+          "absolute top-0 left-0 h-[1.14lh] pb-[0.08em] backface-hidden",
           flipTextClassName
         )}
         style={{ transform: SECOND_FACE_TRANSFORMS[rotateDirection] }}
