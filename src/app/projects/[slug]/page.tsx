@@ -38,6 +38,38 @@ const casaMeta = [
   { label: "Focus", value: "Website + Backoffice" }
 ];
 
+const xvStudioMeta = [
+  { label: "Role", value: "Frontend Developer" },
+  { label: "Type", value: "Client Project" },
+  { label: "Stack", value: "Next.js / TypeScript" },
+  { label: "Focus", value: "Website + Contact Flow" }
+];
+
+const hausbMeta = [
+  { label: "Role", value: "Frontend Developer" },
+  { label: "Type", value: "Client Project" },
+  { label: "Stack", value: "Next.js / Tailwind CSS" },
+  { label: "Focus", value: "Website + Brand Direction" }
+];
+
+function ProjectMetaGrid({ items }: { items: Array<{ label: string; value: string }> }) {
+  return (
+    <AnimatedReveal
+      delay={0.05}
+      className="mx-auto mt-14 grid max-w-[840px] gap-4 sm:grid-cols-2 lg:grid-cols-4"
+    >
+      {items.map((item) => (
+        <div key={item.label} className="border border-black/8 bg-[#efede9] px-5 py-4">
+          <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-black/32">
+            {item.label}
+          </p>
+          <p className="mt-2 text-[12px] font-medium leading-5 text-black">{item.value}</p>
+        </div>
+      ))}
+    </AnimatedReveal>
+  );
+}
+
 const casaFeatures = [
   {
     title: "Public Website",
@@ -439,6 +471,8 @@ function XvStudioProjectPage({
           </p>
         </AnimatedReveal>
 
+        <ProjectMetaGrid items={xvStudioMeta} />
+
         <AnimatedReveal delay={0.08} className="mt-16 overflow-hidden rounded-[34px] border border-black/10 bg-black shadow-[0_24px_80px_rgba(0,0,0,0.12)]">
           <div className="relative aspect-[4/3] md:aspect-[16/10]">
             <Image
@@ -537,6 +571,8 @@ function HausbProjectPage({
           </p>
         </AnimatedReveal>
 
+        <ProjectMetaGrid items={hausbMeta} />
+
         <AnimatedReveal delay={0.08} className="mt-16 overflow-hidden rounded-[34px] border border-black/10 bg-black shadow-[0_24px_80px_rgba(0,0,0,0.12)]">
           <div className="relative aspect-[4/3] md:aspect-[16/10]">
             <Image
@@ -631,19 +667,7 @@ function CasaBenficaProjectPage({
           </p>
         </AnimatedReveal>
 
-        <AnimatedReveal
-          delay={0.05}
-          className="mx-auto mt-14 grid max-w-[840px] gap-4 sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {casaMeta.map((item) => (
-            <div key={item.label} className="border border-black/8 bg-[#efede9] px-5 py-4">
-              <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-black/32">
-                {item.label}
-              </p>
-              <p className="mt-2 text-[12px] font-medium leading-5 text-black">{item.value}</p>
-            </div>
-          ))}
-        </AnimatedReveal>
+        <ProjectMetaGrid items={casaMeta} />
 
         <HeroVisual />
 

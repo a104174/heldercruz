@@ -55,10 +55,22 @@ export function FooterRevealShell({
         className={cn(
           "relative bg-[#fbfaf7]",
           revealEnabled &&
-            "lg:z-30 lg:mb-[calc(var(--footer-reveal-height)-1px)] lg:overflow-hidden lg:rounded-b-[2rem] xl:rounded-b-[3rem]"
+            "lg:z-30 lg:mb-[calc(var(--footer-reveal-height)-1px)] lg:overflow-visible lg:rounded-b-[2rem] xl:rounded-b-[3rem]"
         )}
       >
         {children}
+        {revealEnabled ? (
+          <>
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute bottom-0 left-0 z-10 hidden h-12 w-12 rounded-tr-[2rem] bg-neutral-950 lg:block xl:h-16 xl:w-16 xl:rounded-tr-[3rem]"
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute bottom-0 right-0 z-10 hidden h-12 w-12 rounded-tl-[2rem] bg-neutral-950 lg:block xl:h-16 xl:w-16 xl:rounded-tl-[3rem]"
+            />
+          </>
+        ) : null}
       </div>
 
       <div
