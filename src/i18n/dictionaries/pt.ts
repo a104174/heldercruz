@@ -5,7 +5,7 @@ export const pt = {
       "Engenheiro de Software focado em transformar as tuas ideias em interfaces limpas e arquiteturas rigorosas.",
     workTitle: "Projetos Selecionados",
     workDescription:
-      "Três projetos reais para clientes, combinando interfaces cuidadas, design responsivo e funcionalidades práticas para negócio.",
+      "Alguns exemplos de projetos reais para clientes, combinando interfaces, design responsivo e funcionalidades práticas para negócio.",
     aboutTitle: "Sobre",
     aboutDescription:
       "Sobre Hélder Cruz, Engenheiro de Software focado em produtos digitais úteis e fiáveis.",
@@ -191,7 +191,7 @@ export const pt = {
     eyebrow: "Portefólio / Sobre",
     heroTitle: "Software útil começa por compreender pessoas.",
     heroIntro:
-      "Sou o Hélder Cruz, Engenheiro de Software licenciado em Engenharia Informática pela Universidade do Minho. Vivo em Braga (Portugal) e trabalho em produtos digitais que combinam profundidade técnica, design cuidado e utilidade real.",
+      "O meu nome é Hélder Cruz, sou Engenheiro de Software licenciado em Engenharia Informática pela Universidade do Minho. Vivo em Braga (Portugal) e trabalho em produtos digitais que combinam websites, sistemas de gestão interna e desenvolvimento de software.",
     storyTitle: "Da curiosidade à engenharia.",
     storyIntro:
       "O meu interesse por tecnologia começou através dos videojogos. Primeiro foi curiosidade: queria perceber como funcionavam os sistemas por trás dessas experiências. Com o tempo, essa curiosidade tornou-se vontade de construir, compreender software por dentro e usá-lo para resolver problemas reais.",
@@ -282,11 +282,17 @@ export const pt = {
     beyondCodeEyebrow: "Para além do código",
     beyondCodeTitle: "Para além do código.",
     beyondCodeText:
-      "Fora do software, também compito como atleta de esports pela Universidade do Minho, onde alcancei pódios nacionais e me tornei campeão nacional em 2026. Também treino MMA, jogo basquetebol e gosto de ler sobre psicologia, sociologia e comportamento humano.",
+      "Fora do software, também compito como atleta de esports pela Universidade do Minho, onde alcancei pódios nacionais e me tornei campeão nacional em 2026. Também pratico MMA, jogo basquetebol/futebol e gosto de ler sobre psicologia, sociologia e comportamento humano.",
     esportsBadge: "Esports universitário · 2026",
     skillsTitle: "Competências e tecnologias.",
     skillsIntro:
-      "Um conjunto prático de ferramentas para construir interfaces, lógica backend, ferramentas internas e sistemas digitais prontos para produção.",
+      "Um conjunto prático das ferramentas que utilizo para construir interfaces, lógica backend, ferramentas internas e sistemas digitais prontos para produção.",
+    skillGroupTitles: {
+      languages: "Linguagens",
+      webSoftware: "Web e software",
+      dataInfrastructure: "Dados e infraestrutura",
+      tools: "Ferramentas"
+    },
     ctaTitle: "Queres construir algo em conjunto?",
     ctaText: "Vamos construir algo com significado, útil e feito para durar."
   },
@@ -331,6 +337,16 @@ export const pt = {
     viewProject: "Ver projeto",
     backToProjects: "Voltar aos projetos",
     contact: "Contacto",
+    metaLabels: {
+      role: "Função",
+      type: "Tipo",
+      stack: "Stack",
+      focus: "Foco"
+    },
+    clientProject: "Projeto de cliente",
+    casaMetaFocus: "Website + backoffice",
+    xvMetaFocus: "Website + fluxo de contacto",
+    hausbMetaFocus: "Website + direção de marca",
     casaIntro: "Um website público e sistema interno de backoffice criado para um negócio real.",
     casaSectionTitle: "Da presença pública às operações internas",
     casaSectionDescription:
@@ -351,9 +367,48 @@ export const pt = {
     xvMobileTitle: "Layouts mobile consistentes com desktop.",
     xvMobileDescription:
       "Os ecrãs mobile preservam a mesma hierarquia e padrões de interação, mantendo a experiência de navegação pelos serviços clara em dispositivos mais pequenos.",
-    hausbGalleryTitle: "Um website empresarial limpo com ecrãs responsivos reais.",
+    hausbGalleryTitle: "Um website empresarial limpo para todo o tipo de ecrãs.",
     hausbGalleryDescription:
       "O website da HAUSB foi construído em torno de comunicação clara dos serviços, hierarquia visual calma e páginas responsivas consistentes entre desktop e mobile. Estas capturas mostram layouts reais, não placeholders abstratos.",
+    hausbScreenshotAltContext: "website da HAUSB",
+    hausbScreenshots: [
+      {
+        title: "Página inicial",
+        description: "Landing page focada numa primeira impressão limpa e num posicionamento direto dos serviços."
+      },
+      {
+        title: "Página de arquitetura",
+        description: "Página de serviço com conteúdo estruturado, bom ritmo visual e hierarquia clara."
+      },
+      {
+        title: "Página de construção",
+        description: "Página focada nos serviços de construção, com linguagem visual consistente."
+      },
+      {
+        title: "Light steel framing",
+        description: "Página dedicada ao sistema LSF, explicando a composição, funcionamento e benefícios."
+      },
+      {
+        title: "Secção sobre",
+        description: "Apresentação da marca com contexto da empresa e um layout editorial mais calmo."
+      },
+      {
+        title: "Página de portefólio",
+        description: "Página de projetos desenhada para facilitar exploração visual e transmitir confiança."
+      },
+      {
+        title: "Página de contacto",
+        description: "Experiência de contacto focada em pedidos de projeto e informação empresarial."
+      },
+      {
+        title: "Navegação mobile",
+        description: "Estado de menu responsivo preparado para ecrãs compactos e navegação por toque."
+      },
+      {
+        title: "Página de construção mobile",
+        description: "Serviços de construção adaptados a um layout mobile focado e legível."
+      }
+    ],
     hausbMobileTitle: "Estados mobile incluídos desde o início.",
     hausbMobileDescription:
       "O sistema visual mantém-se em ecrãs pequenos, incluindo páginas de serviço e estados de navegação que tornam a experiência direta e utilizável."
@@ -361,10 +416,10 @@ export const pt = {
   projects: {
     "casa-benfica-lenzburg": {
       shortDescription:
-        "Website público, backoffice de reservas e sistema de faturação de restaurante para a Casa Benfica Lenzburg.",
+        "Website público, backoffice de reservas e sistemas internos de faturação do restaurante e gestão para a Casa Benfica Lenzburg.",
       longDescription:
         "Desenvolvi o website público e sistemas internos de backoffice para a Casa Benfica Lenzburg, incluindo gestão de reservas e funcionalidades de faturação de restaurante.",
-      role: "Full-stack Developer",
+      role: "Desenvolvedor Full-stack",
       features: [
         "Website público",
         "Gestão de reservas",
@@ -387,7 +442,7 @@ export const pt = {
         "Website multi-página de serviços com layouts personalizados, apresentação cuidada e fluxo de contacto guiado.",
       longDescription:
         "Desenvolvi um website multi-página de serviços com layouts personalizados, apresentação visual cuidada e uma experiência de contacto intuitiva e guiada.",
-      role: "Frontend Developer",
+      role: "Desenvolvedor Frontend",
       features: [
         "Website multi-página",
         "Páginas de serviço personalizadas",
@@ -405,10 +460,10 @@ export const pt = {
     },
     hausb: {
       shortDescription:
-        "Website empresarial moderno focado em apresentação limpa, layout responsivo e presença de marca profissional.",
+        "Website empresarial moderno focado em apresentação limpa, layout responsivo e presença da marca profissional.",
       longDescription:
         "Desenvolvi um website empresarial moderno focado em comunicação clara, design responsivo e apresentação profissional.",
-      role: "Frontend Developer",
+      role: "Desenvolvedor Frontend",
       features: [
         "Website empresarial",
         "UI responsiva",
@@ -436,13 +491,13 @@ export const pt = {
       title: "Projetos de Software Freelance",
       organization: "Trabalho com clientes",
       description:
-        "Construí websites e ferramentas internas para clientes reais, incluindo websites públicos, sistemas de backoffice, fluxos de contacto, gestão de reservas e funcionalidades relacionadas com faturação."
+        "Construí websites e ferramentas internas para clientes reais, incluindo websites públicos, sistemas de backoffice, fluxos de contacto, gestão de reservas e funcionalidades relacionadas com a gestão interna de cada negócio."
     },
     {
       title: "Engenharia de Software",
       organization: "Universidade do Minho",
       description:
-        "Licenciado em Engenharia de Software, com bases académicas em engenharia informática, bases de dados, sistemas distribuídos, redes de computadores, segurança, interação humano-computador e inteligência artificial."
+        "Licenciado em Engenharia Informática, onde adquiri conhecimentos sobre bases de dados, sistemas distribuídos, redes de computadores, segurança, interação humano-computador e inteligência artificial."
     }
   ]
 } as const;

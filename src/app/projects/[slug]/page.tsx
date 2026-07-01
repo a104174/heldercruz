@@ -26,31 +26,35 @@ type ProjectPageProps = {
 };
 
 type ProjectDetailCopy = ReturnType<typeof getDictionary>["projectDetail"];
+type ProjectScreenshot = {
+  src: string;
+  title: string;
+  description: string;
+};
 
 function resolveProjectLocale(locale?: string): Locale {
   return isValidLocale(locale) ? locale : defaultLocale;
 }
 
-const casaMeta = [
-  { label: "Role", value: "Full-stack Developer" },
-  { label: "Type", value: "Client Project" },
-  { label: "Stack", value: "Next.js / Supabase" },
-  { label: "Focus", value: "Website + Backoffice" }
-];
-
-const xvStudioMeta = [
-  { label: "Role", value: "Frontend Developer" },
-  { label: "Type", value: "Client Project" },
-  { label: "Stack", value: "Next.js / TypeScript" },
-  { label: "Focus", value: "Website + Contact Flow" }
-];
-
-const hausbMeta = [
-  { label: "Role", value: "Frontend Developer" },
-  { label: "Type", value: "Client Project" },
-  { label: "Stack", value: "Next.js / Tailwind CSS" },
-  { label: "Focus", value: "Website + Brand Direction" }
-];
+function createProjectMeta(
+  copy: ProjectDetailCopy,
+  {
+    role,
+    stack,
+    focus
+  }: {
+    role: string;
+    stack: string;
+    focus: string;
+  }
+) {
+  return [
+    { label: copy.metaLabels.role, value: role },
+    { label: copy.metaLabels.type, value: copy.clientProject },
+    { label: copy.metaLabels.stack, value: stack },
+    { label: copy.metaLabels.focus, value: focus }
+  ];
+}
 
 function ProjectMetaGrid({ items }: { items: Array<{ label: string; value: string }> }) {
   return (
@@ -164,53 +168,17 @@ const casaChallenges = [
   }
 ];
 
-const hausbScreenshots = [
-  {
-    src: "/hausb/hausb-home.webp",
-    title: "Homepage",
-    description: "Landing page focused on a clean first impression and direct service positioning."
-  },
-  {
-    src: "/hausb/hausb-arquitetura.webp",
-    title: "Architecture page",
-    description: "A service page with structured content, strong image rhythm and clear hierarchy."
-  },
-  {
-    src: "/hausb/hausb-construcao.webp",
-    title: "Construction page",
-    description: "A focused page for construction services with consistent visual language."
-  },
-  {
-    src: "/hausb/hausb-lsf.webp",
-    title: "Light steel framing",
-    description: "A dedicated LSF service page explaining the system, its composition and benefits."
-  },
-  {
-    src: "/hausb/hausb-about.webp",
-    title: "About section",
-    description: "Brand presentation with company context and a quieter editorial layout."
-  },
-  {
-    src: "/hausb/hausb-portfolio.webp",
-    title: "Portfolio page",
-    description: "Project showcase page designed to support visual browsing and trust."
-  },
-  {
-    src: "/hausb/hausb-contacto.webp",
-    title: "Contact page",
-    description: "A focused contact experience with project enquiries and business details."
-  },
-  {
-    src: "/hausb/hausb-mobile-menu.webp",
-    title: "Mobile navigation",
-    description: "Responsive menu state prepared for compact screens and touch navigation."
-  },
-  {
-    src: "/hausb/hausb-mobile-construcao.webp",
-    title: "Mobile construction page",
-    description: "Construction services adapted to a focused, readable mobile layout."
-  }
-];
+const hausbScreenshotImages = [
+  "/hausb/hausb-home.webp",
+  "/hausb/hausb-arquitetura.webp",
+  "/hausb/hausb-construcao.webp",
+  "/hausb/hausb-lsf.webp",
+  "/hausb/hausb-about.webp",
+  "/hausb/hausb-portfolio.webp",
+  "/hausb/hausb-contacto.webp",
+  "/hausb/hausb-mobile-menu.webp",
+  "/hausb/hausb-mobile-construcao.webp"
+] as const;
 
 const xvStudioScreenshots = [
   {
@@ -261,14 +229,22 @@ const xvStudioScreenshots = [
 ];
 
 function toGalleryItems(
-  screenshots: Array<{ src: string; title: string; description: string }>,
+  screenshots: ProjectScreenshot[],
   projectName: string
 ): ProjectGalleryItem[] {
   return screenshots.map((screenshot) => ({
     title: screenshot.title,
     description: screenshot.description,
     image: screenshot.src,
-    alt: `${screenshot.title} screenshot from ${projectName}`
+    alt: `${screenshot.title} - ${projectName}`
+  }));
+}
+
+function getHausbScreenshots(copy: ProjectDetailCopy): ProjectScreenshot[] {
+  return hausbScreenshotImages.map((src, index) => ({
+    src,
+    title: copy.hausbScreenshots[index]?.title ?? "HAUSB",
+    description: copy.hausbScreenshots[index]?.description ?? ""
   }));
 }
 
@@ -392,7 +368,7 @@ function HausbScreenshotCard({
   priority = false,
   className
 }: {
-  screenshot: (typeof hausbScreenshots)[number];
+  screenshot: ProjectScreenshot;
   priority?: boolean;
   className?: string;
 }) {
@@ -401,7 +377,7 @@ function HausbScreenshotCard({
       <div className="relative aspect-[5/4] overflow-hidden bg-[#111111]">
         <Image
           src={screenshot.src}
-          alt={`${screenshot.title} screenshot from HAUSB website`}
+          alt={`${screenshot.title} - HAUSB`}
           fill
           priority={priority}
           className="object-cover object-top transition duration-700 group-hover:scale-[1.035]"
@@ -455,6 +431,11 @@ function XvStudioProjectPage({
   copy: ProjectDetailCopy;
 }) {
   const nextProject = getNextProject(project.slug, locale);
+  const metaItems = createProjectMeta(copy, {
+    role: project.role,
+    stack: "Next.js / TypeScript",
+    focus: copy.xvMetaFocus
+  });
 
   return (
     <PageShell>
@@ -471,7 +452,7 @@ function XvStudioProjectPage({
           </p>
         </AnimatedReveal>
 
-        <ProjectMetaGrid items={xvStudioMeta} />
+        <ProjectMetaGrid items={metaItems} />
 
         <AnimatedReveal delay={0.08} className="mt-16 overflow-hidden rounded-[34px] border border-black/10 bg-black shadow-[0_24px_80px_rgba(0,0,0,0.12)]">
           <div className="relative aspect-[4/3] md:aspect-[16/10]">
@@ -555,6 +536,12 @@ function HausbProjectPage({
   copy: ProjectDetailCopy;
 }) {
   const nextProject = getNextProject(project.slug, locale);
+  const hausbScreenshots = getHausbScreenshots(copy);
+  const metaItems = createProjectMeta(copy, {
+    role: project.role,
+    stack: "Next.js / Tailwind CSS",
+    focus: copy.hausbMetaFocus
+  });
 
   return (
     <PageShell>
@@ -571,13 +558,13 @@ function HausbProjectPage({
           </p>
         </AnimatedReveal>
 
-        <ProjectMetaGrid items={hausbMeta} />
+        <ProjectMetaGrid items={metaItems} />
 
         <AnimatedReveal delay={0.08} className="mt-16 overflow-hidden rounded-[34px] border border-black/10 bg-black shadow-[0_24px_80px_rgba(0,0,0,0.12)]">
           <div className="relative aspect-[4/3] md:aspect-[16/10]">
             <Image
               src="/hausb/hausb-home.webp"
-              alt="HAUSB website displayed on a desktop mockup"
+              alt={project.image.alt}
               fill
               priority
               className="object-cover object-top"
@@ -590,8 +577,9 @@ function HausbProjectPage({
           <ProjectHorizontalGallery
             eyebrow={copy.projectEcosystem}
             title={copy.hausbGalleryTitle}
+            titleClassName="tracking-[-0.055em]"
             description={copy.hausbGalleryDescription}
-            items={toGalleryItems(hausbScreenshots.slice(0, 7), "HAUSB website")}
+            items={toGalleryItems(hausbScreenshots.slice(0, 7), copy.hausbScreenshotAltContext)}
           />
         </div>
 
@@ -652,6 +640,12 @@ function CasaBenficaProjectPage({
   project: Project;
   copy: ProjectDetailCopy;
 }) {
+  const metaItems = createProjectMeta(copy, {
+    role: project.role,
+    stack: "Next.js / Supabase",
+    focus: copy.casaMetaFocus
+  });
+
   return (
     <PageShell>
       <section className="mx-auto w-full max-w-[1120px] px-5 pb-28 pt-28 sm:px-8 md:pb-36 md:pt-36 lg:px-10">
@@ -667,7 +661,7 @@ function CasaBenficaProjectPage({
           </p>
         </AnimatedReveal>
 
-        <ProjectMetaGrid items={casaMeta} />
+        <ProjectMetaGrid items={metaItems} />
 
         <HeroVisual />
 

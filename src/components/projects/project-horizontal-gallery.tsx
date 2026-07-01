@@ -26,6 +26,7 @@ export type ProjectGalleryItem = {
 type ProjectHorizontalGalleryProps = {
   eyebrow?: string;
   title: string;
+  titleClassName?: string;
   description?: string;
   items: ProjectGalleryItem[];
 };
@@ -33,6 +34,7 @@ type ProjectHorizontalGalleryProps = {
 function GalleryHeading({
   eyebrow,
   title,
+  titleClassName,
   description,
   compact = false
 }: Omit<ProjectHorizontalGalleryProps, "items"> & { compact?: boolean }) {
@@ -48,7 +50,8 @@ function GalleryHeading({
           "font-semibold leading-[0.95] text-black",
           compact
             ? "mt-3 text-3xl sm:text-4xl"
-            : "mt-3 text-[clamp(2.25rem,3.5vw,4rem)]"
+            : "mt-3 text-[clamp(2.25rem,3.5vw,4rem)]",
+          titleClassName
         )}
       >
         {title}
@@ -147,6 +150,7 @@ function GalleryFallback({
 export function ProjectHorizontalGallery({
   eyebrow,
   title,
+  titleClassName,
   description,
   items
 }: ProjectHorizontalGalleryProps) {
@@ -216,6 +220,7 @@ export function ProjectHorizontalGallery({
       <GalleryFallback
         eyebrow={eyebrow}
         title={title}
+        titleClassName={titleClassName}
         description={description}
         items={items}
         reducedMotion
@@ -234,6 +239,7 @@ export function ProjectHorizontalGallery({
       <GalleryFallback
         eyebrow={eyebrow}
         title={title}
+        titleClassName={titleClassName}
         description={description}
         items={items}
       />
@@ -242,7 +248,12 @@ export function ProjectHorizontalGallery({
         data-project-gallery-header
         className="hidden px-10 pb-20 pt-8 lg:block motion-reduce:hidden xl:pb-24"
       >
-        <GalleryHeading eyebrow={eyebrow} title={title} description={description} />
+        <GalleryHeading
+          eyebrow={eyebrow}
+          title={title}
+          titleClassName={titleClassName}
+          description={description}
+        />
       </div>
 
       <section

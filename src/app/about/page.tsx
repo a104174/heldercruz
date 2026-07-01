@@ -23,22 +23,22 @@ import { cn } from "@/lib/utils";
 
 const skillGroups = [
   {
-    title: "Languages",
+    titleKey: "languages",
     skills: ["TypeScript", "JavaScript", "Python", "Java", "C", "C++", "SQL"]
   },
   {
-    title: "Web & Software",
+    titleKey: "webSoftware",
     skills: ["React", "Next.js", "Node.js", "Vue", "REST APIs"]
   },
   {
-    title: "Data & Infrastructure",
+    titleKey: "dataInfrastructure",
     skills: ["PostgreSQL", "Supabase", "Docker", "Vercel", "Cloudflare", "Netlify"]
   },
   {
-    title: "Tools",
+    titleKey: "tools",
     skills: ["Git", "GitHub", "Figma", "Resend", "AI Tools"]
   }
-];
+] as const;
 
 function SectionHeading({
   eyebrow,
@@ -380,13 +380,13 @@ export default function AboutPage() {
 
           <AnimatedReveal delay={0.08} className="mt-12 grid gap-5 md:grid-cols-2">
             {skillGroups.map((group, groupIndex) => (
-              <SoftCard key={group.title} className="hover:-translate-y-1">
+              <SoftCard key={group.titleKey} className="hover:-translate-y-1">
                 <div className="flex items-center gap-3">
                   <div className="rounded-full bg-black/5 p-2 transition-colors duration-300 group-hover:bg-black">
                     <GraduationCap aria-hidden="true" className="h-5 w-5 text-black/40 transition-colors duration-300 group-hover:text-white" />
                   </div>
                   <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-black/60 transition-colors duration-300 group-hover:text-black">
-                    {group.title}
+                    {dictionary.about.skillGroupTitles[group.titleKey]}
                   </h3>
                 </div>
                 <div className="mt-7 flex flex-wrap gap-2">

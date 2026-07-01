@@ -60,16 +60,10 @@ export function FooterRevealShell({
       >
         {children}
         {revealEnabled ? (
-          <>
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute bottom-0 left-0 z-10 hidden h-12 w-12 rounded-tr-[2rem] bg-neutral-950 lg:block xl:h-16 xl:w-16 xl:rounded-tr-[3rem]"
-            />
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute bottom-0 right-0 z-10 hidden h-12 w-12 rounded-tl-[2rem] bg-neutral-950 lg:block xl:h-16 xl:w-16 xl:rounded-tl-[3rem]"
-            />
-          </>
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-[-1px] z-10 hidden h-16 rounded-b-[2rem] bg-[#fbfaf7] lg:block xl:h-20 xl:rounded-b-[3rem]"
+          />
         ) : null}
       </div>
 

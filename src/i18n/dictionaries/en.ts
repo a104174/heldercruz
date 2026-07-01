@@ -287,6 +287,12 @@ export const en = {
     skillsTitle: "Skills and technologies.",
     skillsIntro:
       "A practical toolkit for building interfaces, backend logic, internal tools and production-ready digital systems.",
+    skillGroupTitles: {
+      languages: "Languages",
+      webSoftware: "Web & Software",
+      dataInfrastructure: "Data & Infrastructure",
+      tools: "Tools"
+    },
     ctaTitle: "Want to build something together?",
     ctaText: "Let's build something meaningful, useful and made to last."
   },
@@ -331,6 +337,16 @@ export const en = {
     viewProject: "View project",
     backToProjects: "Back to projects",
     contact: "Contact",
+    metaLabels: {
+      role: "Role",
+      type: "Type",
+      stack: "Stack",
+      focus: "Focus"
+    },
+    clientProject: "Client Project",
+    casaMetaFocus: "Website + Backoffice",
+    xvMetaFocus: "Website + Contact Flow",
+    hausbMetaFocus: "Website + Brand Direction",
     casaIntro: "A public website and internal backoffice system built for a real business.",
     casaSectionTitle: "From public presence to internal operations",
     casaSectionDescription:
@@ -354,6 +370,45 @@ export const en = {
     hausbGalleryTitle: "A clean business website with real responsive screens.",
     hausbGalleryDescription:
       "The HAUSB website was built around clear service communication, calm visual hierarchy and responsive pages that feel consistent across desktop and mobile. These screenshots show the production-facing layouts rather than abstract placeholders.",
+    hausbScreenshotAltContext: "HAUSB website",
+    hausbScreenshots: [
+      {
+        title: "Homepage",
+        description: "Landing page focused on a clean first impression and direct service positioning."
+      },
+      {
+        title: "Architecture page",
+        description: "A service page with structured content, strong image rhythm and clear hierarchy."
+      },
+      {
+        title: "Construction page",
+        description: "A focused page for construction services with consistent visual language."
+      },
+      {
+        title: "Light steel framing",
+        description: "A dedicated LSF service page explaining the system, its composition and benefits."
+      },
+      {
+        title: "About section",
+        description: "Brand presentation with company context and a quieter editorial layout."
+      },
+      {
+        title: "Portfolio page",
+        description: "Project showcase page designed to support visual browsing and trust."
+      },
+      {
+        title: "Contact page",
+        description: "A focused contact experience with project enquiries and business details."
+      },
+      {
+        title: "Mobile navigation",
+        description: "Responsive menu state prepared for compact screens and touch navigation."
+      },
+      {
+        title: "Mobile construction page",
+        description: "Construction services adapted to a focused, readable mobile layout."
+      }
+    ],
     hausbMobileTitle: "Mobile states included from the start.",
     hausbMobileDescription:
       "The visual system carries through smaller screens, including service pages and navigation states that keep the experience direct and usable."
