@@ -348,22 +348,127 @@ export const en = {
     xvMetaFocus: "Website + Contact Flow",
     hausbMetaFocus: "Website + Brand Direction",
     casaIntro: "A public website and internal backoffice system built for a real business.",
-    casaSectionTitle: "From public presence to internal operations",
+    casaSectionTitle: "Public content that stays easy to reach.",
     casaSectionDescription:
-      "Casa Benfica Lenzburg required a comprehensive digital overhaul. The challenge was twofold: creating a compelling public-facing website to attract patrons and establish a strong local brand presence, while simultaneously developing a robust internal backoffice system to streamline their reservation and billing operations. This dual-natured project demanded a seamless integration between front-end aesthetics and back-end utility.",
+      "Albums and contact details stay part of the public experience, giving visitors a clear way to explore community moments, schedules and practical venue information.",
     casaGalleryTitle: "Public pages and internal tools in the same ecosystem.",
     casaGalleryDescription:
       "The project combines public-facing sections for visitors with practical operational interfaces for reservations, communication, team schedules and event content.",
-    casaCommunityEyebrow: "Community Content",
-    casaCommunityTitle: "Event albums and contact paths stay part of the public experience.",
-    casaCommunityDescription:
-      "The website also supports browsing community moments and finding practical venue information without needing to enter the internal backoffice.",
+    casaScreenshotAltContext: "Casa Benfica Lenzburg",
+    casaScreenshots: [
+      {
+        title: "Public website",
+        description: "Homepage and public presence with events, albums, restaurant and reservation paths."
+      },
+      {
+        title: "Reservation flow",
+        description: "Date, group size and availability selection for restaurant bookings."
+      },
+      {
+        title: "Reservation backoffice",
+        description: "Operational view for capacity, upcoming days and manual booking actions."
+      },
+      {
+        title: "Email management",
+        description: "Backoffice tooling for contacts, groups, campaigns and email composition."
+      },
+      {
+        title: "Work schedules",
+        description: "Staff planning interface for shifts, teams and monthly service organization."
+      },
+      {
+        title: "Member sign-up",
+        description: "Public family membership form with a focused registration experience."
+      },
+      {
+        title: "Albums",
+        description: "Public gallery browsing for events and community moments."
+      },
+      {
+        title: "Contact page",
+        description: "Contact details, schedule and location presented in a clear public page."
+      }
+    ],
+    casaMobileTitle: "Mobile layouts prepared for daily use.",
+    casaMobileDescription:
+      "The public experience was also adapted for smaller screens, keeping core paths readable and direct for visitors using a phone.",
+    casaMobileScreenshots: [
+      {
+        title: "Mobile public website",
+        description: "Compact public pages with the same visual identity and clear navigation paths."
+      },
+      {
+        title: "Mobile dedicated menus",
+        description: "Responsive screens prepared for quick browsing and practical actions on narrow devices."
+      }
+    ],
     casaChallengesTitle: "Core Challenges",
+    casaChallenges: [
+      {
+        title: "Managing real business data",
+        description:
+          "Ensuring absolute data integrity and security for live reservations and billing records within Supabase."
+      },
+      {
+        title: "Creating admin workflows",
+        description:
+          "Designing intuitive role-based access control and approval flows for staff with varying technical proficiencies."
+      },
+      {
+        title: "Interface simplicity",
+        description:
+          "Distilling complex operational data into clean, accessible UI components that reduce cognitive load for users."
+      },
+      {
+        title: "Production readiness",
+        description:
+          "Optimizing Next.js server components and API routes to handle real-world traffic spikes and ensure high availability."
+      }
+    ],
     casaClosing:
       "Built as a practical digital system for a real client, combining public-facing design with internal operational tools.",
     xvGalleryTitle: "A service website with guided contact and admin screens.",
     xvGalleryDescription:
       "XV Studio combines a polished public website with a practical contact flow and backoffice surfaces. The screenshots show the production UI across service pages, project intake and editing states.",
+    xvScreenshotAltContext: "XV Studio website",
+    xvStudioScreenshots: [
+      {
+        title: "Homepage",
+        description: "A polished service landing page with strong visual rhythm and clear positioning."
+      },
+      {
+        title: "Photography services",
+        description: "Photography service pages combining visual storytelling, equipment and production detail."
+      },
+      {
+        title: "Laser & NFC",
+        description: "A specialized service page for precision laser work and NFC-enabled products."
+      },
+      {
+        title: "Contact page",
+        description: "A direct contact and social presence page designed to make collaboration easy."
+      },
+      {
+        title: "Guided contact flow",
+        description: "Step-based project input for collecting scope, goals and useful context."
+      },
+      {
+        title: "Backoffice",
+        description: "Internal management surface for keeping content and business operations organized."
+      },
+      {
+        title: "Editing services",
+        description: "Post-production services presented through clear packages and practical detail."
+      },
+      {
+        title: "Mobile homepage",
+        description: "Responsive landing state tuned for narrow screens."
+      },
+      {
+        title: "Mobile websites",
+        description: "Web service pages adapted for focused browsing on narrow screens."
+      }
+    ],
     xvMobileTitle: "Mobile layouts kept consistent with desktop.",
     xvMobileDescription:
       "The mobile screens preserve the same hierarchy and interaction patterns, keeping the service browsing experience sharp on smaller devices.",
@@ -453,9 +558,9 @@ export const en = {
       imageAlt: "Screenshots from the XV Studio website and contact flow",
       imageLabel: "XV Studio website screens and guided contact flow",
       technicalNotes: [
-        "Component structure prepared for custom service pages.",
-        "Contact experience designed around progressive, step-based input.",
-        "Responsive layout patterns kept reusable for future page expansion."
+        "Service-specific page structure developed to present each area of the agency with its own layout, content and visual hierarchy.",
+        "Progressive contact flow created to collect project context in a guided way, reducing friction and making each request clearer.",
+        "Responsive visual system built with reusable components, maintaining consistency across services, portfolio, forms and navigation."
       ]
     },
     hausb: {
@@ -474,9 +579,9 @@ export const en = {
       imageAlt: "Screenshots from the HAUSB business website",
       imageLabel: "HAUSB website screens and responsive brand presence",
       technicalNotes: [
-        "Frontend structure optimized for clear content hierarchy.",
-        "Reusable responsive sections prepared for future visual mockups.",
-        "Deployment path kept simple for Vercel hosting."
+        "Frontend page system built with reusable components to maintain visual consistency across services, portfolio and contact sections.",
+        "Content structure designed to communicate technical architecture services in a simple, clear and accessible way for the target audience.",
+        "Website prepared for a responsive experience, with optimized images, direct navigation and a scalable foundation for future sections."
       ]
     }
   },

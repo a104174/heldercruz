@@ -57,6 +57,8 @@
 
 html {
   min-height: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   background: #fbfaf7;
   scroll-padding-top: 96px;
 }
@@ -84,6 +86,8 @@ html.lenis body {
 
 body {
   min-height: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   margin: 0;
   background: #fbfaf7;
   color: #080808;

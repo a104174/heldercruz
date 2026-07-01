@@ -78,9 +78,9 @@ const baseProjects: Project[] = [
     },
     accent: "#3f3f46",
     technicalNotes: [
-      "Component structure prepared for custom service pages.",
-      "Contact experience designed around progressive, step-based input.",
-      "Responsive layout patterns kept reusable for future page expansion."
+      "Service-specific page structure developed to present each area of the agency with its own layout, content and visual hierarchy.",
+      "Progressive contact flow created to collect project context in a guided way, reducing friction and making each request clearer.",
+      "Responsive visual system built with reusable components, maintaining consistency across services, portfolio, forms and navigation."
     ]
   },
   {
@@ -107,9 +107,9 @@ const baseProjects: Project[] = [
     },
     accent: "#525252",
     technicalNotes: [
-      "Frontend structure optimized for clear content hierarchy.",
-      "Reusable responsive sections prepared for future visual mockups.",
-      "Deployment path kept simple for Vercel hosting."
+      "Frontend page system built with reusable components to maintain visual consistency across services, portfolio and contact sections.",
+      "Content structure designed to communicate technical architecture services in a simple, clear and accessible way for the target audience.",
+      "Website prepared for a responsive experience, with optimized images, direct navigation and a scalable foundation for future sections."
     ]
   }
 ];

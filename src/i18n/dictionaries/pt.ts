@@ -348,22 +348,127 @@ export const pt = {
     xvMetaFocus: "Website + fluxo de contacto",
     hausbMetaFocus: "Website + direção de marca",
     casaIntro: "Um website público e sistema interno de backoffice criado para um negócio real.",
-    casaSectionTitle: "Da presença pública às operações internas",
+    casaSectionTitle: "Conteúdo público sempre acessível.",
     casaSectionDescription:
-      "A Casa Benfica Lenzburg precisava de uma transformação digital abrangente. O desafio tinha duas frentes: criar um website público convincente para atrair visitantes e reforçar a presença local da marca, ao mesmo tempo que era desenvolvido um sistema interno robusto para simplificar reservas e faturação. Este projeto exigiu integração cuidada entre estética frontend e utilidade backend.",
+      "Álbuns e detalhes de contacto continuam parte da experiência pública, dando aos visitantes uma forma clara de explorar momentos da comunidade, horários e informação prática sobre o espaço.",
     casaGalleryTitle: "Páginas públicas e ferramentas internas no mesmo ecossistema.",
     casaGalleryDescription:
       "O projeto combina secções públicas para visitantes com interfaces operacionais práticas para reservas, comunicação, horários de equipa e conteúdo de eventos.",
-    casaCommunityEyebrow: "Conteúdo comunitário",
-    casaCommunityTitle: "Álbuns de eventos e caminhos de contacto continuam parte da experiência pública.",
-    casaCommunityDescription:
-      "O website também permite explorar momentos da comunidade e encontrar informação prática sobre o espaço sem entrar no backoffice interno.",
+    casaScreenshotAltContext: "Casa Benfica Lenzburg",
+    casaScreenshots: [
+      {
+        title: "Website público",
+        description: "Página inicial e presença pública com eventos, álbuns, restaurante e caminhos de reserva."
+      },
+      {
+        title: "Fluxo de reservas",
+        description: "Escolha de data, número de pessoas e disponibilidade para reservas no restaurante."
+      },
+      {
+        title: "Backoffice de reservas",
+        description: "Vista operacional para capacidade, próximos dias e ações manuais de reserva."
+      },
+      {
+        title: "Gestão de emails",
+        description: "Ferramentas de backoffice para contactos, grupos, campanhas e composição de emails."
+      },
+      {
+        title: "Horários de trabalho",
+        description: "Interface de planeamento de turnos, equipas e organização mensal do serviço."
+      },
+      {
+        title: "Inscrição de sócios",
+        description: "Formulário público de sócio familiar com uma experiência de registo focada."
+      },
+      {
+        title: "Álbuns",
+        description: "Galeria pública para explorar eventos e momentos da comunidade."
+      },
+      {
+        title: "Página de contacto",
+        description: "Contactos, horários e localização apresentados numa página pública clara."
+      }
+    ],
+    casaMobileTitle: "Layouts mobile preparados para uso diário.",
+    casaMobileDescription:
+      "A experiência pública também foi adaptada para ecrãs pequenos, mantendo os caminhos principais legíveis e diretos para visitantes que usam o telemóvel.",
+    casaMobileScreenshots: [
+      {
+        title: "Website público mobile",
+        description: "Páginas públicas compactas com a mesma identidade visual e navegação clara."
+      },
+      {
+        title: "Menus mobile dedicados",
+        description: "Ecrãs responsivos preparados para navegação rápida e ações práticas em dispositivos estreitos."
+      }
+    ],
     casaChallengesTitle: "Desafios principais",
+    casaChallenges: [
+      {
+        title: "Gestão de dados reais do negócio",
+        description:
+          "Garantia de integridade e segurança dos dados de reservas e registos de faturação em Supabase."
+      },
+      {
+        title: "Criação de fluxos administrativos",
+        description:
+          "Desenho de permissões, acessos e fluxos de aprovação claros para equipas com diferentes níveis técnicos."
+      },
+      {
+        title: "Simplicidade da interface",
+        description:
+          "Transformação de dados operacionais complexos em componentes limpos e acessíveis, reduzindo esforço para o utilizador."
+      },
+      {
+        title: "Preparação para produção",
+        description:
+          "Otimização da estrutura Next.js e das rotas de servidor para tráfego real, estabilidade e disponibilidade."
+      }
+    ],
     casaClosing:
       "Criado como um sistema digital prático para um cliente real, combinando design público com ferramentas operacionais internas.",
-    xvGalleryTitle: "Um website de serviços com contacto guiado e ecrãs administrativos.",
+    xvGalleryTitle: "Um website de serviços com contacto guiado e ecrãs de gestão.",
     xvGalleryDescription:
       "A XV Studio combina um website público cuidado com um fluxo de contacto prático e superfícies de backoffice. As capturas mostram a UI de produção em páginas de serviço, recolha de projeto e estados de edição.",
+    xvScreenshotAltContext: "website da XV Studio",
+    xvStudioScreenshots: [
+      {
+        title: "Página inicial",
+        description: "Página inicial de serviços com ritmo visual forte e posicionamento claro."
+      },
+      {
+        title: "Serviços de fotografia",
+        description: "Páginas de fotografia que combinam narrativa visual, equipamento e detalhe de produção."
+      },
+      {
+        title: "Laser e NFC",
+        description: "Página de serviço especializada para trabalhos laser de precisão e produtos com NFC."
+      },
+      {
+        title: "Página de contacto",
+        description: "Página direta de contacto e presença social, desenhada para facilitar a colaboração."
+      },
+      {
+        title: "Fluxo de contacto guiado",
+        description: "Entrada de projeto por passos para recolher âmbito, objetivos e contexto útil."
+      },
+      {
+        title: "Área de gestão",
+        description: "Superfície interna de gestão para manter conteúdo e operações organizados."
+      },
+      {
+        title: "Serviços de edição",
+        description: "Serviços de pós-produção apresentados com pacotes claros e detalhe prático."
+      },
+      {
+        title: "Página inicial mobile",
+        description: "Estado da landing page ajustado para ecrãs estreitos."
+      },
+      {
+        title: "Websites em mobile",
+        description: "Páginas de serviço web adaptadas para navegação focada em ecrãs estreitos."
+      }
+    ],
     xvMobileTitle: "Layouts mobile consistentes com desktop.",
     xvMobileDescription:
       "Os ecrãs mobile preservam a mesma hierarquia e padrões de interação, mantendo a experiência de navegação pelos serviços clara em dispositivos mais pequenos.",
@@ -442,7 +547,7 @@ export const pt = {
         "Website multi-página de serviços com layouts personalizados, apresentação cuidada e fluxo de contacto guiado.",
       longDescription:
         "Desenvolvi um website multi-página de serviços com layouts personalizados, apresentação visual cuidada e uma experiência de contacto intuitiva e guiada.",
-      role: "Desenvolvedor Frontend",
+      role: "Programador Frontend",
       features: [
         "Website multi-página",
         "Páginas de serviço personalizadas",
@@ -453,9 +558,9 @@ export const pt = {
       imageAlt: "Capturas do website e fluxo de contacto da XV Studio",
       imageLabel: "Ecrãs do website e fluxo de contacto guiado da XV Studio",
       technicalNotes: [
-        "Estrutura de componentes preparada para páginas de serviço personalizadas.",
-        "Experiência de contacto desenhada em torno de input progressivo e guiado.",
-        "Padrões responsivos mantidos reutilizáveis para expansão futura."
+        "Arquitetura frontend modular preparada para páginas de serviço independentes, mantendo consistência visual através de componentes reutilizáveis.",
+        "Formulário de contacto multi-etapas desenhado para recolher informação estruturada sobre o projeto antes do envio.",
+        "Interface responsiva otimizada para apresentar serviços, portefólio e chamadas à ação com navegação clara em desktop e mobile."
       ]
     },
     hausb: {
@@ -474,9 +579,9 @@ export const pt = {
       imageAlt: "Capturas do website empresarial HAUSB",
       imageLabel: "Ecrãs do website e presença de marca responsiva da HAUSB",
       technicalNotes: [
-        "Estrutura frontend otimizada para uma hierarquia de conteúdo clara.",
-        "Secções responsivas reutilizáveis preparadas para evoluções futuras.",
-        "Caminho de deploy simplificado para alojamento na Vercel."
+        "Sistema de páginas frontend construído com componentes reutilizáveis para manter consistência visual entre serviços, portefólio e contactos.",
+        "Estrutura de conteúdo pensada para comunicar serviços técnicos de arquitetura de forma simples, clara e acessível ao público-alvo.",
+        "Website preparado para uma experiência responsiva, com imagens otimizadas, navegação direta e base escalável para futuras secções."
       ]
     }
   },
