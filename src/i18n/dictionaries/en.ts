@@ -89,6 +89,7 @@ export const en = {
     heroTitle: "Building software that works",
     quote: "Good software should feel simple, useful and effortless.",
     quoteLines: ["Good software should feel simple,", "useful and effortless."],
+    signatureRole: "Software Engineer",
     ctaTitle: "Have a project in mind?",
     ctaText: "Let's build something clean, fast and useful.",
     latestFocus: "Latest Focus",
@@ -96,7 +97,72 @@ export const en = {
     collageTitle: "Design-Led Engineering",
     manifesto:
       "I’ve worked on client projects that go beyond the interface, combining websites, backoffices, email flows, databases and practical tools for real businesses.",
+    heroImageAlt: "Portfolio project preview",
+    collageLabels: {
+      deploying: "Deploying",
+      apiSync: "API Sync",
+      contactFlow: "Contact Flow",
+      connected: "Connected",
+      databaseLayer: "Database Layer",
+      responsiveUi: "Responsive UI",
+      clientPortal: "Client Portal",
+      handoff: "Ready for handoff and iteration."
+    },
+    structureTitle: "The structure behind software that works.",
+    structureWorkspace: "Workspace",
+    structureWorkspaceItems: [
+      "Interface Design",
+      "Database Layer",
+      "Backoffice Systems",
+      "Built-in Security"
+    ],
+    structureItems: [
+      {
+        title: "Interface Design",
+        text: "Clean, responsive interfaces shaped around the way people actually use the product."
+      },
+      {
+        title: "Backoffice Systems",
+        text: "Internal tools for reservations, billing, content and every day-to-day operations."
+      },
+      {
+        title: "Systems & Integrations",
+        text: "Databases, APIs, email flows and security layers working quietly behind the scenes."
+      }
+    ],
     focusTitle: "Built for real client needs.",
+    focusCards: [
+      {
+        title: "Frontend Development",
+        text: "Clean responsive interfaces with polished interaction details."
+      },
+      {
+        title: "Backoffice Systems",
+        text: "Practical internal tools for reservations, billing and operations."
+      },
+      {
+        title: "API Integrations",
+        text: "Reliable connections between forms, emails, databases and deployments."
+      },
+      {
+        title: "Product Delivery",
+        text: "Built with attention to detail, performance and usability."
+      }
+    ],
+    insightCards: [
+      {
+        title: "Engineering clean interfaces",
+        eyebrow: "Casa Benfica Lenzburg"
+      },
+      {
+        title: "From polished websites to business tools",
+        eyebrow: "HAUSB"
+      },
+      {
+        title: "Useful products for real client needs",
+        eyebrow: "XV Studio"
+      }
+    ],
     servicesEyebrow: "Websites and systems",
     servicesTitle: "Features that bring real value to your website",
     servicesText:

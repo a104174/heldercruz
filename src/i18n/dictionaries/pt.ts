@@ -2,7 +2,7 @@ export const pt = {
   metadata: {
     homeTitle: "Engenheiro de Software",
     homeDescription:
-      "Hélder Cruz é Engenheiro de Software e cria aplicações web limpas, escaláveis e focadas no utilizador.",
+      "Engenheiro de Software focado em transformar as tuas ideias em interfaces limpas e arquiteturas rigorosas.",
     workTitle: "Projetos Selecionados",
     workDescription:
       "Três projetos reais para clientes, combinando interfaces cuidadas, design responsivo e funcionalidades práticas para negócio.",
@@ -86,21 +86,87 @@ export const pt = {
     whatsappNote: "Disponível para mensagens rápidas e comunicação mais direta."
   },
   home: {
-    heroTitle: "A construir software que funciona",
+    heroTitle: "A construir software que resulta",
     quote: "Bom software deve parecer simples, útil e sem esforço.",
     quoteLines: ["Bom software deve parecer simples,", "útil e sem esforço."],
-    ctaTitle: "Tens um projeto em mente?",
-    ctaText: "Vamos construir algo limpo, rápido e útil.",
+    signatureRole: "Engenheiro de Software",
+    ctaTitle: "O próximo passo é teu",
+    ctaText: "Vamos construir algo limpo, seguro e verdadeiramente útil.",
     latestFocus: "Foco Recente",
     builtAndShipped: "Construído e entregue para clientes",
-    collageTitle: "Engenharia orientada por design",
+    collageTitle: "Engenharia guiada pelo design",
     manifesto:
-      "Trabalhei em projetos para clientes que vão para além da interface, combinando websites, backoffices, fluxos de email, bases de dados e ferramentas práticas para negócios reais.",
+      "Trabalhei em projetos para clientes que vão para além da interface, combinando websites, backoffices, fluxos de email, bases de dados e ferramentas práticas para cada negócio.",
+    heroImageAlt: "Pré-visualização de projeto do portefólio",
+    collageLabels: {
+      deploying: "A publicar",
+      apiSync: "Sincronização API",
+      contactFlow: "Fluxo de contacto",
+      connected: "Ligado",
+      databaseLayer: "Camada de dados",
+      responsiveUi: "Interface responsiva",
+      clientPortal: "Portal do cliente",
+      handoff: "Pronto para entrega e iteração."
+    },
+    structureTitle: "A estrutura por trás de software que resulta.",
+    structureWorkspace: "Área de trabalho",
+    structureWorkspaceItems: [
+      "Design de interface",
+      "Camada de dados",
+      "Sistemas de backoffice",
+      "Segurança integrada"
+    ],
+    structureItems: [
+      {
+        title: "Design de interface",
+        text: "Interfaces limpas e responsivas, pensadas em torno da forma como as pessoas usam realmente o produto."
+      },
+      {
+        title: "Sistemas de backoffice",
+        text: "Ferramentas internas para reservas, faturação, conteúdos e operações do dia a dia."
+      },
+      {
+        title: "Sistemas e integrações",
+        text: "Bases de dados, APIs, fluxos de email e camadas de segurança a trabalhar discretamente nos bastidores."
+      }
+    ],
     focusTitle: "Criado para necessidades reais de clientes.",
+    focusCards: [
+      {
+        title: "Desenvolvimento frontend",
+        text: "Interfaces limpas e responsivas, com atenção a cada detalhe."
+      },
+      {
+        title: "Sistemas de backoffice",
+        text: "Ferramentas internas práticas para reservas, faturação e operações."
+      },
+      {
+        title: "Integrações API",
+        text: "Ligações fiáveis entre formulários, emails, bases de dados e deploys."
+      },
+      {
+        title: "Entrega de produto",
+        text: "Construído com atenção ao detalhe, performance e usabilidade."
+      }
+    ],
+    insightCards: [
+      {
+        title: "Criação completa do ecossistema digital",
+        eyebrow: "Casa Benfica Lenzburg"
+      },
+      {
+        title: "De branding a website de negócio",
+        eyebrow: "HAUSB"
+      },
+      {
+        title: "Design específico para cada tema",
+        eyebrow: "XV Studio"
+      }
+    ],
     servicesEyebrow: "Websites e sistemas",
     servicesTitle: "Funcionalidades que trazem valor real ao teu website",
     servicesText:
-      "Para além de páginas cuidadas, construo sistemas que organizam dados, automatizam fluxos de trabalho e tornam o teu projeto ou negócio mais simples de gerir.",
+      "Para além de páginas personalizadas construo sistemas complexos que organizam dados, automatizam fluxos de trabalho e tornam o teu projeto ou negócio mais simples de gerir.",
     serviceCards: [
       {
         name: "Exportação de dados",

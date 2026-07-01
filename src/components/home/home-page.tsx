@@ -18,7 +18,7 @@ import { HomeServicesBento } from "@/components/home/home-services-bento";
 import { PortfolioInteractiveLink } from "@/components/ui/portfolio-interactive-button";
 import { TextAnimate } from "@/components/ui/text-animate";
 import Text3DFlip from "@/components/ui/text-3d-flip";
-import { useDictionary, useLocalizedHref } from "@/i18n/use-i18n";
+import { useDictionary, useLocale, useLocalizedHref } from "@/i18n/use-i18n";
 import { cn } from "@/lib/utils";
 
 const technologies = [
@@ -46,45 +46,17 @@ const technologies = [
 
 const heroImage = "/hausb/hausb-arquitetura.webp";
 
-const focusCards = [
-  {
-    title: "Frontend Development",
-    text: "Clean responsive interfaces with polished interaction details.",
-    image: "/hausb/hausb-lsf.webp"
-  },
-  {
-    title: "Backoffice Systems",
-    text: "Practical internal tools for reservations, billing and operations.",
-    image: "/benfica/screenshot_1.5x_postspark_2026-06-25_01-10-54.webp"
-  },
-  {
-    title: "API Integrations",
-    text: "Reliable connections between forms, emails, databases and deployments.",
-    image: "/xvstudio/xv-modal-contacto.webp"
-  },
-  {
-    title: "Product Delivery",
-    text: "Built with attention to detail, performance and usability.",
-    image: "/hausb/hausb-portfolio.webp"
-  }
+const focusCardImages = [
+  "/hausb/hausb-lsf.webp",
+  "/benfica/screenshot_1.5x_postspark_2026-06-25_01-10-54.webp",
+  "/xvstudio/xv-modal-contacto.webp",
+  "/hausb/hausb-portfolio.webp"
 ];
 
-const insightCards = [
-  {
-    title: "Engineering clean interfaces",
-    eyebrow: "Casa Benfica Lenzburg",
-    image: "/benfica/screenshot_1.5x_postspark_2026-06-25_00-35-51.webp"
-  },
-  {
-    title: "From polished websites to business tools",
-    eyebrow: "HAUSB",
-    image: "/hausb/hausb-mobile-construcao.webp"
-  },
-  {
-    title: "Useful products for real client needs",
-    eyebrow: "XV Studio",
-    image: "/xvstudio/xv-laser.webp"
-  }
+const insightCardImages = [
+  "/benfica/screenshot_1.5x_postspark_2026-06-25_00-35-51.webp",
+  "/hausb/hausb-mobile-construcao.webp",
+  "/xvstudio/xv-laser.webp"
 ];
 
 function imageStyle(url: string, overlay = "linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.35))") {
@@ -137,6 +109,7 @@ function useMinViewportWidth(width: number) {
 
 function HeroSection() {
   const dictionary = useDictionary();
+  const locale = useLocale();
   const shouldReduceMotion = useReducedMotion();
   const heroTitle = dictionary.home.heroTitle;
   const heroTitleWords = heroTitle.split(" ");
@@ -150,12 +123,21 @@ function HeroSection() {
       <div className="flex max-w-5xl flex-col items-center">
         <h1
           aria-label={heroTitle}
-          className="max-w-4xl text-balance text-5xl font-bold leading-[1.02] text-black sm:text-6xl md:text-7xl lg:text-[82px]"
+          className={cn(
+            "max-w-4xl text-balance text-5xl font-bold leading-[1.02] text-black sm:text-6xl md:text-7xl lg:text-[82px]",
+            locale === "pt" && "tracking-[-0.035em]"
+          )}
         >
           {shouldReduceMotion ? (
             <span aria-hidden="true">{heroTitle}</span>
           ) : (
-            <span aria-hidden="true" className="inline-flex flex-wrap justify-center gap-x-[0.22em] gap-y-0">
+            <span
+              aria-hidden="true"
+              className={cn(
+                "inline-flex flex-wrap justify-center gap-y-0",
+                locale === "pt" ? "gap-x-[0.14em]" : "gap-x-[0.22em]"
+              )}
+            >
               {heroTitleWords.map((word, index) => (
                 <span key={`${word}-${index}`} className="inline-block whitespace-nowrap">
                   <TextAnimate
@@ -221,7 +203,7 @@ function HeroSection() {
         >
           <Image
             src={heroImage}
-            alt="Portfolio project preview"
+            alt={dictionary.home.heroImageAlt}
             fill
             priority
             quality={95}
@@ -302,6 +284,8 @@ function FloatingVisual({
 }
 
 function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
+  const dictionary = useDictionary();
+  const labels = dictionary.home.collageLabels;
   const shouldReduceMotion = useReducedMotion();
   const isFloatingLayout = useMinViewportWidth(1280);
   const shouldFloat = isFloatingLayout && !shouldReduceMotion;
@@ -319,7 +303,7 @@ function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
       >
         <div className="absolute bottom-4 left-4 right-4 rounded-[18px] border border-white/45 bg-white/35 p-4 shadow-lg backdrop-blur-xl">
           <div className="mb-2 flex items-center justify-between text-[10px] font-bold uppercase text-black">
-            <span>Deploying</span>
+            <span>{labels.deploying}</span>
             <span>78%</span>
           </div>
           <div className="h-1.5 overflow-hidden rounded-full bg-black/10">
@@ -365,7 +349,7 @@ function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
         <AnimatedReveal className="flex h-full min-h-[inherit] rounded-[24px] border border-white/50 bg-white/35 p-5 shadow-[0_16px_45px_rgba(0,0,0,0.1)] backdrop-blur-2xl">
           <div className="w-full">
             <div className="mb-4 flex items-center justify-between gap-3">
-              <span className="text-sm font-bold text-black">API Sync</span>
+              <span className="text-sm font-bold text-black">{labels.apiSync}</span>
               <span className="relative h-6 w-11 shrink-0 rounded-full bg-black">
                 <motion.span
                   animate={{ scale: [1, 1.2, 1] }}
@@ -379,8 +363,8 @@ function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
                 <GitBranch aria-hidden="true" className="h-4 w-4" />
               </span>
               <span className="min-w-0">
-                <span className="block truncate text-xs font-bold text-black">Contact Flow</span>
-                <span className="text-xs text-[#6e6a63]">Connected</span>
+                <span className="block truncate text-xs font-bold text-black">{labels.contactFlow}</span>
+                <span className="text-xs text-[#6e6a63]">{labels.connected}</span>
               </span>
             </div>
           </div>
@@ -402,7 +386,7 @@ function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
             transition={{ duration: 1.5, repeat: Infinity }}
             className="h-2 w-2 shrink-0 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.85)]"
           />
-          <span className="truncate text-[10px] font-bold uppercase text-black">Database Layer</span>
+          <span className="truncate text-[10px] font-bold uppercase text-black">{labels.databaseLayer}</span>
         </div>
       </FloatingVisual>
 
@@ -416,7 +400,7 @@ function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
       >
         <div className="absolute bottom-5 left-5 flex max-w-[calc(100%-2.5rem)] items-center gap-2 rounded-full border border-white/55 bg-white/45 px-4 py-2 shadow-sm backdrop-blur-xl">
           <MonitorSmartphone aria-hidden="true" className="h-4 w-4 shrink-0 text-black" />
-          <span className="truncate text-[10px] font-bold uppercase text-black">Responsive UI</span>
+          <span className="truncate text-[10px] font-bold uppercase text-black">{labels.responsiveUi}</span>
         </div>
       </FloatingVisual>
 
@@ -430,8 +414,8 @@ function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
         floatDuration={5.5}
       >
         <div className="absolute bottom-5 left-5 right-5 rounded-[18px] border border-white/45 bg-white/35 p-4 backdrop-blur-xl">
-          <span className="text-xs font-bold text-black">Client Portal</span>
-          <p className="mt-1 line-clamp-2 text-xs leading-5 text-black/70">Ready for handoff and iteration.</p>
+          <span className="text-xs font-bold text-black">{labels.clientPortal}</span>
+          <p className="mt-1 line-clamp-2 text-xs leading-5 text-black/70">{labels.handoff}</p>
         </div>
       </FloatingVisual>
     </>
@@ -511,7 +495,7 @@ function FeatureRail({
   items
 }: {
   title: ReactNode;
-  items: Array<{ title: string; text: string }>;
+  items: ReadonlyArray<{ title: string; text: string }>;
 }) {
   const shouldReduceMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -578,6 +562,10 @@ function FeatureRail({
 }
 
 function SystemsSection() {
+  const dictionary = useDictionary();
+  const workspaceIcons = [Folder, Database, FileText, ShieldCheck];
+  const workspaceColors = ["text-[#ff4b2b]", "text-[#8a2387]", "text-[#e94057]", "text-[#f27121]"];
+
   return (
     <SectionShell className="py-20 md:py-28">
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
@@ -587,52 +575,33 @@ function SystemsSection() {
             className="w-full max-w-md rounded-[18px] border border-[#d9d7d0]/70 bg-[#fffdf8] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.12)]"
           >
             <div className="mb-8 flex items-center justify-between">
-              <span className="text-sm font-bold text-black">Workspace</span>
+              <span className="text-sm font-bold text-black">{dictionary.home.structureWorkspace}</span>
               <span className="h-2 w-10 rounded-full bg-[#d9d7d0]" />
             </div>
             <div className="space-y-3">
-              {[
-                { icon: Folder, label: "Interface Design", color: "text-[#ff4b2b]" },
-                { icon: Database, label: "Database Layer", color: "text-[#8a2387]" },
-                { icon: FileText, label: "Backoffice Systems", color: "text-[#e94057]" },
-                { icon: ShieldCheck, label: "Built-in Security", color: "text-[#f27121]" }
-              ].map((item) => (
+              {dictionary.home.structureWorkspaceItems.map((label, index) => {
+                const Icon = workspaceIcons[index] ?? Folder;
+                const color = workspaceColors[index] ?? "text-black";
+
+                return (
                 <motion.div
-                  key={item.label}
+                  key={label}
                   whileHover={{ x: 5, backgroundColor: "#f0efeb" }}
                   className="flex items-center gap-4 rounded-[10px] p-3 transition"
                 >
-                  <item.icon aria-hidden="true" className={cn("h-5 w-5", item.color)} />
-                  <span className="text-sm font-medium text-black">{item.label}</span>
+                  <Icon aria-hidden="true" className={cn("h-5 w-5", color)} />
+                  <span className="text-sm font-medium text-black">{label}</span>
                 </motion.div>
-              ))}
+                );
+              })}
             </div>
           </motion.div>
         </AnimatedReveal>
 
         <AnimatedReveal delay={0.08} className="flex items-center">
           <FeatureRail
-            title={
-              <>
-                The structure behind
-                <br />
-                software that works.
-              </>
-            }
-            items={[
-              {
-                title: "Interface Design",
-                text: "Clean, responsive interfaces shaped around the way people actually use the product."
-              },
-              {
-                title: "Backoffice Systems",
-                text: "Internal tools for reservations, billing, content and every day-to-day operations."
-              },
-              {
-                title: "Systems & Integrations",
-                text: "Databases, APIs, email flows and security layers working quietly behind the scenes."
-              }
-            ]}
+            title={dictionary.home.structureTitle}
+            items={dictionary.home.structureItems}
           />
         </AnimatedReveal>
       </div>
@@ -643,6 +612,10 @@ function SystemsSection() {
 function FocusSection() {
   const dictionary = useDictionary();
   const titleText = dictionary.home.focusTitle;
+  const cards = dictionary.home.focusCards.map((card, index) => ({
+    ...card,
+    image: focusCardImages[index] ?? focusCardImages[0]
+  }));
 
   return (
     <SectionShell className="flex flex-col items-center py-20 md:py-28">
@@ -673,7 +646,7 @@ function FocusSection() {
       </AnimatedReveal>
 
       <div className="mt-12 grid w-full max-w-[1240px] gap-5 md:grid-cols-2 lg:gap-6">
-        {focusCards.map((card, index) => (
+        {cards.map((card, index) => (
           <AnimatedReveal
             key={card.title}
             delay={index * 0.04}
@@ -788,7 +761,7 @@ function QuoteSection() {
           </motion.span>
           <span className="text-left">
             <span className="block text-sm font-bold text-black">Hélder Cruz</span>
-            <span className="text-xs font-medium text-[#77736b]">Software Engineer</span>
+            <span className="text-xs font-medium text-[#77736b]">{dictionary.home.signatureRole}</span>
           </span>
         </motion.div>
       </div>
@@ -799,6 +772,10 @@ function QuoteSection() {
 function InsightSection() {
   const dictionary = useDictionary();
   const localizeHref = useLocalizedHref();
+  const cards = dictionary.home.insightCards.map((card, index) => ({
+    ...card,
+    image: insightCardImages[index] ?? insightCardImages[0]
+  }));
 
   return (
     <SectionShell className="py-20 md:py-28">
@@ -809,13 +786,13 @@ function InsightSection() {
         </AnimatedReveal>
         <Link
           href={localizeHref("/projects")}
-          className="hidden border-b border-black pb-1 text-sm font-bold text-black transition hover:text-[#ff4b2b] sm:inline-flex"
+          className="group relative hidden overflow-hidden pb-1 text-sm font-bold text-black transition hover:text-[#ff4b2b] before:absolute before:bottom-0 before:left-0 before:h-px before:w-full before:translate-x-0 before:bg-current before:content-[''] before:transition-transform before:duration-500 before:ease-out after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:-translate-x-full after:bg-current after:content-[''] after:transition-transform after:delay-200 after:duration-500 after:ease-out hover:before:translate-x-full hover:after:translate-x-0 sm:inline-flex"
         >
           {dictionary.common.work}
         </Link>
       </div>
       <div className="grid gap-6 md:grid-cols-3">
-        {insightCards.map((card, index) => (
+        {cards.map((card, index) => (
           <AnimatedReveal key={card.title} delay={index * 0.04}>
             <motion.div whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
               <Link href={localizeHref("/projects")} className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black">
@@ -849,7 +826,7 @@ function CtaSection() {
         </motion.span>
         <Text3DFlip
           as="h2"
-          className="justify-center bg-[#fbfaf7] font-sans text-4xl font-semibold leading-[1.06] tracking-[-0.05em] text-black sm:text-6xl md:text-7xl lg:text-8xl"
+          className="justify-center bg-[#fbfaf7] font-sans text-4xl font-semibold leading-[1.12] tracking-[-0.05em] text-black sm:text-6xl md:text-7xl lg:text-8xl"
           textClassName="bg-[#fbfaf7] text-black"
           flipTextClassName="bg-[#fbfaf7] text-black"
           rotateDirection="top"
