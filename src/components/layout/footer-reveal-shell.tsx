@@ -55,7 +55,7 @@ export function FooterRevealShell({
         className={cn(
           "relative bg-[#fbfaf7]",
           revealEnabled &&
-            "lg:z-30 lg:mb-[calc(var(--footer-reveal-height)-1px)] lg:overflow-visible lg:rounded-b-[2rem] xl:rounded-b-[3rem]"
+            "lg:z-30 lg:mb-[calc(var(--footer-reveal-height)-1px)] lg:overflow-hidden lg:rounded-b-[2rem] xl:rounded-b-[3rem]"
         )}
       >
         {children}
