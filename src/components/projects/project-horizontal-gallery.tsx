@@ -91,6 +91,7 @@ function GalleryCard({
         alt={item.alt}
         fill
         priority={priority}
+        loading={pinned || priority ? "eager" : undefined}
         quality={95}
         className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.012]"
         sizes={
