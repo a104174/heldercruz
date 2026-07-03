@@ -254,7 +254,7 @@ export function WorkPage() {
             animation="blurIn" 
             as="h1" 
             duration={0.4}
-            className="text-[48px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[72px] md:text-[80px]"
+            className="break-words text-[clamp(2.75rem,12vw,3rem)] font-semibold leading-[0.98] tracking-normal text-black sm:text-[72px] sm:leading-[0.94] md:text-[80px]"
           >
             {dictionary.metadata.workTitle}
           </TextAnimate>
@@ -285,7 +285,7 @@ export function WorkPage() {
         {/* CTA FINAL */}
         <AnimatedReveal delay={0.1} className="mt-36">
           <div className="group flex min-h-[360px] flex-col items-center justify-center rounded-[24px] border border-black/10 bg-[#efede9] px-6 py-16 text-center transition-all duration-700 hover:border-transparent hover:bg-[#111111] md:min-h-[430px]">
-            <h2 className="text-[42px] font-semibold leading-none tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[58px] md:text-[72px]">
+            <h2 className="break-words text-[clamp(2.25rem,10vw,2.625rem)] font-semibold leading-[0.98] tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[58px] sm:leading-none md:text-[72px]">
               {dictionary.home.ctaTitle}
             </h2>
             <p className="mt-6 max-w-[520px] text-[13px] leading-6 text-black/48 transition-colors duration-700 group-hover:text-white/60">

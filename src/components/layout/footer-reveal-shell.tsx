@@ -40,7 +40,7 @@ export function FooterRevealShell({
     <div
       className={cn(
         "relative bg-[#fbfaf7]",
-        revealEnabled && "lg:isolate lg:bg-neutral-950"
+        revealEnabled && "bg-neutral-950 lg:isolate"
       )}
       style={revealStyle}
     >
@@ -55,14 +55,14 @@ export function FooterRevealShell({
         className={cn(
           "relative bg-[#fbfaf7]",
           revealEnabled &&
-            "lg:z-30 lg:mb-[calc(var(--footer-reveal-height)-1px)] lg:overflow-visible lg:rounded-b-[2rem] xl:rounded-b-[3rem]"
+            "z-30 overflow-visible rounded-b-[1.5rem] sm:rounded-b-[2rem] lg:mb-[calc(var(--footer-reveal-height)-1px)] xl:rounded-b-[3rem]"
         )}
       >
         {children}
         {revealEnabled ? (
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-[-1px] z-10 hidden h-16 rounded-b-[2rem] bg-[#fbfaf7] lg:block xl:h-20 xl:rounded-b-[3rem]"
+            className="pointer-events-none absolute inset-x-0 bottom-[-1px] z-10 h-12 rounded-b-[1.5rem] bg-[#fbfaf7] sm:h-14 sm:rounded-b-[2rem] lg:h-16 xl:h-20 xl:rounded-b-[3rem]"
           />
         ) : null}
       </div>

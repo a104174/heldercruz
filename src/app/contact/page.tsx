@@ -70,7 +70,7 @@ export default function ContactPage() {
               as="h1" 
               by="line"
               duration={0.4}
-              className="max-w-4xl text-[48px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[72px] md:text-[80px]"
+              className="max-w-4xl break-words text-[clamp(2.75rem,12vw,3rem)] font-semibold leading-[1.02] tracking-normal text-black sm:text-[72px] sm:leading-[0.94] md:text-[80px]"
             >
               {dictionary.contactPage.title}
             </TextAnimate>
@@ -120,7 +120,7 @@ export default function ContactPage() {
                           <Icon aria-hidden="true" className="h-4 w-4" />
                           {contact.label}
                         </span>
-                        <span className="text-2xl font-medium tracking-tight text-black transition-transform duration-500 group-hover:translate-x-1 sm:text-3xl">
+                        <span className="max-w-full break-all text-xl font-medium tracking-tight text-black transition-transform duration-500 group-hover:translate-x-1 sm:text-3xl">
                           {contact.value}
                         </span>
                         <span className="mt-2 text-[13px] text-black/40">

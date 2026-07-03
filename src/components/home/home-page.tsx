@@ -7,8 +7,7 @@ import {
   Folder,
   GitBranch,
   MonitorSmartphone,
-  ShieldCheck,
-  Sparkles
+  ShieldCheck
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -247,7 +246,7 @@ function FloatingVisual({
 }: {
   className: string;
   image?: string;
-  children: ReactNode;
+  children?: ReactNode;
   enableFloat: boolean;
   floatDelay?: number;
   floatDuration?: number;
@@ -301,17 +300,17 @@ function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
         )}
         floatDuration={6}
       >
-        <div className="absolute bottom-4 left-4 right-4 rounded-[18px] border border-white/45 bg-white/35 p-4 shadow-lg backdrop-blur-xl">
-          <div className="mb-2 flex items-center justify-between text-[10px] font-bold uppercase text-black">
+        <div className="absolute bottom-4 left-4 right-4 rounded-[14px] border border-white/30 bg-white/22 px-3 py-2.5 shadow-sm backdrop-blur-md">
+          <div className="mb-1.5 flex items-center justify-between text-[8px] font-bold uppercase text-black/70">
             <span>{labels.deploying}</span>
             <span>78%</span>
           </div>
-          <div className="h-1.5 overflow-hidden rounded-full bg-black/10">
+          <div className="h-1 overflow-hidden rounded-full bg-black/10">
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: "78%" }}
               transition={{ duration: 1.5, ease: "easeOut" }}
-              className="h-1.5 rounded-full bg-black"
+              className="h-1 rounded-full bg-black/80"
             />
           </div>
         </div>
@@ -325,13 +324,7 @@ function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
         )}
         floatDelay={1}
         floatDuration={5}
-      >
-        <div className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/55 bg-white/45 shadow-sm backdrop-blur-xl">
-          <motion.div animate={{ rotate: 360 }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }}>
-            <Sparkles aria-hidden="true" className="h-4 w-4 text-black" />
-          </motion.div>
-        </div>
-      </FloatingVisual>
+      />
 
       <motion.div
         data-collage-card
@@ -380,13 +373,13 @@ function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
         floatDelay={2}
         floatDuration={7}
       >
-        <div className="absolute left-4 top-4 flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full border border-white/55 bg-white/45 px-4 py-2 shadow-sm backdrop-blur-xl">
+        <div className="absolute left-4 top-4 flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full border border-white/25 bg-white/12 px-3 py-1.5 shadow-sm backdrop-blur-md">
           <motion.span
             animate={{ opacity: [1, 0.4, 1] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="h-2 w-2 shrink-0 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.85)]"
+            className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500/80 shadow-[0_0_8px_rgba(16,185,129,0.55)]"
           />
-          <span className="truncate text-[10px] font-bold uppercase text-black">{labels.databaseLayer}</span>
+          <span className="truncate text-[8px] font-bold uppercase text-neutral-500">{labels.databaseLayer}</span>
         </div>
       </FloatingVisual>
 
@@ -413,9 +406,8 @@ function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
         floatDelay={1.5}
         floatDuration={5.5}
       >
-        <div className="absolute bottom-5 left-5 right-5 rounded-[18px] border border-white/45 bg-white/35 p-4 backdrop-blur-xl">
-          <span className="text-xs font-bold text-black">{labels.clientPortal}</span>
-          <p className="mt-1 line-clamp-2 text-xs leading-5 text-black/70">{labels.handoff}</p>
+        <div className="absolute bottom-4 left-4 rounded-full border border-white/28 bg-white/16 px-3 py-1.5 shadow-sm backdrop-blur-md">
+          <span className="text-[9px] font-bold text-neutral-500">{labels.clientPortal}</span>
         </div>
       </FloatingVisual>
     </>

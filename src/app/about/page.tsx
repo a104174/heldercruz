@@ -117,7 +117,7 @@ export default function AboutPage() {
               animation="blurIn"
               as="h1"
               duration={0.65}
-              className="max-w-[900px] text-left text-[48px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[72px] md:text-[86px]"
+              className="max-w-[900px] break-words text-left text-[clamp(2.75rem,12vw,3rem)] font-semibold leading-[0.98] tracking-normal text-black sm:text-[72px] sm:leading-[0.94] md:text-[86px]"
             >
               {dictionary.about.heroTitle}
             </TextAnimate>
@@ -411,7 +411,7 @@ export default function AboutPage() {
         {/* CTA FINAL */}
         <AnimatedReveal className="mt-36">
           <div className="group flex min-h-[390px] flex-col items-center justify-center rounded-[34px] border border-black/10 bg-[#efede9] px-6 py-16 text-center shadow-sm transition-all duration-700 hover:border-transparent hover:bg-[#111111]">
-            <h2 className="max-w-[760px] text-[42px] font-semibold leading-[0.92] tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[62px] md:text-[76px]">
+            <h2 className="max-w-[760px] break-words text-[clamp(2.25rem,10vw,2.625rem)] font-semibold leading-[0.98] tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[62px] sm:leading-[0.92] md:text-[76px]">
               {dictionary.about.ctaTitle}
             </h2>
             <p className="mt-7 max-w-[520px] text-[14px] leading-7 text-black/54 transition-colors duration-700 group-hover:text-white/62">

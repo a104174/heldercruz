@@ -49,16 +49,19 @@ function FooterBackgroundSlot() {
       {shouldReduceMotion ? (
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_48%_72%,rgba(255,255,255,0.2),transparent_42%),radial-gradient(circle_at_72%_54%,rgba(255,255,255,0.12),transparent_30%)]" />
       ) : (
-        <div className="absolute inset-0 opacity-80 mix-blend-screen [filter:grayscale(1)_brightness(2.35)_contrast(1.35)]">
-          <DarkVeil
-            speed={0.34}
-            noiseIntensity={0.05}
-            scanlineIntensity={0}
-            scanlineFrequency={0}
-            warpAmount={0.42}
-            resolutionScale={0.8}
-          />
-        </div>
+        <>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_36%_34%,rgba(255,255,255,0.18),transparent_30%),radial-gradient(circle_at_72%_62%,rgba(255,255,255,0.12),transparent_34%)] lg:hidden" />
+          <div className="absolute inset-0 hidden opacity-80 mix-blend-screen [filter:grayscale(1)_brightness(2.35)_contrast(1.35)] lg:block">
+            <DarkVeil
+              speed={0.34}
+              noiseIntensity={0.05}
+              scanlineIntensity={0}
+              scanlineFrequency={0}
+              warpAmount={0.42}
+              resolutionScale={0.8}
+            />
+          </div>
+        </>
       )}
       <div className="absolute inset-0 bg-black/18" />
       <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black via-black/70 to-transparent" />
@@ -137,7 +140,7 @@ export function HomeFooter() {
   ] as const;
 
   return (
-    <footer className="relative isolate min-h-[820px] overflow-hidden bg-black px-5 text-white sm:px-8 lg:h-[var(--footer-reveal-height)] lg:min-h-[var(--footer-reveal-height)] lg:px-10">
+    <footer className="relative isolate min-h-[100svh] overflow-hidden bg-black px-5 text-white sm:min-h-[820px] sm:px-8 lg:h-[var(--footer-reveal-height)] lg:min-h-[var(--footer-reveal-height)] lg:px-10">
       <FooterBackgroundSlot />
 
       <div className="relative z-10 mx-auto flex h-full max-w-[1728px] flex-col pt-10 sm:pt-12 lg:pt-10">
@@ -197,16 +200,16 @@ export function HomeFooter() {
 
         <AnimatedReveal
           delay={0.18}
-          className="flex flex-1 items-start justify-center pt-[clamp(3rem,7.2vh,5.5rem)]"
+          className="flex flex-1 items-start justify-center pb-20 pt-[clamp(3rem,7.2vh,5.5rem)] sm:pb-0"
         >
           <Link href={contactHref} className="group block w-full text-center">
-            <span className="inline-block text-center text-[clamp(5.5rem,20vw,22rem)] font-semibold leading-[0.76] tracking-[-0.075em] text-white transition-transform duration-500 group-hover:scale-[0.99] lg:text-[clamp(8rem,16.2vw,23rem)]">
+            <span className="inline-block max-w-full text-center text-[clamp(3.8rem,15vw,5.5rem)] font-semibold leading-[0.82] tracking-[-0.055em] text-white transition-transform duration-500 group-hover:scale-[0.99] sm:text-[clamp(5.5rem,20vw,22rem)] sm:leading-[0.76] sm:tracking-[-0.075em] lg:text-[clamp(8rem,16.2vw,23rem)]">
               {copy.getInTouch}
             </span>
           </Link>
         </AnimatedReveal>
 
-        <div className="absolute inset-x-0 bottom-6 flex items-end justify-between text-[11px] font-medium text-white/40 sm:bottom-8">
+        <div className="mt-auto flex items-end justify-between pb-8 text-[11px] font-medium text-white/40 sm:absolute sm:inset-x-0 sm:bottom-8 sm:mt-0 sm:pb-0">
           <p>Hélder Cruz © 2026</p>
 
           <div className="flex items-center gap-2">

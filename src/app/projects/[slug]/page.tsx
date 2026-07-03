@@ -364,7 +364,7 @@ function XvStudioProjectPage({
           <span className="inline-flex rounded-full border border-black/10 bg-[#f2f0ec] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-black/38">
             {copy.caseStudy}
           </span>
-          <h1 className="mt-6 text-[52px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[78px] md:text-[96px]">
+          <h1 className="mt-6 break-words text-[clamp(2.75rem,12vw,3.25rem)] font-semibold leading-[0.98] tracking-normal text-black sm:text-[78px] sm:leading-[0.94] md:text-[96px]">
             {project.title}
           </h1>
           <p className="mx-auto mt-6 max-w-[680px] text-[15px] leading-7 text-black/56">
@@ -466,7 +466,7 @@ function HausbProjectPage({
           <span className="inline-flex rounded-full border border-black/10 bg-[#f2f0ec] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-black/38">
             {copy.caseStudy}
           </span>
-          <h1 className="mt-6 text-[56px] font-semibold leading-[0.92] tracking-normal text-black sm:text-[82px] md:text-[104px]">
+          <h1 className="mt-6 break-words text-[clamp(2.75rem,12vw,3.5rem)] font-semibold leading-[0.98] tracking-normal text-black sm:text-[82px] sm:leading-[0.92] md:text-[104px]">
             {project.title}
           </h1>
           <p className="mx-auto mt-6 max-w-[680px] text-[15px] leading-7 text-black/56">
@@ -578,7 +578,7 @@ function CasaBenficaProjectPage({
           <span className="inline-flex rounded-full border border-black/10 bg-[#f2f0ec] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-black/38">
             {copy.caseStudy}
           </span>
-          <h1 className="mt-6 text-[48px] font-semibold leading-[0.96] tracking-normal text-black sm:text-[72px] md:text-[86px]">
+          <h1 className="mt-6 break-words text-[clamp(2.6rem,11vw,3rem)] font-semibold leading-[0.98] tracking-normal text-black sm:text-[72px] sm:leading-[0.96] md:text-[86px]">
             {project.title}
           </h1>
           <p className="mt-5 text-[15px] leading-6 text-black/54">

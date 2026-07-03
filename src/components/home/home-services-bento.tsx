@@ -289,7 +289,7 @@ const baseFeatures = [
       <Calendar
         mode="single"
         selected={new Date(2026, 5, 17)}
-        className="absolute right-0 top-10 origin-top scale-75 rounded-md border bg-white [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-90"
+        className="absolute right-0 top-10 origin-top scale-90 rounded-md border bg-white [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] transition-all duration-300 ease-out group-hover:scale-100 sm:scale-75 sm:group-hover:scale-90"
       />
     )
   }

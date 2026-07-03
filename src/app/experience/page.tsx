@@ -132,7 +132,7 @@ export default function ExperiencePage() {
             animation="blurIn"
             as="h1"
             duration={0.6}
-            className="max-w-[900px] text-[48px] font-semibold leading-[0.94] tracking-normal text-black sm:text-[72px] md:text-[80px]"
+            className="max-w-[900px] break-words text-[clamp(2.75rem,12vw,3rem)] font-semibold leading-[0.98] tracking-normal text-black sm:text-[72px] sm:leading-[0.94] md:text-[80px]"
           >
             {dictionary.experience.heroTitle}
           </TextAnimate>
@@ -300,7 +300,7 @@ export default function ExperiencePage() {
         {/* CTA FINAL */}
         <AnimatedReveal className="mt-36">
           <div className="group flex min-h-[430px] flex-col items-center justify-center rounded-[34px] border border-black/5 bg-[#e9e7e3] px-6 py-16 text-center transition-all duration-700 hover:border-transparent hover:bg-[#111111]">
-            <h2 className="max-w-[850px] text-[46px] font-semibold leading-[0.94] tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[66px] md:text-[78px]">
+            <h2 className="max-w-[850px] break-words text-[clamp(2.4rem,10vw,2.875rem)] font-semibold leading-[0.98] tracking-normal text-black transition-colors duration-700 group-hover:text-white sm:text-[66px] sm:leading-[0.94] md:text-[78px]">
               {dictionary.experience.ctaTitle}
             </h2>
             <PortfolioInteractiveLink
