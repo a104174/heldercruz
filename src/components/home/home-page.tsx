@@ -379,7 +379,7 @@ function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
             transition={{ duration: 1.5, repeat: Infinity }}
             className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500/80 shadow-[0_0_8px_rgba(16,185,129,0.55)]"
           />
-          <span className="truncate text-[8px] font-bold uppercase text-neutral-500">{labels.databaseLayer}</span>
+          <span className="truncate text-[8px] font-bold uppercase text-white/78">{labels.databaseLayer}</span>
         </div>
       </FloatingVisual>
 
@@ -407,7 +407,7 @@ function CollageVisuals({ layout }: { layout: "scene" | "grid" }) {
         floatDuration={5.5}
       >
         <div className="absolute bottom-4 left-4 rounded-full border border-white/28 bg-white/16 px-3 py-1.5 shadow-sm backdrop-blur-md">
-          <span className="text-[9px] font-bold text-neutral-500">{labels.clientPortal}</span>
+          <span className="text-[9px] font-bold text-white/78">{labels.clientPortal}</span>
         </div>
       </FloatingVisual>
     </>
